@@ -1,0 +1,1769 @@
+//index.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@import "variables";
+@import "mixins";
+
+* {
+    @include mp;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    @include mp;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    @include general($white, none, 100%, 20px, $green, 300, $fontFamily);
+}
+
+.loader {
+    @include center;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+//Navbar ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.container {
+    padding: 0px;
+}
+
+.active {
+    border-top: $borderHover;
+    margin-top: -24px;
+    padding-top: 9px;
+}
+
+.disabled_link {
+    pointer-events: none;
+}
+
+// .active {
+//     color: $greenHover;
+//     border-top: $borderHover;
+//     margin-top: -24px;
+//     padding-top: 17px;
+// }
+.navbar-light {
+    .navbar-nav {
+        .nav-link {
+            color: $green !important;
+            font-size: 0.8em;
+
+            &:hover {
+                color: $greenHover;
+                border-top: $borderHover;
+                margin-top: -24px;
+                padding-top: 17px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 993px) {
+    .navbar-light {
+        .navbar-nav {
+            .nav-link {
+                &:hover {
+                    border: none;
+                    margin-top: -9px;
+                }
+            }
+        }
+    }
+}
+
+//Navbar END––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//Header ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+header {
+    // https://drive.google.com/uc?id=1ynfUJIVCfAjQGkJMUteHKMK_jE35iSJG
+    background: url(../../../public/img/Main/little_girl.svg) 80% 20% no-repeat fixed;
+}
+
+@media screen and (min-width: 1596px) {
+    header {
+        background-position: 60% 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+#header-message {
+    max-width: 542px;
+    padding: 127px 0px 200px 0px;
+
+    h1 {
+        font-weight: bold;
+        color: $blackMain;
+        font-size: 2.4em;
+    }
+
+    p {
+        color: $blackMain;
+        max-width: 405px;
+    }
+
+    div {
+        max-width: 376px;
+
+        div {
+            color: $greyMain;
+        }
+
+        .btn-success {
+            border: $borderMain;
+            background-color: $white;
+            color: $green;
+            font-weight: 600;
+            height: 40px;
+
+            &:hover {
+                background-color: $green;
+                color: $white;
+            }
+        }
+    }
+}
+
+//Header END––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//Who are you section ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#who-are-you {
+    .row {
+        margin: 0;
+    }
+
+    h4 {
+        color: $blackMain;
+        font-size: 1em;
+        margin-bottom: 0px;
+        margin-left: 15px;
+    }
+
+    .card {
+        margin-top: 15px;
+        border-top: $borderGrey;
+        border-bottom: none;
+        border-right: none;
+        border-left: none;
+        border-radius: 5px;
+        max-width: 254px;
+
+        img {
+            border-right: $borderGrey;
+            border-left: $borderGrey;
+            border-radius: 0px;
+            max-width: 254px;
+        }
+
+        .card-body {
+            border-right: $borderGrey;
+            border-left: $borderGrey;
+            border-radius: 5px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            color: $blackMain;
+            font-size: 0.9em;
+            padding: 10px 68px 10px 22px;
+
+            .card-title {
+                margin: 0;
+                font-weight: 500px;
+            }
+        }
+
+        .btn-primary {
+            padding: 9px 12px;
+            width: 254px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            background-color: $white;
+            color: $green;
+            text-align: start;
+            border: $borderMain;
+            font-weight: 500;
+
+            &:hover {
+                background-color: $green;
+                color: $white;
+            }
+        }
+
+        div {
+            a {
+                i {
+                    padding-left: 62%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    #who-are-you {
+        h4 {
+            margin-left: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #who-are-you {
+        h4 {
+            text-align: center;
+        }
+    }
+
+    .navbar-light {
+        .navbar-nav {
+            .nav-item {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+    }
+
+    #user-profile {
+        @include center;
+        width: 100%;
+
+        .profile-img {
+            justify-content: center;
+        }
+    }
+}
+
+//Who are you section END ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//You are not alone section  ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#you-are-not-alone {
+    margin-top: 100px;
+}
+
+#you-are-not-alone,
+#you-are-not-alone-1 {
+
+    .title {
+        max-width: 714px;
+
+        h1 {
+            font-weight: bold;
+            font-size: 1.8em;
+            color: $blackMain;
+        }
+
+        p {
+            color: $blackMain;
+        }
+    }
+
+    p {
+        font-size: 0.9em;
+        color: $blackMain;
+    }
+
+    .buttons {
+        margin-top: 20px;
+
+        .btn-secondary {
+            background-color: $white;
+            border: $borderGrey;
+            color: $grey;
+            padding: 11px 25px;
+            margin-right: 16px;
+            margin-bottom: 15px;
+
+            &:hover {
+                border: $borderMain;
+                color: $green;
+            }
+        }
+    }
+
+    .body {
+        margin-top: 15px;
+
+        .ver-article {
+            margin-left: 9px !important;
+            max-width: 525px;
+
+            .ver-body {
+                h4 {
+                    font-size: 1.2em;
+                    color: $blackMain;
+                    font-weight: bold;
+                }
+
+                p {
+                    color: $blackMain;
+                    font-size: 0.8em;
+                }
+            }
+        }
+
+        .hr-articles {
+            margin-left: 9px !important;
+            max-width: 525px;
+
+            .hor-body {
+                h6 {
+                    font-size: 0.9em;
+                    color: $blackMain;
+                    font-weight: bold;
+                }
+
+                p {
+                    color: $blackMain;
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
+}
+
+.green-link {
+    text-decoration: none !important;
+    color: $green;
+    font-size: 0.8em;
+
+    &:hover {
+        color: $greenHover;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #you-are-not-alone {
+        .body {
+
+            .ver-article,
+            .hr-articles {
+                margin-left: auto !important;
+                max-width: 70%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #you-are-not-alone {
+        .body {
+
+            .ver-article,
+            .hr-articles {
+                .article1 {
+                    margin-top: 15px;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column !important;
+                }
+
+                img {
+                    @include center;
+                }
+            }
+        }
+    }
+}
+
+//You are not alone section END ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//How to use our service section END –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#how-to-use-our-service {
+    // https://drive.google.com/uc?id=1dQn2HpYBPs9x9y4QTus4DhR7rHsvKDR8
+    background: url(../../../public/img/Main/chuvak.svg) right no-repeat;
+    padding-top: 100px;
+    color: $blackMain;
+    padding-bottom: 200px;
+
+    h1 {
+        font-size: 1.8em;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    p {
+        max-width: 746px;
+        margin-bottom: 8px;
+        font-size: 0.9em;
+
+        a {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .mr26 {
+            margin-right: 3%;
+        }
+    }
+}
+
+//How to use our service section END –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//Footer –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+footer {
+    color: $blackMain;
+    margin-bottom: 22px;
+    font-size: 0.8em;
+
+    a {
+        font-weight: bold;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+
+        .smth,
+        .right {
+            @include center;
+        }
+    }
+}
+
+//Footer END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+@media screen and (max-width: 576px) {
+    .container {
+        padding: 0px 7px;
+        text-align: center;
+    }
+
+    header {
+        // https://drive.google.com/uc?id=1ZTDN2jHtVKmv1gW4n08rGlxFgULpzvkc
+        background: url(../../../public/img/Main/back.svg) 50% 50% no-repeat;
+    }
+
+    #you-are-not-alone,
+    #you-are-not-alone-1 {
+        .buttons {
+            flex-direction: column;
+            margin-left: 15px;
+        }
+    }
+
+    #user-profile {
+        input {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+}
+
+//index.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//*************************************************************************************************
+//kids_1.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.kids2 {
+    margin-top: 45px !important;
+}
+
+#how-are-you-feel-kids {
+    margin-top: 108px;
+    padding-bottom: 96px;
+    background: url(../../../public/img/Kids/back.svg) bottom no-repeat fixed;
+    background-size: 100%;
+}
+
+#how-are-you-feel-kids,
+#how-are-you-feel-kids-1 {
+
+    .main-feelings {
+        h4 {
+            font-size: 1.2em;
+            text-align: center;
+            color: $blackMain;
+
+            span {
+                font-size: 1em;
+            }
+        }
+
+        .feelings {
+            color: $blackMain;
+            padding: 45px 0px 28px 0px;
+
+            p {
+                text-align: center;
+            }
+
+            img {
+                @include center;
+            }
+
+            .hooper {
+                outline: none;
+                width: 75%;
+            }
+
+            .hooper-slide {
+                &:hover {
+                    p {
+                        border-bottom: $borderHover;
+                        margin-bottom: -15px;
+                    }
+                }
+            }
+        }
+
+        .prev-next-btns {
+            margin: 0 auto;
+
+            .btn-success {
+                color: $green;
+                background-color: $white;
+                border: $borderMain;
+                font-size: 0.8em;
+                padding: 11.5px 50px;
+                margin-right: 16px;
+
+                &:hover {
+                    color: $white;
+                    background-color: $green;
+                }
+            }
+
+            .btn-primary {
+                color: $white;
+                background-color: $green;
+                border: $borderMain;
+                font-size: 0.8em;
+                padding: 11.5px 50px;
+
+                &:hover {
+                    color: $white;
+                    background-color: $greenHover;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .last-hidden {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .some-hidden {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 474px) {
+    .hidden {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 338px) {
+
+    #how-are-you-feel-kids,
+    #how-are-you-feel-kids-1 {
+        .main-feelings {
+            .feelings {
+                a:first-child {
+                    margin-right: 0px;
+                }
+
+                .home {
+                    margin-right: 0px !important;
+                }
+            }
+
+            .prev-next-btns {
+                display: flex;
+                flex-direction: column;
+
+                .btn-success {
+                    margin-right: 0px;
+                }
+
+                .btn-primary {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+//*************************************************************************************************
+//kids_1.html & kids_2.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//kids_article.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#some-things-which-can-help-you {
+    .choosing {
+        .choosing-img {
+            margin-right: 55px;
+        }
+
+        .choosing-title {
+            color: $blackMain;
+            font-weight: 500;
+            margin-top: 30px;
+            max-width: 377px;
+
+            p {
+                font-size: 1.2em;
+            }
+        }
+    }
+
+    .histories {
+        margin-top: 50px;
+
+        .histories-title {
+            background: url(../../../public/img/Kids/back_1.svg) top center no-repeat;
+            padding-bottom: 150px;
+            text-align: center;
+
+            h1 {
+                font-size: 1.8em;
+                color: $blackMain;
+                font-weight: bold;
+            }
+
+            p {
+                color: $greyMain;
+                font-size: 0.8em;
+
+                a {
+                    font-weight: bold;
+                    font-size: 1em;
+                }
+            }
+        }
+
+        .head-histories {
+            margin-top: -150px;
+
+            .mini-histories {
+                p {
+                    margin-left: 10px;
+                    max-width: 329px;
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    color: $black;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #some-things-which-can-help-you {
+        .choosing {
+            flex-direction: column !important;
+
+            .choosing-img {
+                margin-right: 0px;
+            }
+
+            .choosing-title {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #some-things-which-can-help-you {
+        .head-histories {
+            .mini-histories {
+                img {
+                    width: 310px;
+                }
+            }
+        }
+    }
+}
+
+//*************************************************************************************************
+//kids_article.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//kids_article_current.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+#what-to-do {
+    margin-top: 57px;
+    background: url(../../../public/img/Articles/back.svg) center center no-repeat;
+    background-size: cover;
+    color: $blackMain;
+    text-align: center;
+
+    h1 {
+        font-size: 1.8em;
+        font-weight: bold;
+        margin-bottom: 42px;
+    }
+    .hooper{
+        outline: none;
+        height: 100%!important;
+    }
+    .hooper-indicator {
+        margin: 0 10px;
+        background-color: $grey;
+        outline: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        &.is-active {
+            background-color: $green;
+        }
+    }
+    .current-article-body {
+        margin-top: 27px;
+        margin-bottom: 25px;
+
+        h2 {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        p {
+            margin-top: 13px;
+            @include center;
+            font-size: 0.9em;
+            max-width: 675px;
+
+            a {
+                font-size: 0.9em;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #what-to-do {
+        .what-images {
+            width: 100% !important;
+        }
+    }
+}
+
+//*************************************************************************************************
+//kids_article_current.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//adults.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#adults-articles {
+    color: $blackMain;
+
+    h4 {
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+
+    p {
+        font-size: 0.8em;
+        margin-bottom: 8px;
+    }
+
+    .adults-article-body {
+        max-width: 255px;
+    }
+}
+
+@media screen and (max-width: 1201px) {
+    #adults-articles {
+        .adults-articles-main {
+
+            a,
+            .adults-article-body {
+                @include center;
+            }
+        }
+    }
+}
+
+//*************************************************************************************************
+//kids_article_current.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+
+//adults_article_current.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.container-articles {
+    color: $blackMain;
+    max-width: 681px;
+    margin-left: 16.22%;
+}
+
+.main-header {
+    margin-top: 82px;
+    margin-bottom: 30px;
+
+    h1 {
+        font-size: 1.8em;
+        font-weight: bold;
+    }
+}
+
+.main-img {
+    color: $greyMain;
+    margin-bottom: 25px;
+
+    img {
+        width: 100%;
+    }
+
+    p {
+        text-align: center;
+        font-size: 0.9em;
+    }
+}
+
+.main-text {
+    p {
+        font-size: 0.9em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+}
+
+.main-header-text {
+    margin-bottom: 45px;
+
+    ul {
+        li {
+            margin-left: 5%;
+        }
+    }
+}
+
+.article-author {
+    h3 {
+        font-size: 0.9em;
+        color: $grey;
+    }
+
+    p {
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+}
+
+.recomendation {
+    color: $blackMain;
+    margin-bottom: 30px;
+
+    .recom-articels {
+        p {
+            max-width: 345px;
+            font-size: 1em;
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container-articles {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .recomendation {
+        .recom-articels {
+            max-width: 320px;
+        }
+    }
+
+    .main-header,
+    .main-text,
+    .main-header-text {
+        text-align: center;
+    }
+}
+
+//*************************************************************************************************
+//adults_article_current.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//blog.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#messages-from-people-like-you {
+    margin-bottom: 69px;
+}
+
+#stories-from-people-like-you,
+#messages-from-people-like-you {
+    margin-bottom: 69px;
+
+    img {
+        margin-right: 7%;
+    }
+
+    .blog-header {
+        color: $blackMain;
+
+        h1 {
+            font-weight: bold;
+            font-size: 1.8em;
+        }
+
+        h4 {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        p {
+            font-size: 0.8em;
+            max-width: 376px;
+        }
+
+        .btn-secondary {
+            background-color: $white;
+            border: $borderMain;
+            color: $green;
+            padding: 11px 25px;
+            width: 180px;
+
+            &:hover {
+                border: $borderBlackGreenHover;
+                color: $greenHover;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    #stories-from-people-like-you {
+        margin-top: 34px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #stories-from-people-like-you {
+        .flexible-content {
+            flex-direction: column !important;
+        }
+
+        img {
+            margin-right: 0;
+        }
+
+        .blog-header {
+            text-align: center;
+
+            p {
+                max-width: 100%;
+            }
+
+            .btn-secondary {
+                @include center;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+//*************************************************************************************************
+//blog.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//blog_create.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#new-blog-creation {
+    margin-top: 52px;
+
+    textarea {
+        border: none;
+        outline: none;
+    }
+
+    .new-blog-header {
+        resize: none;
+        width: 100%;
+        height: 28px;
+
+        &::placeholder {
+            font-size: 1.2em;
+            color: $grey;
+        }
+    }
+
+    .new-blog-text {
+        resize: none;
+        width: 100%;
+        height: 25px;
+        font-size: 0.8em;
+
+        &::placeholder {
+            color: $grey;
+        }
+    }
+}
+
+.help-button {
+    margin-left: 8%;
+}
+
+//*************************************************************************************************
+//blog_create.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+
+//blog_users.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#blog-users {
+    margin-top: 42px;
+    color: $blackMain;
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    h4 {
+        font-size: 0.9em;
+    }
+
+    p,
+    span,
+    i {
+        font-size: 0.7em;
+        color: $greyMain;
+        margin-bottom: 5px;
+    }
+
+    .navs {
+        margin-top: 23px;
+
+        a {
+            color: $blackMain;
+            text-decoration: none;
+
+            &:hover {
+                padding-bottom: 18px;
+                border-bottom: $borderMain;
+            }
+        }
+    }
+
+    i {
+        color: $greyMain;
+    }
+}
+
+.active-navs {
+    padding-bottom: 18px;
+    border-bottom: $borderMain;
+}
+
+//*************************************************************************************************
+//blog_users.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+
+//register.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+#auth {
+    background: url(../../../public/img/Authorization/first.svg) right no-repeat;
+}
+
+#login {
+    background: url(../../../public/img/Authorization/second.svg) right no-repeat;
+}
+
+#auth,
+#login {
+    padding-top: 119px;
+    padding-bottom: 290px;
+
+    h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $blackMain;
+        margin-bottom: 18px;
+    }
+
+    input {
+        max-width: 281px;
+        margin-bottom: 5px;
+        border: $borderGrey;
+
+        &::placeholder {
+            color: $grey;
+        }
+
+    }
+
+    .form-control {
+        padding: 12px 0px 12px 15px;
+        height: 44px;
+    }
+
+    .auth-form {
+        .btn-primary {
+            background-color: $green;
+            padding: 11.5px 57px;
+            border: $borderMain;
+            width: 281px;
+            margin-bottom: 36px;
+        }
+
+        small {
+            font-size: 0.65em;
+            margin-bottom: 2px;
+        }
+    }
+
+    .other-auth {
+        color: $greyMain;
+        max-width: 281px;
+
+        span {
+            font-size: 0.8em;
+        }
+
+        a {
+            &.google {
+                i:hover {
+                    color: #DC4E41;
+                }
+            }
+
+            &.vk:hover {
+                i:hover {
+                    color: #4c75a3;
+                }
+            }
+
+            &.facebook:hover {
+                i:hover {
+                    color: #3c5898;
+                }
+            }
+
+            i {
+                color: $greyMain;
+                font-size: 30px;
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+
+    #auth,
+    #login {
+        background: none;
+        text-align: center;
+
+        input,
+        .other-auth {
+            @include center;
+            margin-bottom: 5px;
+        }
+    }
+
+    footer {
+
+        .smth1 {
+            @include center;
+        }
+    }
+}
+
+//*************************************************************************************************
+//register.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//user_chat.html–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.sidebar {
+    margin-top: -16px;
+    padding-top: 46px;
+}
+
+.sidebar,
+.m-sidebar-chat {
+    border-right: $borderHorizontal;
+    height: 715px;
+
+    a {
+        text-decoration: none;
+        font-size: 0.8em;
+        color: $black;
+    }
+}
+
+//moderator_chat.html 
+.m-sidebar-chat {
+    color: $black;
+
+    h3 {
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+
+    span {
+        font-size: 0.6em;
+
+        &:first-child {
+            padding: 13px 0px 0px 20px;
+            font-size: 0.7em;
+            font-weight: 500;
+        }
+    }
+
+    .m-message {
+        padding: 17px 0px 20px 19px;
+        background-color: $greyMini;
+    }
+}
+
+
+.chat {
+    .input-group {
+        position: absolute;
+        bottom: 0;
+        padding-right: 15px;
+
+        .input-group-prepend,
+        .input-group-append {
+            .input-group-text {
+                height: 45px;
+                background-color: $white;
+            }
+        }
+
+        .input-group-prepend {
+            .input-group-text {
+                border-right: none;
+            }
+        }
+
+        .middle-icon,
+        .input-group-append {
+            .input-group-text {
+                border-left: none;
+            }
+        }
+
+        .first-icon {
+            .input-group-text {
+                border-top-left-radius: 70px;
+                border-bottom-left-radius: 70px;
+            }
+        }
+
+        .input-group-append {
+            .input-group-text {
+                border-top-right-radius: 70px;
+                border-bottom-right-radius: 70px;
+            }
+
+        }
+
+        .form-control {
+            height: 45px;
+            border-left: none;
+            border-right: none;
+
+            &:focus {
+
+                border-color: #cccccc;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+
+            }
+        }
+    }
+
+    .messages {
+        ul {
+            li {
+                display: inline-block;
+                clear: both;
+                float: left;
+                margin: 15px 15px 0px 15px;
+                font-size: 0.8em;
+                color: $black;
+
+                &.reply {
+                    border-radius: 75px;
+                    padding: 11.5px 22px;
+                    background: $greyMini;
+
+                    p {
+                        margin-bottom: 0;
+                    }
+
+                    span {
+                        padding-left: 5px;
+                        font-size: 0.7em;
+                        color: $greyMain;
+                    }
+                }
+
+                &.sent {
+                    border-radius: 75px;
+                    padding: 11.5px 22px;
+                    background: $greenSent;
+                    float: right;
+
+                    p {
+                        margin-bottom: 0;
+                    }
+
+                    span {
+                        padding-right: 5px;
+                        font-size: 0.7em;
+                        color: $greyMain;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal-exit {
+    box-shadow: 5px 0px 5px -5px $greyMain,
+        0px 5px 5px -5px $greyMain;
+    margin-bottom: 100px;
+    width: 478px;
+    height: 146px;
+    border: $border;
+    border-radius: 10px;
+    padding: 20px 38px 23px 37px;
+    color: $black;
+    font-size: 0.9em;
+
+    h4 {
+        font-weight: bold;
+    }
+}
+
+.save-chat {
+    text-decoration: none;
+    color: $accept;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.leave-chat {
+    text-decoration: none;
+    color: $reject;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.send {
+    text-decoration: none;
+    color: $green;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.cancel {
+    text-decoration: none;
+    color: $grey;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.complaint-feedback {
+    margin-bottom: 10px;
+    width: 478px;
+    height: 289px;
+    box-shadow: 5px 0px 5px -5px $greyMain,
+        0px 5px 5px -5px $greyMain;
+    border: $border;
+    border-radius: 10px;
+    padding: 26px;
+
+    textarea {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        width: 426px;
+        height: 158px;
+        border: $border;
+        border-radius: 10px;
+        outline: none;
+        padding: 15px 0px 0px 15px;
+
+        &::placeholder {
+            font-size: 0.9em;
+        }
+    }
+
+    a {
+        font-size: 0.9em;
+    }
+
+}
+
+
+@media screen and (max-width: 576px) {
+    .sidebar {
+        display: none;
+    }
+
+    .chat {
+        .input-group {
+            position: fixed;
+            bottom: 0;
+        }
+    }
+}
+
+//*************************************************************************************************
+//user_chat.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//user_profile.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.profile {
+    width: 164px;
+    height: 44px;
+    border: $borderGreyBorder;
+    border-radius: 40px;
+
+    img {
+        margin-top: 1px;
+        margin-left: 1px;
+    }
+
+    span {
+        padding: 12.5px;
+        text-align: center;
+        color: $black;
+        font-size: 0.7em;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        position: static;
+    }
+}
+
+#user-profile {
+    width: 310px;
+    color: $black;
+
+    h3 {
+        font-size: 1.2em !important;
+        font-weight: bold;
+        color: $black;
+    }
+
+    font-size: 0.8em;
+
+    a {
+        text-decoration: none;
+        color: $green;
+    }
+
+    input {
+        width: 281px;
+    }
+
+    span {
+        color: $greyMain;
+    }
+}
+
+//*************************************************************************************************
+//user_profile.html END–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//moderator_index.html –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// .navbar-light {
+//     .navbar-nav {
+//         .m-nav-link {
+//             &:hover {
+
+//             }
+//         }
+//     }
+// }
+.close {
+    display: none !important;
+}
+
+#moderator-main {
+    p {
+        color: $black;
+    }
+
+    h2 {
+        color: $black;
+    }
+
+    .col-sm-3 {
+        padding-right: 0px;
+    }
+
+    .col-2 {
+        max-width: 8.5%;
+        padding-right: 0px;
+
+        img {
+            @include center;
+        }
+
+        transition: 0.13s;
+    }
+
+    .col-3 {
+        max-width: 20%;
+        padding-right: 0px;
+    }
+
+    .col-9 {
+        max-width: 80%;
+        padding-left: 0px;
+        transition: 0.13s;
+    }
+
+    .col-10 {
+        max-width: 91.5%;
+        padding-left: 0px;
+        transition: 0.13s;
+    }
+
+    .m-sidebar,
+    .m-sidebar-current {
+        color: $black;
+
+        a {
+            color: $black;
+            border-right: $border;
+            font-size: 0.7em;
+            text-decoration: none;
+        }
+
+        a:last-child {
+            height: 547px;
+        }
+    }
+
+    .m-sidebar-current {
+        a {
+            padding: 20px 0px 20px 30px;
+        }
+
+        a:first-child {
+            border-bottom: $border;
+        }
+    }
+
+    .m-sidebar {
+        span {
+            margin-left: 17px;
+        }
+
+        a {
+            padding: 30px;
+        }
+
+        a:first-child {
+            border: $border;
+        }
+    }
+
+    .navbar {
+        align-items: start;
+        border-bottom: $border;
+        width: 110%;
+        padding: 0.45rem 1rem;
+
+        .notification {
+            width: 30px;
+            height: 44px;
+
+            .dropdown-menu {
+                width: 205px;
+                height: 111px;
+                margin-top: 30px;
+            }
+        }
+
+        .search {
+            .input-group-prepend {
+                height: 40px;
+                border-right: none;
+
+                .input-group-text {
+                    background-color: $white;
+                    border-top-left-radius: 60px;
+                    border-bottom-left-radius: 60px;
+                }
+            }
+
+            .form-control {
+                &:focus {
+
+                    border-color: #cccccc;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+
+                }
+            }
+
+            input {
+                outline: none;
+                border-left: none;
+                height: 40px;
+                border-top-right-radius: 60px;
+                border-bottom-right-radius: 60px;
+            }
+        }
+    }
+
+    .requests {
+        span {
+            font-size: 0.7em;
+            color: $grey;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+    }
+
+    .counts {
+        margin-top: 23px;
+
+        .count-top {
+            margin-left: 0.1px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .count-bottom {
+            border-bottom: $border;
+            margin-left: 0.1px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+        }
+    }
+
+    .statistics {
+        border-left: $border;
+
+        p {
+            margin-bottom: 0px;
+            font-size: 0.7em;
+        }
+
+        img {
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+    }
+
+    // moderator_check.html
+    .master-piece {
+        padding: 30px;
+        border-right: $border;
+        border-bottom: $border;
+
+        h3 {
+            color: $black;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+
+        p {
+            font-size: 0.8em;
+            margin-bottom: 48px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 0.7em;
+        }
+
+        .decision {
+            position: absolute;
+            bottom: 20px;
+        }
+    }
+
+    //moderator_check_current.html 
+    .m-blog-current {
+        padding-left: 30px;
+        padding-top: 20px;
+
+        h1 {
+            color: $black;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        p {
+            max-width: 708px;
+            font-size: 0.8em;
+        }
+
+        img {
+            margin-bottom: 19px;
+        }
+    }
+}
+
+.progress {
+    background-color: white;
+    border-radius: 7px;
+    height: 7px;
+    width: 65%;
+
+    .progress-bar {
+        background-color: $blue;
+        border-radius: 7px;
+        width: 85%;
+    }
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    background-color: $blue;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.blue {
+    color: $blue;
+}
+
+.red {
+    color: $reject;
+}
+
+.green {
+    color: $accept;
+}
+
+.grey {
+    color: $grey;
+}

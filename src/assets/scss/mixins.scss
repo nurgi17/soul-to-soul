@@ -1,0 +1,17 @@
+@mixin mp {
+    margin: 0;
+    padding: 0;
+}
+@mixin center {
+    display: block;
+    margin: 0 auto;
+}
+@mixin general($bc, $bor, $opa, $fs, $col, $fw, $fm) {
+    background-color: $bc;
+    border: $bor;
+    opacity: $opa;
+    font-size: $fs;
+    color: $col;
+    font-weight: $fw;
+    font-family: $fm;
+}
