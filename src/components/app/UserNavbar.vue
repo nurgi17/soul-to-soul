@@ -29,7 +29,7 @@
             :key="link.url"
             tag="li"
             :to="link.url"
-            active-class="active"
+            active-class="active-navbar"
             class="nav-item"
             :exact="link.exact"
           >

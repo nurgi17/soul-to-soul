@@ -8,7 +8,7 @@
             Почитай как другие проходят разные ситуации.
             Ты можешь и свой путь написать
           </p>
-          <a href="blog_create.html" class="green-link">Поделиться своей историей</a>
+          <router-link tag="a" to="/create" class="green-link">Поделиться своей историей</router-link>
         </div>
         <img src="img/Blog/sad_woman.svg" alt="Sadly woman" />
       </div>
@@ -23,13 +23,13 @@
         <Articles/>
       </div>
     </section>
-    <img src="img/Main/loader.svg" class="mt-5 mb-5 d-block mx-auto" alt="Loader" />
+    <Loader/>
     <section id="stories-from-people-like-you">
       <div class="flexible-content d-flex flex-row justify-content-between align-items-center">
         <div class="blog-header d-flex flex-column align-self-end">
           <h4>Есть своя история?</h4>
           <p>Поделись с другими и спасешь жизнь ближнему.</p>
-          <button class="btn btn-secondary">Вперед</button>
+          <router-link tag="button" to="/create" class="btn btn-secondary">Вперед</router-link>
         </div>
         <img src="img/Blog/message.svg" alt="Message icon" />
       </div>
@@ -42,9 +42,10 @@
 import Buttons from '@/components/app/Buttons.vue'
 import Footer from '@/components/app/Footer.vue'
 import Articles from '@/components/app/Articles.vue'
+import Loader from '@/components/app/Loader.vue'
 export default {
   components: {
-    Buttons, Footer, Articles
+    Buttons, Footer, Articles, Loader
   }
 }
 </script>

@@ -43,7 +43,7 @@ body {
 .container {
   padding: 0px; }
 
-.active {
+.active-navbar {
   border-top: 15px solid #7A9C78;
   margin-top: -24px;
   padding-top: 9px; }
@@ -890,7 +890,8 @@ footer {
   border-radius: 10px;
   padding: 20px 38px 23px 37px;
   color: #000000;
-  font-size: 0.9em; }
+  font-size: 0.9em;
+  background-color: #FFFFFF; }
   .modal-exit h4 {
     font-weight: bold; }
 
