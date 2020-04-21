@@ -38,7 +38,7 @@
           <li class="nav-item mr-3">
             <a class="nav-link font-weight-bold" href="tel:87026525298">Позвони нам</a>
           </li>
-          <li class="nav-item profile">
+          <li v-if="isLoggedIn" class="nav-item profile">
               <a
                 href=""
                 id="dropdownMenuLink"
@@ -57,6 +57,7 @@
                 tag="a"
                 class="dropdown-item"
                 :to="m.url">{{ m.title }}</router-link>
+                <a class="dropdown-item" @click.prevent="logout">Выйти</a>
               </div>
           </li>
         </ul>
@@ -78,9 +79,18 @@ export default {
       { title: 'Сообщение', url: '/chat' },
       { title: 'Написать блог', url: '/create' },
       { title: 'Мои истории', url: '/my-blog' },
-      { title: 'Настройки', url: '/profile' },
-      { title: 'Выйти', url: '/login' }
+      { title: 'Настройки', url: '/profile' }
     ]
-  })
+  }),
+  computed: {
+    isLoggedIn () {
+      return this.$store.getters.isLoggedIn
+    }
+  },
+  methods: {
+    async logout () {
+      await this.$store.dispatch('logout')
+    }
+  }
 }
 </script>

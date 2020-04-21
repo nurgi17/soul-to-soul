@@ -89,15 +89,21 @@ export default {
         return
       }
       const formData = {
-        email: this.email,
+        username: this.email,
         password: this.password
       }
-      console.log(formData)
-      this.$router.push('/moderator')
-      // try {
-      //   await this.$store.dispatch('login', formData)
-      //   this.$router.push('/')
-      // } catch (e) {}
+      await this.$store.dispatch('login', formData)
+        .then(id => {
+          console.log(id)
+          if (id === 1) {
+            this.$router.push('/admin')
+          } else if (id === 2) {
+            this.$router.push('/moderator')
+          } else if (id === 3) {
+            this.$router.push('/')
+          }
+        })
+        .catch(err => console.log(err))
     }
   }
 }

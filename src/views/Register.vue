@@ -91,12 +91,9 @@ export default {
         email: this.email,
         password: this.password
       }
-      console.log(formData)
-      this.$router.push('/moderator')
-      // try {
-      //   await this.$store.dispatch('register', fomrData)
-      //   this.$router.push('/')
-      // } catch (e) {}
+      await this.$store.dispatch('register', formData)
+        .then(() => this.$router.push('/'))
+        .catch(err => console.log(err))
     }
   }
 }
