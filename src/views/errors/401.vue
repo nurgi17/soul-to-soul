@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: '401 Access denied'
+  name: 'Access-denied'
 }
 </script>

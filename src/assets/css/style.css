@@ -20,9 +20,7 @@ body {
   font-weight: 300;
   font-family: "Open Sans", sans-serif; }
 
-.loader {
-  display: block;
-  margin: 0 auto;
+.loader img {
   -webkit-animation: spin 1.5s linear infinite;
   animation: spin 1.5s linear infinite; }
 
@@ -718,7 +716,7 @@ footer {
 #auth,
 #login {
   padding-top: 119px;
-  padding-bottom: 290px; }
+  padding-bottom: 272px; }
   #auth h3,
   #login h3 {
     font-size: 1.2em;

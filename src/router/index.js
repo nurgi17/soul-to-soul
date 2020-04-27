@@ -26,19 +26,19 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    meta: { layout: 'user', auth: true, roles: '3' },
+    meta: { layout: 'user', auth: true, user: true, admin: false, moderator: false },
     component: () => import('../views/Profile.vue')
   },
   {
     path: '/create',
     name: 'Create',
-    meta: { layout: 'user', auth: true, roles: '3' },
+    meta: { layout: 'user', auth: true, user: true, admin: false, moderator: false },
     component: () => import('../views/Create.vue')
   },
   {
     path: '/my-blog',
     name: 'MyBlog',
-    meta: { layout: 'user', auth: true, roles: '3' },
+    meta: { layout: 'user', auth: true, user: true, admin: false, moderator: false },
     component: () => import('../views/MyBlog.vue')
   },
   {
@@ -86,39 +86,33 @@ const routes = [
   {
     path: '/moderator',
     name: 'moderator',
-    meta: { layout: 'moderator', auth: true, roles: '2' },
+    meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
     component: () => import('../views/moderator/Home.vue')
   },
 
   {
     path: '/moderator-chat',
     name: 'moderator-chat',
-    meta: { layout: 'moderator', auth: true, roles: '2' },
+    meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
     component: () => import('../views/moderator/Chat.vue')
   },
 
   {
     path: '/moderator-check',
     name: 'moderator-check',
-    meta: { layout: 'moderator', auth: true, roles: '2' },
+    meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
     component: () => import('../views/moderator/Blog.vue')
   },
   {
     path: '/moderator-check-current',
     name: 'moderator-check-current',
-    meta: { layout: 'moderator', auth: true, roles: '2' },
+    meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
     component: () => import('../views/moderator/BlogCurrent.vue')
   },
   // errors
   {
-    path: '/404',
-    name: '404 Not found',
-    meta: { layout: 'user' },
-    component: () => import('../views/errors/404.vue')
-  },
-  {
     path: '/401',
-    name: '401 Access denied',
+    name: 'Access-denied',
     meta: { layout: 'user' },
     component: () => import('../views/errors/401.vue')
   }
@@ -131,11 +125,33 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const isLogged = store.getters.isLoggedIn
-  const requireAuth = to.meta.auth
-  if (requireAuth && !isLogged) {
-    next('/login')
-  } else if ((to.path === '/login' || to.path === '/register') && isLogged) {
+  if (to.meta.auth) {
+    const token = window.localStorage.getItem('token')
+    if (!token) {
+      next('/login?message=login')
+    } else if (to.meta.admin) {
+      const role = window.localStorage.getItem('role')
+      if (role === '1') {
+        next()
+      } else {
+        next('/401')
+      }
+    } else if (to.meta.moderator) {
+      const role = window.localStorage.getItem('role')
+      if (role === '2') {
+        next()
+      } else {
+        next('/401')
+      }
+    } else if (to.meta.user) {
+      const role = window.localStorage.getItem('role')
+      if (role === '3') {
+        next()
+      } else {
+        next('/401')
+      }
+    }
+  } else if ((to.path === '/login' || to.path === '/register') && store.getters.isLoggedIn) {
     next('/')
   } else {
     next()

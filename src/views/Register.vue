@@ -1,6 +1,7 @@
 <template>
   <div>
     <section id="auth">
+      <Loader :loading="loading" v-if="loading"/>
       <div class="auth-form container">
         <h3>Зарегистрироваться</h3>
         <form class="needs-validation" @submit.prevent="submitHandler">
@@ -71,15 +72,20 @@
 </template>
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import Loader from '@/components/app/Loader.vue'
 export default {
   name: 'register',
   data: () => ({
     email: '',
-    password: ''
+    password: '',
+    loading: false
   }),
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) }
+  },
+  components: {
+    Loader
   },
   methods: {
     async submitHandler () {
@@ -87,13 +93,20 @@ export default {
         this.$v.$touch()
         return
       }
+      this.loading = true
       const formData = {
         email: this.email,
         password: this.password
       }
       await this.$store.dispatch('register', formData)
-        .then(() => this.$router.push('/'))
-        .catch(err => console.log(err))
+        .then(() => {
+          this.loading = false
+          this.$router.push('/')
+        })
+        .catch(err => {
+          this.loading = false
+          console.log(err)
+        })
     }
   }
 }

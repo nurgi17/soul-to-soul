@@ -9,14 +9,15 @@
 <script>
 import UserLayout from '@/layouts/UserLayout'
 import ModeratorLayout from '@/layouts/ModeratorLayout'
+import NoneLayout from '@/layouts/NoneLayout'
 export default {
   computed: {
     layout () {
-      return (this.$route.meta.layout || 'user') + '-layout'
+      return (this.$route.meta.layout || 'none') + '-layout'
     }
   },
   components: {
-    UserLayout, ModeratorLayout
+    UserLayout, ModeratorLayout, NoneLayout
   },
   created: function () {
     this.$http.interceptors.response.use(undefined, function (err) {

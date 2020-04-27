@@ -1,6 +1,7 @@
 <template>
   <div>
     <section id="login">
+      <Loader :loading="loading" v-if="loading"/>
       <div class="auth-form container">
         <h3>Мы рады что вы здесь</h3>
         <form class="needs-validation" @submit.prevent="submitHandler">
@@ -72,15 +73,32 @@
 
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import messages from '@/utils/messages'
+import Loader from '@/components/app/Loader.vue'
 export default {
   name: 'login',
   data: () => ({
     email: '',
-    password: ''
+    password: '',
+    loading: false
   }),
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) }
+  },
+  components: {
+    Loader
+  },
+  mounted () {
+    if (messages[this.$route.query.message]) {
+      this.$bvToast.toast(messages[this.$route.query.message].message, {
+        title: messages[this.$route.query.message].title,
+        variant: messages[this.$route.query.message].type,
+        autoHideDelay: 3000,
+        solid: true,
+        appendToast: true
+      })
+    }
   },
   methods: {
     async submitHandler () {
@@ -88,6 +106,7 @@ export default {
         this.$v.$touch()
         return
       }
+      this.loading = true
       const formData = {
         username: this.email,
         password: this.password
@@ -95,6 +114,7 @@ export default {
       await this.$store.dispatch('login', formData)
         .then(id => {
           console.log(id)
+          this.loading = false
           if (id === 1) {
             this.$router.push('/admin')
           } else if (id === 2) {
@@ -103,7 +123,10 @@ export default {
             this.$router.push('/')
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          this.loading = false
+          console.log(err)
+        })
     }
   }
 }
