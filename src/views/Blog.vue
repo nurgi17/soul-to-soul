@@ -42,10 +42,9 @@
 import Buttons from '@/components/app/Buttons.vue'
 import Footer from '@/components/app/Footer.vue'
 import Articles from '@/components/app/Articles.vue'
-import Loader from '@/components/app/Loader.vue'
 export default {
   components: {
-    Buttons, Footer, Articles, Loader
+    Buttons, Footer, Articles
   }
 }
 </script>

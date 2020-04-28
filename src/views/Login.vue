@@ -74,7 +74,6 @@
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
 import messages from '@/utils/messages'
-import Loader from '@/components/app/Loader.vue'
 export default {
   name: 'login',
   data: () => ({
@@ -85,9 +84,6 @@ export default {
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) }
-  },
-  components: {
-    Loader
   },
   mounted () {
     if (messages[this.$route.query.message]) {

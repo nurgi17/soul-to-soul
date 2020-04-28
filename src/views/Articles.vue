@@ -21,9 +21,8 @@
 <script>
 import Footer from '@/components/app/Footer.vue'
 import Histories from '@/components/app/Histories.vue'
-import Loader from '@/components/app/Loader.vue'
 export default {
   name: 'kids-articles',
-  components: { Footer, Histories, Loader }
+  components: { Footer, Histories }
 }
 </script>

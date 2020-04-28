@@ -3,6 +3,7 @@ import App from './App.vue'
 import Vuelidate from 'vuelidate'
 import Axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
+import Loader from '@/components/app/Loader'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -10,10 +11,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import firebase from 'firebase/app'
+import 'firebase/database'
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
 Vue.use(BootstrapVue)
+Vue.component('Loader', Loader)
 
 Vue.prototype.$http = Axios
 const token = localStorage.getItem('token')
@@ -21,6 +25,17 @@ if (token) {
   // eslint-disable-next-line dot-notation
   Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer_' + token
 }
+
+firebase.initializeApp({
+  apiKey: 'AIzaSyD6d9rT6nsRQG3OPZOtBOcXhA38OY_kSv4',
+  authDomain: 'soul-to-soul.firebaseapp.com',
+  databaseURL: 'https://soul-to-soul.firebaseio.com',
+  projectId: 'soul-to-soul',
+  storageBucket: 'soul-to-soul.appspot.com',
+  messagingSenderId: '931423436930',
+  appId: '1:931423436930:web:3d3c72704dc7c4b957749b',
+  measurementId: 'G-D8NXS2V0QQ'
+})
 
 require('@/assets/css/style.css')
 new Vue({

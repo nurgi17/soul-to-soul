@@ -74,12 +74,11 @@
 <script>
 import Footer from '@/components/app/Footer.vue'
 import Buttons from '@/components/app/Buttons.vue'
-import Loader from '@/components/app/Loader.vue'
 import Articles from '@/components/app/Articles.vue'
 import { Hooper, Slide } from 'hooper'
 import 'hooper/dist/hooper.css'
 export default {
-  components: { Footer, Buttons, Loader, Articles, Hooper, Slide },
+  components: { Footer, Buttons, Articles, Hooper, Slide },
   data: () => ({
     things: [
       {

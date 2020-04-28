@@ -41,7 +41,8 @@
       </div>
 
       <Buttons />
-      <LastNews />
+      <!-- <Loader v-if="loading"/> -->
+      <LastNews /> <!--v-else :news="news"-->
     </section>
 
     <section id="how-to-use-our-service">
@@ -97,12 +98,19 @@ export default {
         alt: 'Adults',
         url: '/adults-articles'
       }
-    ]
+    ],
+    news: null,
+    loading: false
   }),
   components: {
     Footer,
     Buttons,
     LastNews
   }
+  // async mounted () {
+  //   this.loading = true
+  //   this.news = await this.$store.dispatch('fetchLastNews')
+  //   this.loading = false
+  // }
 }
 </script>

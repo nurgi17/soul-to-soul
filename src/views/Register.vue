@@ -72,7 +72,6 @@
 </template>
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
-import Loader from '@/components/app/Loader.vue'
 export default {
   name: 'register',
   data: () => ({
@@ -83,9 +82,6 @@ export default {
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) }
-  },
-  components: {
-    Loader
   },
   methods: {
     async submitHandler () {

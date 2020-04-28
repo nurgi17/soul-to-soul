@@ -314,7 +314,9 @@ header {
         .ver-article {
             margin-left: 9px !important;
             max-width: 525px;
-
+            img {
+                max-width: 275px;
+            }
             .ver-body {
                 h4 {
                     font-size: 1.2em;
@@ -332,6 +334,10 @@ header {
         .hr-articles {
             margin-left: 9px !important;
             max-width: 525px;
+
+            img {
+                max-width: 275px;
+            }
 
             .hor-body {
                 h6 {

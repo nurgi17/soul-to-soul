@@ -211,6 +211,9 @@ header {
   #you-are-not-alone-1 .body .ver-article {
     margin-left: 9px !important;
     max-width: 525px; }
+    #you-are-not-alone .body .ver-article img,
+    #you-are-not-alone-1 .body .ver-article img {
+      max-width: 275px; }
     #you-are-not-alone .body .ver-article .ver-body h4,
     #you-are-not-alone-1 .body .ver-article .ver-body h4 {
       font-size: 1.2em;
@@ -224,6 +227,9 @@ header {
   #you-are-not-alone-1 .body .hr-articles {
     margin-left: 9px !important;
     max-width: 525px; }
+    #you-are-not-alone .body .hr-articles img,
+    #you-are-not-alone-1 .body .hr-articles img {
+      max-width: 275px; }
     #you-are-not-alone .body .hr-articles .hor-body h6,
     #you-are-not-alone-1 .body .hr-articles .hor-body h6 {
       font-size: 0.9em;
