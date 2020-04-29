@@ -33,10 +33,11 @@
         <p class="text-center">
           Вы можете рассказать нам больше о том, с чем вам нужна помощь?
         </p>
-        <Buttons/>
+        <Buttons />
       </section>
 
-      <section id="adults-articles">
+      <!-- <Loader v-if="loading" /> -->
+      <section id="adults-articles"> <!--v-else-->
         <div class="row">
           <div class="col-12 col-sm-6 mb-4 pb-2">
             <router-link tag="a" to="/adults-articles-current"
@@ -64,7 +65,34 @@
               <router-link tag="a" to="/adults-articles-current"  class="green-link">Читать дальше</router-link>
             </div>
           </div>
-          <Articles/>
+
+          <!-- <div class="col-12 col-sm-6 mb-4 pb-2">
+            <router-link tag="a" to="/adults-articles-current"
+              ><img
+                :src="articles[0].img"
+                class="w-100"
+                alt="Article 4"
+            /></router-link>
+            <div class="d-flex flex-column">
+              <h4>{{ articles[0].title }}</h4>
+              <p>{{ articles[0].content }}</p>
+              <router-link tag="a" :to="{ path: '/adults-articles-current' + articles[0].id}"  class="green-link">Читать дальше</router-link>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 mb-4 pb-2">
+            <router-link tag="a" to="/adults-articles-current"
+              ><img
+                :src="articles[1].img"
+                class="w-100"
+                alt="Article 4"
+            /></router-link>
+            <div class="d-flex flex-column">
+              <h4>{{ articles[1].title }}</h4>
+              <p>{{ articles[1].content }}</p>
+              <router-link tag="a" :to="{ path: '/adults-articles-current' + articles[1].id}"  class="green-link">Читать дальше</router-link>
+            </div>
+          </div> -->
+          <Articles /> <!--:articles="articles"-->
         </div>
       </section>
       <Loader/>
@@ -141,11 +169,37 @@ export default {
         }
       }
     }
+    // loading: true,
+    // articles: {}
   }),
+  // async mounted () {
+  //   await this.$store.dispatch('fetchArticles')
+  //     .then(res => {
+  //       this.articles = res
+  //       this.loading = false
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //       this.loading = false
+  //     })
+  // },
   methods: {
     select (id) {
       console.log(id)
     },
+    // async select (id) {
+    //   this.loading = true
+    //   console.log(id)
+    //   await this.$store.dispatch('fetchArticleByProblem', id)
+    //     .then(res => {
+    //       this.articles = res
+    //       this.loading = false
+    //     })
+    //     .catch(err => {
+    //       console.log(err)
+    //       this.loading = false
+    //     })
+    // },
     slidePrev () {
       this.$refs.carousel.slidePrev()
     },

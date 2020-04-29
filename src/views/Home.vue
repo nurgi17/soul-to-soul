@@ -109,8 +109,15 @@ export default {
   }
   // async mounted () {
   //   this.loading = true
-  //   this.news = await this.$store.dispatch('fetchLastNews')
-  //   this.loading = false
+  //   await this.$store.dispatch('fetchLastNews')
+  //     .then(res => {
+  //       this.news = res
+  //       this.loading = false
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //       this.loading = false
+  //     })
   // }
 }
 </script>

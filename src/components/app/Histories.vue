@@ -14,7 +14,7 @@
       :key="history.id"
       class="mini-histories d-block mx-auto"
       >
-        <router-link tag="a" to="/kids-articles-current">
+        <router-link tag="a" :to="{ path: '/kids-articles-current' }"> <!-- + history.id-->
           <img :src="history.img" width="345px" height="240px" :alt="history.alt" />
         </router-link>
         <p>{{ history.text }}</p>
@@ -24,6 +24,7 @@
 </template>
 <script>
 export default {
+  // props: ['histories'],
   data: () => ({
     histories: [
       { id: 4, img: 'img/Articles/article_img_4.svg', alt: 'Article 4', text: 'Интересы не совпадают. Я странный?' },

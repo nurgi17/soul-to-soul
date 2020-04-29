@@ -15,12 +15,13 @@
     </section>
 
     <section id="you-are-not-alone-1">
-      <Buttons/>
+      <Buttons @tagFilter="onTagClick"/>
     </section>
 
-    <section id="adults-articles">
+    <!-- <Loader v-if="loading" /> -->
+    <section id="adults-articles"> <!--v-else-->
       <div class="row">
-        <Articles/>
+        <Articles /> <!--:articles="blogs"-->
       </div>
     </section>
     <Loader/>
@@ -43,8 +44,42 @@ import Buttons from '@/components/app/Buttons.vue'
 import Footer from '@/components/app/Footer.vue'
 import Articles from '@/components/app/Articles.vue'
 export default {
+  name: 'Blog',
   components: {
     Buttons, Footer, Articles
+  },
+  // data: () => ({
+  //   loading: true,
+  //   blogs: {}
+  // }),
+  // async mounted () {
+  //   await this.$store.dispatch('fetchBlogs')
+  //     .then(res => {
+  //       this.blogs = res
+  //       this.loading = false
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //       this.loading = false
+  //     })
+  // }
+  methods: {
+    async onTagClick (value) {
+      console.log(value)
+      // this.loading = true
+      // const tag = {
+      //   tag: value
+      // }
+      // await this.$store.dispatch('fetchBlogByTag', tag)
+      //   .then(res => {
+      //     this.blogs = res
+      //     this.loading = false
+      //   })
+      //   .catch(err => {
+      //     console.log(err)
+      //     this.loading = false
+      //   })
+    }
   }
 }
 </script>

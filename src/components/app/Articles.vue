@@ -11,7 +11,7 @@
         <div class="adults-article-body d-flex flex-column">
           <h4>{{ article.title }}</h4>
           <p>{{ article.text }}</p>
-          <router-link tag="a" to="/adults-articles-current" class="green-link">Читать дальше</router-link>
+          <router-link tag="a" to="/adults-articles-current" class="green-link">Читать дальше</router-link> <!--:to="{ path: '/adults-articles-current/' + article.id, params: { isBlog: article.isBlog } }"-->
         </div>
       </div>
     </div>
@@ -19,6 +19,7 @@
 </template>
 <script>
 export default {
+  // props: ['articles'],
   data: () => ({
     articles: [
       { id: 1, img: 'img/Articles/article_img_3.svg', alt: '', title: 'Унижают из-за внешности. Что со мной не так?!', text: 'В школе и на улице избегают меня словно я урод из цирка.' },

@@ -200,8 +200,14 @@ export default {
       this.$refs.carousel.slideNext()
     },
     goArticles () {
-      // console.log(this.ids)
-      this.$router.push('/kids-articles')
+      console.log(this.ids.feel + ' ' + this.ids.thing)
+      this.$router.push({
+        name: 'kids-articles',
+        params: {
+          f: this.ids.feel,
+          t: this.ids.thing
+        }
+      })
     }
   }
 }

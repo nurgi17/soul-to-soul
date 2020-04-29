@@ -61,13 +61,18 @@ const routes = [
   },
   {
     path: '/kids-articles',
-    name: 'Articles',
+    name: 'kids-articles',
     meta: { layout: 'user' },
-    component: () => import('../views/Articles.vue')
+    component: () => import('../views/Articles.vue'),
+    props: (route) => ({
+      f: 0,
+      t: 0,
+      ...route.params
+    })
   },
   {
-    path: '/kids-articles-current',
-    name: 'ArticleCurrent',
+    path: '/kids-articles-current', // '/kids-articles-current/:id'
+    name: 'kids-articles-current',
     meta: { layout: 'user' },
     component: () => import('../views/ArticleCurrent.vue')
   },
@@ -78,10 +83,14 @@ const routes = [
     component: () => import('../views/Adults.vue')
   },
   {
-    path: '/adults-articles-current',
+    path: '/adults-articles-current', // '/adults-articles-current/:id'
     name: 'AdultsCurrent',
     meta: { layout: 'user' },
-    component: () => import('../views/AdultsCurrent.vue')
+    component: () => import('../views/AdultsCurrent.vue'),
+    props: (route) => ({
+      isBlog: false,
+      ...route.params
+    })
   },
   {
     path: '/moderator',

@@ -4,6 +4,7 @@
           v-for="b in buttons"
           :key="b.id"
           to="/blog"
+          @click.native="tagF(b.text)"
           tag="button" class="btn btn-secondary">{{ b.text }}</router-link>
     </div>
 </template>
@@ -18,6 +19,11 @@ export default {
       { id: '5', text: 'Какая-то тема' },
       { id: '6', text: 'Еще одна тема' }
     ]
-  })
+  }),
+  methods: {
+    tagF (id) {
+      this.$emit('tagFilter', id)
+    }
+  }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
 <div>
+  <!-- <Loader :loading="loading" v-if="loading"/> -->
    <section id="what-to-do">
         <div class="container">
             <h1>Что делать, если вам кто-то вредит</h1>
@@ -30,6 +31,7 @@
 import { Hooper, Slide, Pagination as HooperPagination } from 'hooper'
 import 'hooper/dist/hooper.css'
 export default {
+  name: 'kids-articles-current',
   components: { Hooper, Slide, HooperPagination },
   data: () => ({
     whats: [
@@ -39,7 +41,21 @@ export default {
     hooperSettings: {
       wheelControl: false
     }
+    // article: {},
+    // loading: true
   }),
+  // async mounted () {
+  //   const id = this.$route.params.id
+  //   await this.$store.dispatch('fetchArticleById', id)
+  //     .then(res => {
+  //       this.article = res
+  //       this.loading = false
+  //     })
+  //     .then(err => {
+  //       console.log(err)
+  //       this.loading = false
+  //     })
+  // },
   methods: {
     slidePrev () {
       this.$refs.carousel.slidePrev()
