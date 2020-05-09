@@ -15,25 +15,30 @@
       class="mini-histories d-block mx-auto"
       >
         <router-link tag="a" :to="{ path: '/kids-articles-current' }"> <!-- + history.id-->
-          <img :src="history.img" width="345px" height="240px" :alt="history.alt" />
+          <img :src="history.url" width="345px" height="240px" alt="Kids mood and problem image" />
         </router-link>
-        <p>{{ history.text }}</p>
+        <p>{{ history.article.title }}</p>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  // props: ['histories'],
-  data: () => ({
-    histories: [
-      { id: 4, img: 'img/Articles/article_img_4.svg', alt: 'Article 4', text: 'Интересы не совпадают. Я странный?' },
-      { id: 5, img: 'img/Articles/article_img_5.svg', alt: 'Article 4', text: 'Каждый день меня бьют дома.' },
-      { id: 2, img: 'img/Articles/article_img_2.svg', alt: 'Article 4', text: 'Меня не понимают' },
-      { id: 3, img: 'img/Articles/article_img_3.svg', alt: 'Article 4', text: 'Унижают из-за внешности. Что со мной не так?!' },
-      { id: 6, img: 'img/Articles/article_img_6.svg', alt: 'Article 4', text: 'Что - плохо, что - хорошо' },
-      { id: 7, img: 'img/Articles/article_img_7.svg', alt: 'Article 4', text: 'Почему люди уходят?' }
-    ]
-  })
+  props: {
+    histories: {
+      type: Object,
+      required: true
+    }
+  }
+  // data: () => ({
+  //   histories: [
+  //     { id: 4, img: 'img/Articles/article_img_4.svg', alt: 'Article 4', text: 'Интересы не совпадают. Я странный?' },
+  //     { id: 5, img: 'img/Articles/article_img_5.svg', alt: 'Article 4', text: 'Каждый день меня бьют дома.' },
+  //     { id: 2, img: 'img/Articles/article_img_2.svg', alt: 'Article 4', text: 'Меня не понимают' },
+  //     { id: 3, img: 'img/Articles/article_img_3.svg', alt: 'Article 4', text: 'Унижают из-за внешности. Что со мной не так?!' },
+  //     { id: 6, img: 'img/Articles/article_img_6.svg', alt: 'Article 4', text: 'Что - плохо, что - хорошо' },
+  //     { id: 7, img: 'img/Articles/article_img_7.svg', alt: 'Article 4', text: 'Почему люди уходят?' }
+  //   ]
+  // })
 }
 </script>

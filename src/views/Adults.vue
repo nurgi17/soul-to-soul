@@ -173,6 +173,7 @@ export default {
     // articles: {}
   }),
   // async mounted () {
+  // TODO: send only category
   //   await this.$store.dispatch('fetchArticles')
   //     .then(res => {
   //       this.articles = res
@@ -187,6 +188,7 @@ export default {
     select (id) {
       console.log(id)
     },
+    // TODO: need filter
     // async select (id) {
     //   this.loading = true
     //   console.log(id)

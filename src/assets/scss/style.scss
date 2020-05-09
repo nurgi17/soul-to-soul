@@ -99,8 +99,8 @@ body {
 
 //Header ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 header {
-    // https://drive.google.com/uc?id=1ynfUJIVCfAjQGkJMUteHKMK_jE35iSJG
-    background: url(../../../public/img/Main/little_girl.svg) 80% 20% no-repeat fixed;
+    background: url(https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Flittle_girl-min.jpg?alt=media&token=ecb1316f-d6b7-425e-93bd-8cbcdcb92417) 80% 20% no-repeat fixed;
+    background-size: 780px 718px;
 }
 
 @media screen and (min-width: 1596px) {
@@ -316,6 +316,7 @@ header {
             max-width: 525px;
             img {
                 max-width: 275px;
+                max-height: 388px;
             }
             .ver-body {
                 h4 {
@@ -337,6 +338,7 @@ header {
 
             img {
                 max-width: 275px;
+                max-height: 210px;
             }
 
             .hor-body {
@@ -403,8 +405,8 @@ header {
 
 //How to use our service section END –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 #how-to-use-our-service {
-    // https://drive.google.com/uc?id=1dQn2HpYBPs9x9y4QTus4DhR7rHsvKDR8
-    background: url(../../../public/img/Main/chuvak.svg) right no-repeat;
+    background: url(https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fchuvak-min.jpg?alt=media&token=fced631b-e809-426b-9208-09a15a527f83) right no-repeat;
+    background-size: 402px 594px;
     padding-top: 100px;
     color: $blackMain;
     padding-bottom: 200px;

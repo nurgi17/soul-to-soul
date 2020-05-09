@@ -19,7 +19,6 @@
             <h5 class="card-title">{{ card.title }}</h5>
             <p class="card-text">{{ card.text }}</p>
           </div>
-          <!-- https://drive.google.com/uc?id=1nQ1PuRFqtzKTJYAealiiDrBN778WhQPu -->
           <img :src="card.img" :alt="card.alt" />
           <div>
             <router-link class="btn btn-primary" tag="a" :to="card.url">
@@ -41,8 +40,8 @@
       </div>
 
       <Buttons />
-      <!-- <Loader v-if="loading"/> -->
-      <LastNews /> <!--v-else :news="news"-->
+      <Loader v-if="loading"/>
+      <LastNews v-else :news="news" />
     </section>
 
     <section id="how-to-use-our-service">
@@ -73,51 +72,50 @@ export default {
       {
         title: 'Дети',
         text: '3-10 лет',
-        img: 'img/Main/kids.svg',
+        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fkids-min.jpg?alt=media&token=3803a209-957d-45f0-a51e-e434781d6896',
         alt: 'Kids',
         url: '/kids-choose'
       },
       {
         title: 'Подростки',
         text: '11-17 лет',
-        img: 'img/Main/teenagers.svg',
+        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fteenagers-min.jpg?alt=media&token=75ff0fbf-2446-44bb-b286-4561334de578',
         alt: 'Teenagers',
         url: '/adults-articles'
       },
       {
         title: 'Молодые люди',
         text: '18-29 лет',
-        img: 'img/Main/young_peoples.svg',
+        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fyoung_peoples-min.jpg?alt=media&token=a9da1358-0dd0-4d9c-96cf-19999ca6af91',
         alt: 'Young people',
         url: '/adults-articles'
       },
       {
         title: 'Взрослые',
         text: '30+ лет',
-        img: 'img/Main/adults.svg',
+        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fadults-min.jpg?alt=media&token=120e2da4-d62c-4661-9cb1-7361d0a05dc7',
         alt: 'Adults',
         url: '/adults-articles'
       }
     ],
-    news: null,
-    loading: false
+    news: {},
+    loading: true
   }),
   components: {
     Footer,
     Buttons,
     LastNews
+  },
+  async mounted () {
+    await this.$store.dispatch('fetchLastNews')
+      .then(res => {
+        this.news = res
+        this.loading = false
+      })
+      .catch(err => {
+        console.log(err)
+        this.loading = false
+      })
   }
-  // async mounted () {
-  //   this.loading = true
-  //   await this.$store.dispatch('fetchLastNews')
-  //     .then(res => {
-  //       this.news = res
-  //       this.loading = false
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //       this.loading = false
-  //     })
-  // }
 }
 </script>

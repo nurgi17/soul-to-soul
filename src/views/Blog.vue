@@ -66,6 +66,7 @@ export default {
   methods: {
     async onTagClick (value) {
       console.log(value)
+      // TODO: need filter
       // this.loading = true
       // const tag = {
       //   tag: value
