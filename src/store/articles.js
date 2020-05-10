@@ -28,22 +28,22 @@ export default {
             reject(err)
           })
       })
+    },
+    async fetchArticleById ({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        axios({ url: `http://localhost:8080/api/v1/unauthorized/article/${id}`, method: 'GET' })
+          .then(res => {
+            resolve(res.data)
+          })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            reject(err)
+          })
+      })
     }
     // async fetchArticles ({ commit }) {
     //   return new Promise((resolve, reject) => {
     //     axios({ url: 'http://localhost:8080/api/v1/unauthorized/articles', method: 'GET' })
-    //       .then(res => {
-    //         resolve(res.json())
-    //       })
-    //       .catch(err => {
-    //         commit('setError', err.response.data.message)
-    //         reject(err)
-    //       })
-    //   })
-    // },
-    // async fetchArticleById ({ commit }, id) {
-    //   return new Promise((resolve, reject) => {
-    //     axios({ url: 'http://localhost:8080/api/v1/unauthorized/article/' + id, method: 'GET' })
     //       .then(res => {
     //         resolve(res.json())
     //       })

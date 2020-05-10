@@ -9,36 +9,17 @@
       </p>
     </div>
     <div class="head-histories row">
-      <div
-      v-for="history in histories"
-      :key="history.id"
-      class="mini-histories d-block mx-auto"
-      >
-        <router-link tag="a" :to="{ path: '/kids-articles-current' }"> <!-- + history.id-->
-          <img :src="history.url" width="345px" height="240px" alt="Kids mood and problem image" />
+      <div v-for="history in histories" :key="history.id" class="mini-histories d-block mx-auto mb-4">
+        <router-link tag="a" :to="{ path: '/kids-articles-current/' + history.id }">
+          <b-img-lazy :src="history.image.url" width="345px" height="240px" alt="Kids mood and problem image"></b-img-lazy>
         </router-link>
-        <p>{{ history.article.title }}</p>
+        <p>{{ history.title }}</p>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: {
-    histories: {
-      type: Object,
-      required: true
-    }
-  }
-  // data: () => ({
-  //   histories: [
-  //     { id: 4, img: 'img/Articles/article_img_4.svg', alt: 'Article 4', text: 'Интересы не совпадают. Я странный?' },
-  //     { id: 5, img: 'img/Articles/article_img_5.svg', alt: 'Article 4', text: 'Каждый день меня бьют дома.' },
-  //     { id: 2, img: 'img/Articles/article_img_2.svg', alt: 'Article 4', text: 'Меня не понимают' },
-  //     { id: 3, img: 'img/Articles/article_img_3.svg', alt: 'Article 4', text: 'Унижают из-за внешности. Что со мной не так?!' },
-  //     { id: 6, img: 'img/Articles/article_img_6.svg', alt: 'Article 4', text: 'Что - плохо, что - хорошо' },
-  //     { id: 7, img: 'img/Articles/article_img_7.svg', alt: 'Article 4', text: 'Почему люди уходят?' }
-  //   ]
-  // })
+  props: ['histories']
 }
 </script>

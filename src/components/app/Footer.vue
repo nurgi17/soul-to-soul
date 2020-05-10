@@ -3,10 +3,9 @@
     <footer>
       <div class="d-flex flex-wrap">
         <div class="smth d-flex flex-wrap align-items-center">
-          <!-- https://drive.google.com/uc?id=12e7L_velqJiJwSDZzEq19PrmIEew1lbB -->
           <router-link class="mr-4" to="/" tag="a">
             <img
-              src="../../../public/img/Main/logo.svg"
+              src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Flogo.svg?alt=media&token=8c31a302-87fc-4487-8ddb-6fec2fb884ad"
               width="54.28"
               height="47"
               alt="Logo of SoulToSoul"

@@ -2,9 +2,8 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light">
       <router-link to="/" class="navbar-brand">
-        <!-- https://drive.google.com/uc?id=12e7L_velqJiJwSDZzEq19PrmIEew1lbB -->
         <img
-          src="../../../public/img/Main/logo.svg"
+          src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Flogo.svg?alt=media&token=8c31a302-87fc-4487-8ddb-6fec2fb884ad"
           width="76"
           height="62"
           class="d-inline-block align-top"
@@ -47,7 +46,7 @@
                 aria-expanded="false"
                 class="text-decoration-none"
               >
-                <img src="img/Users/profile.svg" alt="Profile img" />
+                <img src="img/Users/profile.svg" alt="Profile img" /> <!--TODO: do logic of user auth for navbar-->
                 <span>Мой профиль</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

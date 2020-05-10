@@ -19,7 +19,7 @@
             <h5 class="card-title">{{ card.title }}</h5>
             <p class="card-text">{{ card.text }}</p>
           </div>
-          <img :src="card.img" :alt="card.alt" />
+          <b-img-lazy :src="card.img" :alt="card.alt"> </b-img-lazy>
           <div>
             <router-link class="btn btn-primary" tag="a" :to="card.url">
               Перейти
@@ -98,7 +98,7 @@ export default {
         url: '/adults-articles'
       }
     ],
-    news: {},
+    news: [],
     loading: true
   }),
   components: {
@@ -114,7 +114,6 @@ export default {
       })
       .catch(err => {
         console.log(err)
-        this.loading = false
       })
   }
 }

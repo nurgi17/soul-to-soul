@@ -71,7 +71,7 @@ const routes = [
     })
   },
   {
-    path: '/kids-articles-current', // '/kids-articles-current/:id'
+    path: '/kids-articles-current/:id',
     name: 'kids-articles-current',
     meta: { layout: 'user' },
     component: () => import('../views/ArticleCurrent.vue')

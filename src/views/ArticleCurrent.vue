@@ -1,26 +1,26 @@
 <template>
 <div>
-  <!-- <Loader :loading="loading" v-if="loading"/> -->
+  <Loader :loading="loading" v-if="loading"/>
    <section id="what-to-do">
         <div class="container">
-            <h1>Что делать, если вам кто-то вредит</h1>
+            <h1>{{ article.title }}</h1>
                 <div class="d-flex flex-row justify-content-around align-items-center">
                     <a href="" @click.prevent="slidePrev">
-                        <img src="img/Articles/prev.svg" class="some-hidden" alt="Prev arrow">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Articles%2Fprev.svg?alt=media&token=1dc7c0e6-f937-430a-a062-61013631cf92" class="some-hidden" alt="Prev arrow">
                     </a>
                     <hooper ref="carousel" :settings="hooperSettings">
                         <slide
-                        v-for="slide in whats" :key="slide.id">
-                            <img :src="slide.img" class="what-images" alt="Current article img">
+                        v-for="(slide, index) in article.images" :key="slide.id">
+                            <img :src="slide.url" class="what-images" width="632px" height="350px" alt="Current article img">
                             <div class="current-article-body mb-5">
-                                <h2>{{ slide.title }}</h2>
-                                <p v-html="slide.text"> {{ slide.text }}</p>
+                                <h2 class="mx-auto" v-html="head[index]"></h2>
+                                <p>{{ heads[index] }}</p>
                             </div>
                         </slide>
                         <hooper-pagination slot="hooper-addons"></hooper-pagination>
                     </hooper>
                     <a href="" @click.prevent="slideNext">
-                        <img src="img/Articles/next.svg" class="some-hidden" alt="Next arrow">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Articles%2Fnext.svg?alt=media&token=9c820365-4c1e-4082-9211-24de8e259b56" class="some-hidden" alt="Next arrow">
                     </a>
                 </div>
         </div>
@@ -34,28 +34,34 @@ export default {
   name: 'kids-articles-current',
   components: { Hooper, Slide, HooperPagination },
   data: () => ({
-    whats: [
-      { id: 1, img: 'img/Articles/current_img_1.svg', title: 'Некоторые дети боятся, что кто-то причинит им боль', text: 'Они могут думать, что это секрет, который они никому не могут рассказать. Они могут захотеть, чтобы это прекратилось, но не знают, как.<br><br> Они могут чувствовать себя одинокими. Это может быть страшно и запутанно.' },
-      { id: 2, img: 'img/Articles/current_img_2.svg', title: 'Некоторые дети боятся, что кто-то причинит им боль', text: 'Поговорить с кем-то это может быть поможет.<br>Если ты чувствуешь себя плохо из-за того что тебя кто-то вредит<br><br><a href="tel:87026525298" class="green-link">позвони нам</a> или <a href="/chat" class="green-link">напиши нам</a>' }
-    ],
     hooperSettings: {
       wheelControl: false
-    }
-    // article: {},
-    // loading: true
+    },
+    article: {},
+    content: [],
+    smth: [],
+    head: [],
+    heads: [],
+    loading: true
   }),
-  // async mounted () {
-  //   const id = this.$route.params.id
-  //   await this.$store.dispatch('fetchArticleById', id)
-  //     .then(res => {
-  //       this.article = res
-  //       this.loading = false
-  //     })
-  //     .then(err => {
-  //       console.log(err)
-  //       this.loading = false
-  //     })
-  // },
+  async mounted () {
+    const id = this.$route.params.id
+    await this.$store.dispatch('fetchArticleById', id)
+      .then(res => {
+        this.content = res.content.split('</div>')
+        this.content.forEach(r => {
+          this.smth = r.split('<br/>')
+          this.head.push(this.smth[0])
+          this.heads.push(this.smth[1])
+        })
+        this.article = res
+        this.loading = false
+      })
+      .then(err => {
+        console.log(err)
+        this.loading = false
+      })
+  },
   methods: {
     slidePrev () {
       this.$refs.carousel.slidePrev()

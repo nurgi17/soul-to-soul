@@ -1,6 +1,6 @@
 <template>
     <div :class="{'loader1' : loading, 'loader': !loading}">
-        <img src="img/Main/loader.svg" class="mt-5 mb-5 d-block mx-auto" alt="Loader" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Floader.svg?alt=media&token=6bcf3222-0750-4e49-b965-52a291ed2572" class="mt-5 mb-5 d-block mx-auto" alt="Loader" />
     </div>
 </template>
 

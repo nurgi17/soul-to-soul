@@ -20,7 +20,7 @@
           </h4>
           <div class="feelings d-flex flex-row justify-content-around">
             <a href class="mt-4 pt-3 mr-4" @click.prevent="slidePrev">
-              <img src="img/Kids/prev.svg" width="40px" height="40px" alt="Prev arrow" />
+              <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fprev.svg?alt=media&token=0a97fb72-0994-4fd7-9365-414b614ed563" width="40px" height="40px" alt="Prev arrow" />
             </a>
             <hooper ref="carousel" :settings="hooperSettings">
               <slide v-for="feeling in feelings" :key="feeling.id" :class="feeling.class">
@@ -31,7 +31,7 @@
               </slide>
             </hooper>
             <a href class="mt-4 pt-3" @click.prevent="slideNext">
-              <img src="img/Kids/next.svg" width="40px" height="40px" alt="Next arrow" />
+              <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fnext.svg?alt=media&token=6a310772-8286-4918-a03e-5d68ab25da26" width="40px" height="40px" alt="Next arrow" />
             </a>
           </div>
           <div class="prev-next-btns d-flex flex-wrap">
@@ -69,7 +69,7 @@ export default {
     curFeeling:
       'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fanonymus.svg?alt=media&token=d4d53931-9ee7-418a-a0f9-0613a30c4737',
     question:
-      'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fquestion-min.jpg?alt=media&token=16cc66bd-d7b5-4805-9c32-26af64171b57',
+      'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fquestion.svg?alt=media&token=ea65f8a9-6ac1-41dc-87e5-b77b6652d3a4',
     mainText1: {
       text1: 'Привет!',
       text2: 'Как ты себя',
@@ -153,7 +153,7 @@ export default {
         class: 'home',
         pc: 'pt-3',
         img:
-          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fhome-min.jpg?alt=media&token=8554e364-9108-44c5-b610-ba674fe7559e',
+          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fhome.svg?alt=media&token=d7fe383d-547c-49f9-9f02-971089f44104',
         alt: 'Home',
         text: 'Моя семья и дом',
         width: '100px',
@@ -175,7 +175,7 @@ export default {
         class: '',
         pc: '',
         img:
-          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Finternet-min.jpg?alt=media&token=c16c0a02-5270-4efd-8529-69cf1663b992',
+          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Finternet.svg?alt=media&token=77af4a72-5bca-4ecb-a209-6150325a4340',
         alt: 'Internet',
         text: 'Что-то в интернете',
         width: '114px',
@@ -186,7 +186,7 @@ export default {
         class: '',
         pc: 'pt-3',
         img:
-          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Ffriends-min.jpg?alt=media&token=a24bfbe9-4ac0-41c5-965c-f12de42dc131',
+          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Ffriends.svg?alt=media&token=f72562b2-8713-4cb5-a883-f3be8d220a73',
         alt: 'Friends',
         text: 'Мои друзья',
         width: '101px',

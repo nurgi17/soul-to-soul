@@ -4,6 +4,7 @@ import Vuelidate from 'vuelidate'
 import Axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import Loader from '@/components/app/Loader'
+import Paginate from 'vuejs-paginate'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -18,6 +19,7 @@ Vue.config.productionTip = false
 Vue.use(Vuelidate)
 Vue.use(BootstrapVue)
 Vue.component('Loader', Loader)
+Vue.component('Paginate', Paginate)
 
 Vue.prototype.$http = Axios
 const token = localStorage.getItem('token')
