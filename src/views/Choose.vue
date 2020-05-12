@@ -257,12 +257,10 @@ export default {
       this.$refs.carousel.slideNext()
     },
     goArticles () {
+      this.$store.commit('setMood', this.ids.feel)
+      this.$store.commit('setProblem', this.ids.thing)
       this.$router.push({
-        name: 'kids-articles',
-        params: {
-          f: this.ids.feel,
-          t: this.ids.thing
-        }
+        name: 'kids-articles'
       })
     }
   }

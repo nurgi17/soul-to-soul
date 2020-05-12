@@ -3,11 +3,11 @@
     <section id="some-things-which-can-help-you">
       <div class="choosing d-flex flex-row justify-content-center">
         <div class="choosing-img d-flex flex-column">
-          <img :src="imgThing[this.t].img" alt="Cloud of think" width="148px" height="94px" />
+          <img :src="imgThing[this.problem].img" alt="Cloud of think" width="148px" height="94px" />
           <img
-            :src="imgFeel[this.f].img"
+            :src="imgFeel[this.mood].img"
             alt="Sadly feel"
-            :width="imgFeel[this.f].width"
+            :width="imgFeel[this.mood].width"
             height="121px"
           />
         </div>
@@ -45,7 +45,6 @@ import Histories from '@/components/app/Histories.vue'
 import paginationMixin from '@/mixins/pagination.mixin'
 export default {
   name: 'kids-articles',
-  props: ['f', 't'],
   mixins: [paginationMixin],
   components: { Footer, Histories },
   data: () => ({
@@ -123,33 +122,38 @@ export default {
     ]
   }),
   async mounted () {
-    console.log(this.f + ' ' + this.t)
-    // const mood = this.f
-    // const problem = this.t
+    const mood = this.mood
+    const problem = this.problem
     await this.$store
       .dispatch('fetchArticleByCategory', 1)
       .then(res => {
-        // if (problem === 0) {
-        //   this.histories = Object.values(res).filter(function (r) {
-        //     return r.article.moodId === mood
-        //   })
-        // } else {
-        //   this.histories = Object.values(res).filter(function (r) {
-        //     return r.article.problemId === problem
-        //   })
-        // }
-        // if (problem === 0 && mood === 0) {
-        //   this.histories = Object.values(res)
-        // }
-        this.histories = res
+        if (problem === 0) {
+          this.histories = Object.values(res).filter(function (r) {
+            return r.moodId === mood
+          })
+        } else {
+          this.histories = Object.values(res).filter(function (r) {
+            return r.problemId === problem
+          })
+        }
+        if (problem === 0 && mood === 0) {
+          this.histories = Object.values(res)
+        }
         this.setupPagination(this.histories)
-        console.log(this.histories)
         this.loading = false
       })
       .catch(err => {
         console.log(err)
         this.loading = false
       })
+  },
+  computed: {
+    mood () {
+      return this.$store.getters.mood
+    },
+    problem () {
+      return this.$store.getters.problem
+    }
   }
 }
 </script>

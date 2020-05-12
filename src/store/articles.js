@@ -1,9 +1,22 @@
 import axios from 'axios'
 
 export default {
-  state: {},
-  mutations: {},
-  getters: {},
+  state: {
+    mood: 0,
+    problem: 0
+  },
+  mutations: {
+    setMood (state, m) {
+      state.mood = m
+    },
+    setProblem (state, p) {
+      state.problem = p
+    }
+  },
+  getters: {
+    mood: m => m.mood,
+    problem: p => p.problem
+  },
   actions: {
     async fetchLastNews ({ commit }) {
       return new Promise((resolve, reject) => {

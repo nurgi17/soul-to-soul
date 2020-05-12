@@ -11,7 +11,13 @@ export default {
   },
   methods: {
     pageChangeHandler (page) {
-      this.$router.push(`${this.$route.path}?page=${page}`)
+      this.$router.push({
+        path: `${this.$route.path}?page=${page}`,
+        params: {
+          f: 1,
+          t: 2
+        }
+      })
       this.items = this.allItems[page - 1] || this.allItems[0]
     },
     setupPagination (allItems) {
