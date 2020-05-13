@@ -9,9 +9,14 @@ export default {
     title: 'Предупреждение',
     message: 'Для начала войдите в систему'
   },
-  'auth/user-not-found': {
-    type: 'danger',
-    title: 'Ошибка',
-    message: 'Пользователь не существует'
+  blogCreated: {
+    type: 'success',
+    title: 'Достижение успеха',
+    message: 'Поздравляю ваш блог был создан'
+  },
+  deletedBlog: {
+    type: 'success',
+    title: 'Достижение успеха',
+    message: 'Блог был удален успешно'
   }
 }

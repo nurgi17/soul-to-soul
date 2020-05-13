@@ -113,7 +113,7 @@ export default {
         this.loading = false
       })
       .catch(err => {
-        console.log(err)
+        this.$error(err || 'Что-то пошло не так')
       })
   }
 }

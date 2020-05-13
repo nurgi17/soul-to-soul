@@ -2,17 +2,9 @@
   <div>
     <!-- <Loader :loading="loading" v-if="loading"/> -->
     <div>
-      <div class="main-header container-articles">
-        <h1>Как готовиться к экзаменам</h1>
-      </div>
-
-      <div class="main-img">
-        <img src="img/Articles/article_main_img.svg" alt="Article main img" />
-        <p>автор рисунка @okalso</p>
-      </div>
-
       <div class="container-articles">
-        <div class="main-text">
+          <h1>Как готовиться к экзаменам</h1>
+          <img src="img/Articles/article_main_img.svg" alt="Article main img" />
           <p>
             Дорогой читатель, полагаю, что ты планируешь сдавать экзамен в
             ближайшем будущем.
@@ -21,7 +13,6 @@
             уверенностью могу тебе сказать, что мои MustHave в заданном порядке,
             увеличат твой балл на минимум 10 очков.
           </p>
-          <div class="main-header-text">
             <h3>
               MustHave #1 — Бесплатный онлайн курс TOEFL® Test Preparation: The
               Insider’s Guide на edX.
@@ -39,8 +30,7 @@
                 книги)
               </li>
             </ul>
-          </div>
-          <div class="main-header-text">
+
             <h3>MustHave #2 — Практика</h3>
             <p>Для чтения:</p>
             <ul>
@@ -55,9 +45,7 @@
                 http://www.english-test.net/toefl/listening/
               </li>
             </ul>
-          </div>
 
-          <div class="main-header-text">
             <h3>MustHave #3 — пройти пробный тест.</h3>
             <p>Для меня это был пинком под зад:)</p>
             <p>
@@ -68,8 +56,6 @@
               Я сдала пробный тест за неделю до оригинала, поняла, что мне нужно
               подтянуть. И последнюю неделю тренировалась каждую свободную минуту.
             </p>
-          </div>
-        </div>
 
         <section id="you-are-not-alone-1" class="mb-3">
           <div class="buttons d-flex flex-wrap">
@@ -80,7 +66,7 @@
         </section>
 
         <div class="d-flex flex-row">
-          <img src="img/Users/author_img_1.svg" alt="Author of this article" />
+          <img src="img/Users/author_img_1.svg" alt="Author of this article" width="80px" height="80px" style="width: 10%;"/>
           <div class="article-author d-flex flex-column ml-4">
             <h3>АВТОР</h3>
             <p>Сапарбаева Мадина</p>
@@ -137,11 +123,11 @@
   </div>
 </template>
 <script>
-import Footer from '@/components/app/Footer.vue'
+// import Footer from '@/components/app/Footer.vue'
 export default {
   // props: ['isBlog'],
-  name: 'AdultsCurrent',
-  components: { Footer }
+  name: 'AdultsCurrent'
+  // components: { Footer }
   // data: () => ({
   //   article: {},
   //   loading: true

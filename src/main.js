@@ -5,6 +5,7 @@ import Axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import Loader from '@/components/app/Loader'
 import Paginate from 'vuejs-paginate'
+import messagePlugin from '@/utils/messages.plugin'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -13,9 +14,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import firebase from 'firebase/app'
-import 'firebase/database'
 
 Vue.config.productionTip = false
+Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 Vue.use(BootstrapVue)
 Vue.component('Loader', Loader)

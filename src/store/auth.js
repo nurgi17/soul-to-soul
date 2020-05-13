@@ -40,7 +40,7 @@ export default {
             commit('setError', err.response.data.message)
             localStorage.removeItem('token')
             localStorage.removeItem('role')
-            reject(err)
+            reject(err.response.data.message)
           })
       })
     },
@@ -59,7 +59,7 @@ export default {
           .catch(err => {
             commit('setError', err.response.data.message)
             localStorage.removeItem('token')
-            reject(err)
+            reject(err.response.data.message)
           })
       })
     },

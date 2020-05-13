@@ -748,10 +748,10 @@ footer {
     text-align: center;
 
     .what-images {
-        border: $borderGreyBorder;
-        border-radius: 2%;
-        box-shadow: 35px 0px 35px -35px #FFDA45,
-        0px 35px 35px -35px #FFDA45;
+        // border: $borderGreyBorder;
+        // border-radius: 2%;
+        // box-shadow: 35px 0px 35px -35px #FFDA45,
+        // 0px 35px 35px -35px #FFDA45;
     }
 
     h1 {
@@ -853,60 +853,49 @@ footer {
     color: $blackMain;
     max-width: 681px;
     margin-left: 16.22%;
-}
 
-.main-header {
-    margin-top: 82px;
-    margin-bottom: 30px;
+    h1, h2, h3 {
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
 
     h1 {
         font-size: 1.8em;
-        font-weight: bold;
-    }
-}
-
-.main-img {
-    color: $greyMain;
-    margin-bottom: 25px;
-
-    img {
-        width: 100%;
     }
 
-    p {
-        text-align: center;
-        font-size: 0.9em;
-    }
-}
-
-.main-text {
-    p {
-        font-size: 0.9em;
+    h2 {
+        font-size: 1.4em;
     }
 
     h3 {
         font-size: 1.2em;
-        font-weight: bold;
-        margin-bottom: 20px;
     }
-}
 
-.main-header-text {
-    margin-bottom: 45px;
+    img {
+        width: 100%;
+        margin-bottom: 25px;
+    }
 
-    ul {
+    p {
+        font-size: 0.9em;
+    }
+
+    ul, ol {
         li {
             margin-left: 5%;
         }
     }
 }
-
 .article-author {
     h3 {
         font-size: 0.9em;
         color: $grey;
+        margin-bottom: 0px;
     }
-
+    img {
+        border-radius: 50%;
+    }
     p {
         font-size: 0.8em;
         font-weight: bold;
@@ -930,18 +919,13 @@ footer {
     .container-articles {
         margin-left: 3%;
         margin-right: 3%;
+        text-align: center;
     }
 
     .recomendation {
         .recom-articels {
             max-width: 320px;
         }
-    }
-
-    .main-header,
-    .main-text,
-    .main-header-text {
-        text-align: center;
     }
 }
 
@@ -1061,7 +1045,8 @@ footer {
 }
 
 .help-button {
-    margin-left: 8%;
+    position: fixed;
+    margin-left: 9%;
 }
 
 //*************************************************************************************************
@@ -1797,22 +1782,134 @@ footer {
 }
 
 .blue {
-    color: $blue;
+    color: $blue!important;
 }
 
 .red {
-    color: $reject;
+    color: $reject!important;
 }
 
 .green {
-    color: $accept;
+    color: $accept!important;
 }
 
 .grey {
-    color: $grey;
+    color: $grey!important;
+}
+.yellow {
+    color: $check!important;
 }
 
+// Pagination
 .page-item.active .page-link {
     background-color: $green;
     border-color: $green;
 }
+// Pagination ENDS
+
+// Create view editor styles
+.ProseMirror {
+    outline: none;
+}
+.is-empty:first-child:before,
+.is-empty:nth-child(2):before{
+    content: attr(data-empty-text);
+    float: left;
+    color: $grey;
+    pointer-events: none;
+    height: 0;
+}
+.menubar {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    a {
+        padding-left: 7px;
+        text-decoration: none;
+        color: $grey;
+        &:hover {
+           color: $black; 
+        }
+    }
+}
+.editor {
+    color: $black;
+    .col-1 {
+        padding: 0;
+        max-width: 16%;
+    }
+    .col-11 {
+        padding: 0;
+        max-width: 84%;
+    }
+}
+
+.save-publish {
+    background-color: $white;
+    border-top: $border;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
+    button {
+       width: 47%;
+       height: 45px;
+       border-radius: 5px;
+       color: $white;
+    }
+    .save {
+        background-color: $green;
+        border: $borderMain;
+    }
+    .publish {
+        background-color: $bluePublish;
+        border: 1px solid $bluePublish;
+    }
+}
+@media screen and (max-width: 993px) {
+    .help-button{
+        margin-left: 6%;
+    }
+}
+@media screen and (max-width: 507px ) {
+    .help-button {
+        position: static;
+        margin-left: 30%;
+    }
+    .menubar {
+        margin-top: 9px;
+        flex-direction: row;
+    }
+    .main-editor {
+        .row {
+            flex-direction: column;
+        }
+    }
+}
+@media screen and (max-height: 670px ) {
+    .help-button {
+        position: static;
+        margin-left: 30%;
+    }
+    .menubar {
+        margin-top: 9px;
+        flex-direction: row;
+    }
+    .main-editor {
+        .row {
+            flex-direction: column;
+        }
+    }
+}
+.sorry {
+    display: none;
+}
+@media screen and (max-width: 425px) {
+    .main-editor {
+        display: none;
+    }
+    .sorry {
+        display: block;
+    }
+}
+// Create view editor styles ENDS

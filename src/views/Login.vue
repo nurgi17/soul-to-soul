@@ -87,13 +87,7 @@ export default {
   },
   mounted () {
     if (messages[this.$route.query.message]) {
-      this.$bvToast.toast(messages[this.$route.query.message].message, {
-        title: messages[this.$route.query.message].title,
-        variant: messages[this.$route.query.message].type,
-        autoHideDelay: 3000,
-        solid: true,
-        appendToast: true
-      })
+      this.$message(messages[this.$route.query.message])
     }
   },
   methods: {
@@ -121,7 +115,7 @@ export default {
         })
         .catch(err => {
           this.loading = false
-          console.log(err)
+          this.$error(err || 'Что-то пошло не так')
         })
     }
   }

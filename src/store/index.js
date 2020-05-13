@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    error: null
+    error: null,
+    uploadedImage: {}
   },
   mutations: {
     setError (state, error) {
@@ -16,12 +17,16 @@ export default new Vuex.Store({
     },
     clearError (state) {
       state.error = null
+    },
+    setUploadedImage (state, payload) {
+      state.uploadedImage = payload
     }
   },
   actions: {
   },
   getters: {
-    error: s => s.error
+    err: s => s.error,
+    uplImg: s => s.uploadedImage
   },
   modules: {
     auth,

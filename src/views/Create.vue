@@ -1,100 +1,126 @@
 <template>
-  <div class="container">
-    <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
-      <div class="menubar d-flex flex-row justify-content-around">
-        <a href :class="{ 'is-active': isActive.bold() }" @click.prevent="commands.bold">
-          <i class="fas fa-bold"></i>
+<div>
+  <Loader :loading="loading" v-if="loading" />
+  <div class="container sorry"> Извините но ваше устройство не подходит для создания новых блогов, вы можете повернуть телефон по горизонтали.</div>
+  <div class="main-editor">
+    <hr />
+    <div class="row editor">
+      <div class="col-1">
+        <a @click="show=!show" class="help-button">
+          <img src="img/Blog/help_button.svg" alt="Help button" />
         </a>
 
-        <a href :class="{ 'is-active': isActive.italic() }" @click.prevent="commands.italic">
-          <i class="fas fa-italic"></i>
-        </a>
-
-        <a href :class="{ 'is-active': isActive.strike() }" @click.prevent="commands.strike">
-          <i class="fas fa-strikethrough"></i>
-        </a>
-
-        <a href :class="{ 'is-active': isActive.underline() }" @click.prevent="commands.underline">
-          <i class="fas fa-underline"></i>
-        </a>
-
-        <a href :class="{ 'is-active': isActive.paragraph() }" @click.prevent="commands.paragraph">
-          <i class="fas fa-paragraph"></i>
-        </a>
-
-        <a
-          href
-          :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-          @click.prevent="commands.heading({ level: 1 })"
-        >H1</a>
-
-        <a
-          href
-          :class="{ 'is-active': isActive.heading({ level: 2 }) }"
-          @click.prevent="commands.heading({ level: 2 })"
-        >H2</a>
-
-        <a
-          href
-          :class="{ 'is-active': isActive.heading({ level: 3 }) }"
-          @click.prevent="commands.heading({ level: 3 })"
-        >H3</a>
-
-        <a
-          href
-          :class="{ 'is-active': isActive.bullet_list() }"
-          @click.prevent="commands.bullet_list"
+        <editor-menu-bar
+          :class="{ 'close': show }"
+          :editor="editor"
+          v-slot="{ commands, isActive }"
         >
-          <i class="fas fa-list-ul"></i>
-        </a>
+          <div class="menubar help-button">
+            <a href :class="{ 'is-active': isActive.bold() }" @click.prevent="commands.bold">
+              <i class="fas fa-bold"></i>
+            </a>
 
-        <a
-          href
-          :class="{ 'is-active': isActive.ordered_list() }"
-          @click.prevent="commands.ordered_list"
-        >
-          <i class="fas fa-list-ol"></i>
-        </a>
+            <a href :class="{ 'is-active': isActive.italic() }" @click.prevent="commands.italic">
+              <i class="fas fa-italic"></i>
+            </a>
 
-        <!-- <a
-            :class="{ 'is-active': isActive.blockquote() }"
-            @click.prevent="commands.blockquote"
-          >blockquote
-        </a>-->
+            <a href :class="{ 'is-active': isActive.strike() }" @click.prevent="commands.strike">
+              <i class="fas fa-strikethrough"></i>
+            </a>
 
-        <a href @click.prevent="commands.horizontal_rule">––</a>
+            <a
+              href
+              :class="{ 'is-active': isActive.underline() }"
+              @click.prevent="commands.underline"
+            >
+              <i class="fas fa-underline"></i>
+            </a>
 
-        <a href @click.prevent="commands.undo">
-          <i class="fas fa-undo"></i>
-        </a>
+            <a
+              href
+              :class="{ 'is-active': isActive.paragraph() }"
+              @click.prevent="commands.paragraph"
+            >
+              <i class="fas fa-paragraph"></i>
+            </a>
+            <a
+              href
+              :class="{ 'is-active': isActive.heading({ level: 2 }) }"
+              @click.prevent="commands.heading({ level: 2 })"
+            >H2</a>
 
-        <a href @click.prevent="commands.redo">
-          <i class="fas fa-redo"></i>
-        </a>
+            <a
+              href
+              :class="{ 'is-active': isActive.heading({ level: 3 }) }"
+              @click.prevent="commands.heading({ level: 3 })"
+            >H3</a>
 
-        <a href @click.prevent="showImagePrompt(commands.image)">
-          <i class="fas fa-images"></i>
-        </a>
+            <a
+              href
+              :class="{ 'is-active': isActive.bullet_list() }"
+              @click.prevent="commands.bullet_list"
+            >
+              <i class="fas fa-list-ul"></i>
+            </a>
+
+            <a
+              href
+              :class="{ 'is-active': isActive.ordered_list() }"
+              @click.prevent="commands.ordered_list"
+            >
+              <i class="fas fa-list-ol"></i>
+            </a>
+
+            <a href @click.prevent="commands.horizontal_rule">––</a>
+
+            <a href @click.prevent="commands.undo">
+              <i class="fas fa-undo"></i>
+            </a>
+
+            <a href @click.prevent="commands.redo">
+              <i class="fas fa-redo"></i>
+            </a>
+            <a href class="a" @click.prevent="clearContent">
+              <i class="fas fa-broom"></i>
+            </a>
+
+            <a href @click.prevent="triggerUpload">
+              <i class="fas fa-images"></i>
+            </a>
+            <input
+              ref="fileInput"
+              type="file"
+              style="display: none;"
+              accept="image/*"
+              @change="onFileChange"
+            />
+          </div>
+        </editor-menu-bar>
       </div>
-    </editor-menu-bar>
+      <div class="container col-11">
+        <img :src="imageSrc" height="100" v-if="imageSrc" />
 
-    <editor-content :editor="editor" />
-    <div class="actions">
-      <a href class="a" @click.prevent="clearContent">Clear Content</a>
-      <a href class="a" @click.prevent="setContent">Set Content</a>
+        <editor-content class="pb-5 mb-5" :editor="editor"/>
+        <p>
+          <code>{{ html }}</code>
+        </p>
+      </div>
     </div>
-
-    <div class="export">
-      <h3>HTML</h3>
-      <pre><code>{{ html }}</code></pre>
+    <div class="save-publish">
+        <div class="container d-flex flex-wrap justify-content-between">
+          <button class="save mt-3 mb-3" @click.prevent="saveAndPublish('DRAFT')">Сохранить</button>
+          <button class="publish mt-3 mb-3" @click.prevent="saveAndPublish('CREATED')">Публиковать</button>
+        </div>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import Doc from '../utils/Doc'
+import Title from '../utils/Title'
 import {
-  Blockquote,
   HardBreak,
   Heading,
   HorizontalRule,
@@ -118,10 +144,16 @@ export default {
   },
   data () {
     return {
+      loading: false,
+      imageSrc: '',
+      image: null,
+      show: true,
+      html: '',
       editor: new Editor({
         autoFocus: true,
         extensions: [
-          new Blockquote(),
+          new Doc(),
+          new Title(),
           new BulletList(),
           new HardBreak(),
           new Heading({ levels: [1, 2, 3] }),
@@ -139,89 +171,89 @@ export default {
             showOnlyCurrent: false,
             emptyNodeText: node => {
               if (node.type.name === 'title') {
-                return 'Give me a name'
+                return 'Заголовок'
               }
-              return 'Write something'
+              return 'Начните с прекрасного..'
             }
           })
         ],
-        // content: `
-        //   <h2>
-        //     Export HTML or JSON
-        //   </h2>
-        //   <p>
-        //     You are able to export your data as <code>HTML</code> or <code>JSON</code>.
-        //   </p>
-        // `,
         onUpdate: ({ getHTML }) => {
           this.html = getHTML()
         }
-      }),
-      html: 'Update content to see changes'
+      })
+    }
+  },
+  computed: {
+    onUplImg () {
+      return this.$store.getters.uplImg
+    },
+    cutContent () {
+      try {
+        const slice1 = this.html.split('</h1>')
+        const slice2 = slice1[0].split('<h1>')
+        const blog = {
+          title: '',
+          short_content: '',
+          content: ''
+        }
+        blog.title = slice2[1]
+        blog.content = slice1[1]
+        blog.short_content = blog.content.substring(0, 43)
+        return blog
+      } catch (err) {
+        console.log(err)
+      }
+      return ''
+    },
+    error () {
+      return this.$store.getters.error
     }
   },
   methods: {
     clearContent () {
       this.editor.clearContent(true)
       this.editor.focus()
+      this.imageSrc = ''
+      this.image = null
     },
-    setContent () {
-      // you can pass a json document
-      this.editor.setContent(
-        {
-          type: 'doc',
-          content: [
-            {
-              type: 'paragraph',
-              content: [
-                {
-                  type: 'text',
-                  text: 'This is some inserted text. 👋'
-                }
-              ]
-            }
-          ]
-        },
-        true
-      )
-
-      // HTML string is also supported
-      // this.editor.setContent('<p>This is some inserted text. 👋</p>')
-
-      this.editor.focus()
+    triggerUpload () {
+      this.$refs.fileInput.click()
     },
-    showImagePrompt (command) {
-      const src = prompt('Enter the url of your image here')
-      if (src !== null) {
-        command({ src })
+    onFileChange (event) {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.imageSrc = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.image = file
+    },
+    async saveAndPublish (sts) {
+      this.loading = true
+      if (this.cutContent === '' || (this.cutContent.short_content === '<p></p>' && this.cutContent.content === '<p></p>')) {
+        this.loading = false
+        // this.$store.commit('setError', 'Для отправки все поля должны быть заполнены!')
+        this.$error('Для отправки все поля должны быть заполнены!')
+      } else {
+        const newBlog = {
+          content: this.cutContent.content,
+          shortContent: this.cutContent.short_content,
+          status: sts,
+          title: this.cutContent.title,
+          image: this.image
+        }
+        await this.$store.dispatch('createBlog', newBlog)
+          .then(res => {
+            this.loading = false
+            this.$router.push('/my-blog?message=blogCreated')
+          })
+          .catch(err => {
+            this.loading = false
+            console.log(err)
+            this.$error(err || 'Что-то пошло не так')
+          })
       }
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.actions {
-  max-width: 30rem;
-  margin: 0 auto 2rem auto;
-}
-
-.export {
-  max-width: 30rem;
-  margin: 0 auto 2rem auto;
-
-  pre {
-    padding: 1rem;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    background: rgba(black, 0.05);
-    color: rgba(black, 0.8);
-  }
-
-  code {
-    display: block;
-    white-space: pre-wrap;
-  }
-}
-</style>

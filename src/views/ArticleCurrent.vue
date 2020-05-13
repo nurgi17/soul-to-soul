@@ -57,9 +57,9 @@ export default {
         this.article = res
         this.loading = false
       })
-      .then(err => {
-        console.log(err)
+      .catch(err => {
         this.loading = false
+        this.$error(err || 'Что-то пошло не так')
       })
   },
   methods: {

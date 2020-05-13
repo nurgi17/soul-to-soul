@@ -26,7 +26,7 @@ export default {
           })
           .catch(err => {
             commit('setError', err.response.data.message)
-            reject(err)
+            reject(err.response.data.message)
           })
       })
     },
@@ -38,7 +38,7 @@ export default {
           })
           .catch(err => {
             commit('setError', err.response.data.message)
-            reject(err)
+            reject(err.response.data.message)
           })
       })
     },
@@ -50,7 +50,7 @@ export default {
           })
           .catch(err => {
             commit('setError', err.response.data.message)
-            reject(err)
+            reject(err.response.data.message)
           })
       })
     }
