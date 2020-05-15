@@ -20,7 +20,7 @@ export default {
   actions: {
     async fetchLastNews ({ commit }) {
       return new Promise((resolve, reject) => {
-        axios({ url: 'http://localhost:8080/api/v1/unauthorized/lastArticles', method: 'GET' })
+        axios({ url: 'https://localhost:8080/api/v1/unauthorized/lastArticles', method: 'GET' })
           .then(res => {
             resolve(res.data)
           })
@@ -32,7 +32,7 @@ export default {
     },
     async fetchArticleByCategory ({ commit }, id) {
       return new Promise((resolve, reject) => {
-        axios({ url: `http://localhost:8080/api/v1/unauthorized/articles/category/${id}`, method: 'GET' })
+        axios({ url: `https://localhost:8080/api/v1/unauthorized/articles/category/${id}`, method: 'GET' })
           .then(res => {
             resolve(res.data)
           })
@@ -44,7 +44,7 @@ export default {
     },
     async fetchArticleById ({ commit }, id) {
       return new Promise((resolve, reject) => {
-        axios({ url: `http://localhost:8080/api/v1/unauthorized/article/${id}`, method: 'GET' })
+        axios({ url: `https://localhost:8080/api/v1/unauthorized/article/${id}`, method: 'GET' })
           .then(res => {
             resolve(res.data)
           })

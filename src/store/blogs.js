@@ -7,22 +7,12 @@ export default {
   actions: {
     async createBlog ({ commit }, newBlog) {
       let imageSrc = null
-      let fid = null
       const image = newBlog.image
       delete newBlog.image
       if (image !== null) {
         try {
-          const newCol = {
-            title: newBlog.title
-          }
-          const column = await fb.database().ref('images').push(newCol) // column.key firebase_id
-          const imageExt = image.name.slice(image.name.lastIndexOf('.'))
-          const fileData = await fb.storage().ref(`uploads/${column.key}.${imageExt}`).put(image)
+          const fileData = await fb.storage().ref('uploads/' + image.name).put(image)
           imageSrc = await fileData.ref.getDownloadURL() // img URL
-          await fb.database().ref('images').child(column.key).update({
-            imageSrc
-          })
-          fid = column.key
         } catch (error) {
           commit('setError', error.message)
           console.log(error)
@@ -30,15 +20,14 @@ export default {
         }
       }
       return new Promise((resolve, reject) => {
-        axios({ url: 'http://localhost:8080/api/v1/user/blog/', data: newBlog, method: 'POST' })
+        axios({ url: 'https://localhost:8080/api/v1/user/blog/', data: newBlog, method: 'POST' })
           .then(res => {
             if (image !== null) {
               const newImageBlog = {
                 url: imageSrc,
-                firebaseId: fid,
-                blog_id: res.data.id
+                firebaseId: null
               }
-              axios({ url: 'http://localhost:8080/api/v1/user/imageBlog', data: newImageBlog, method: 'POST' })
+              axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + res.data.id, data: newImageBlog, method: 'POST' })
                 .then(res => {
                   resolve(res)
                 })
@@ -56,21 +45,45 @@ export default {
           })
       })
     },
-    async fetchBlogById ({ commit }, id) {
+    async updateBlog ({ commit }, upBlog) {
+      const blog = {
+        content: upBlog.updated.content,
+        title: upBlog.updated.title,
+        shortContent: upBlog.updated.shortContent,
+        status: upBlog.updated.status,
+        user: null
+        // updatedDate: +new Date()
+      }
+      if (upBlog.updated.image !== null) {
+        const fileData = await fb.storage().ref('uploads/' + upBlog.updated.image.name).put(upBlog.updated.image)
+        const imageSrc = await fileData.ref.getDownloadURL()
+        const newImageBlog = {
+          url: imageSrc,
+          firebaseId: null,
+          blogId: upBlog.id
+        }
+        if (upBlog.images[0].url !== '') {
+          const image = fb.storage().refFromURL(upBlog.images[0].url)
+          image.delete()
+          axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + upBlog.images[0].id, data: newImageBlog, method: 'PUT' })
+            .catch(err => {
+              commit('setError', err.response.data.message)
+              return new Promise((resolve, reject) => {
+                reject(err)
+              })
+            })
+        } else {
+          axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + upBlog.id, data: newImageBlog, method: 'POST' })
+            .catch(err => {
+              commit('setError', err.response.data.message)
+              return new Promise((resolve, reject) => {
+                reject(err)
+              })
+            })
+        }
+      }
       return new Promise((resolve, reject) => {
-        axios({ url: 'http://localhost:8080/api/v1/unauthorized/blog/' + id, method: 'GET' })
-          .then(res => {
-            resolve(res.json())
-          })
-          .catch(err => {
-            commit('setError', err.response.data.message)
-            reject(err.response.data.message)
-          })
-      })
-    },
-    async fetchUserBlogs ({ commit }) {
-      return new Promise((resolve, reject) => {
-        axios({ url: 'http://localhost:8080/api/v1/user/userblogs', method: 'GET' })
+        axios({ url: 'https://localhost:8080/api/v1/user/blog/' + upBlog.id, data: blog, method: 'PUT' })
           .then(res => {
             resolve(res.data)
           })
@@ -80,9 +93,50 @@ export default {
           })
       })
     },
-    async deleteBlog ({ commit }, id) {
+    async fetchBlogById ({ commit }, id) {
       return new Promise((resolve, reject) => {
-        axios({ url: 'http://localhost:8080/api/v1/user/blog/' + id, method: 'DELETE' })
+        axios({ url: 'https://localhost:8080/api/v1/user/blog/' + id, method: 'GET' })
+          .then(res => {
+            resolve(res.data)
+          })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            reject(err.response.data.message)
+          })
+      })
+    },
+    async fetchUserBlogs ({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'https://localhost:8080/api/v1/user/userblogs', method: 'GET' })
+          .then(res => {
+            resolve(res.data)
+          })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            reject(err.response.data.message)
+          })
+      })
+    },
+    async deleteBlog ({ commit }, ids) {
+      if (ids.imgUrl !== null) {
+        try {
+          const image = fb.storage().refFromURL(ids.imgUrl)
+          image.delete()
+        } catch (error) {
+          commit('setError', error.message)
+          console.log(error)
+          throw error
+        }
+        axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + ids.imgId, method: 'DELETE' })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            return new Promise((resolve, reject) => {
+              reject(err)
+            })
+          })
+      }
+      return new Promise((resolve, reject) => {
+        axios({ url: 'https://localhost:8080/api/v1/user/blog/' + ids.id, method: 'DELETE' })
           .then(res => {
             resolve(res.status)
           })

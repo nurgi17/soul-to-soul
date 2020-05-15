@@ -103,7 +103,7 @@ export default {
       }
       await this.$store.dispatch('login', formData)
         .then(id => {
-          // console.log(id)
+          console.log(document.cookie)
           this.loading = false
           if (id === 1) {
             this.$router.push('/admin')

@@ -9,6 +9,11 @@ export default {
     title: 'Предупреждение',
     message: 'Для начала войдите в систему'
   },
+  registered: {
+    type: 'success',
+    title: 'Достижение успеха',
+    message: 'Вы успешно зарегистрировались'
+  },
   blogCreated: {
     type: 'success',
     title: 'Достижение успеха',

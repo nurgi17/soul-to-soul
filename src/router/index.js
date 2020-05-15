@@ -36,6 +36,12 @@ const routes = [
     component: () => import('../views/Create.vue')
   },
   {
+    path: '/update/:id',
+    name: 'Update',
+    meta: { layout: 'user', auth: true, user: true, admin: false, moderator: false },
+    component: () => import('../views/Update.vue')
+  },
+  {
     path: '/my-blog',
     name: 'MyBlog',
     meta: { layout: 'user', auth: true, user: true, admin: false, moderator: false },

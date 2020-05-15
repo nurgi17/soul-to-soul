@@ -91,13 +91,13 @@ export default {
       }
       this.loading = true
       const formData = {
-        email: this.email,
+        username: this.email,
         password: this.password
       }
       await this.$store.dispatch('register', formData)
-        .then(() => {
+        .then(res => {
           this.loading = false
-          this.$router.push('/')
+          this.$router.push('/login?message=registered')
         })
         .catch(err => {
           this.loading = false
