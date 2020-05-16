@@ -36,66 +36,26 @@
         <Buttons />
       </section>
 
-      <!-- <Loader v-if="loading" /> -->
-      <section id="adults-articles"> <!--v-else-->
+      <Loader v-if="loading" />
+      <section v-else id="adults-articles">
         <div class="row">
-          <div class="col-12 col-sm-6 mb-4 pb-2">
+          <div v-for="f in first" :key="f.id" class="col-12 col-sm-6 mb-4 pb-2">
             <router-link tag="a" to="/adults-articles-current"
               ><img
-                src="img/Articles/article_img_4.svg"
+                :src="f.image.url"
                 class="w-100"
-                alt="Article 4"
+                height="375px"
+                alt="Article image"
             /></router-link>
-            <div class="d-flex flex-column">
-              <h4>Интересы не совпадают. Я странный?</h4>
-              <p>Даже родители меня не слушают о чем я говорю.</p>
-              <router-link tag="a" to="/adults-articles-current"  class="green-link">Читать дальше</router-link>
+            <div class="d-flex flex-column mt-2">
+              <h4>{{ f.title }}</h4>
+              <p v-html="f.shortContent"></p>
+              <router-link tag="a" :to="{ path: '/adults-articles-current/' + f.id}"  class="green-link">Читать дальше</router-link>
             </div>
           </div>
-          <div class="col-12 col-sm-6 mb-4 pb-2">
-            <router-link tag="a" to="/adults-articles-current"
-              ><img
-                src="img/Articles/article_img_5.svg"
-                class="w-100"
-                alt="Article 4"
-            /></router-link>
-            <div class="d-flex flex-column">
-              <h4>Каждый день меня бьют дома.</h4>
-              <p>Даже родители меня не слушают о чем я говорю.</p>
-              <router-link tag="a" to="/adults-articles-current"  class="green-link">Читать дальше</router-link>
-            </div>
-          </div>
-
-          <!-- <div class="col-12 col-sm-6 mb-4 pb-2">
-            <router-link tag="a" to="/adults-articles-current"
-              ><img
-                :src="articles[0].img"
-                class="w-100"
-                alt="Article 4"
-            /></router-link>
-            <div class="d-flex flex-column">
-              <h4>{{ articles[0].title }}</h4>
-              <p>{{ articles[0].content }}</p>
-              <router-link tag="a" :to="{ path: '/adults-articles-current' + articles[0].id}"  class="green-link">Читать дальше</router-link>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 mb-4 pb-2">
-            <router-link tag="a" to="/adults-articles-current"
-              ><img
-                :src="articles[1].img"
-                class="w-100"
-                alt="Article 4"
-            /></router-link>
-            <div class="d-flex flex-column">
-              <h4>{{ articles[1].title }}</h4>
-              <p>{{ articles[1].content }}</p>
-              <router-link tag="a" :to="{ path: '/adults-articles-current' + articles[1].id}"  class="green-link">Читать дальше</router-link>
-            </div>
-          </div> -->
-          <Articles /> <!--:articles="articles"-->
+          <Articles :articles="articles"/>
         </div>
       </section>
-      <Loader/>
       <Footer/>
 </div>
 </template>
@@ -107,101 +67,105 @@ import { Hooper, Slide } from 'hooper'
 import 'hooper/dist/hooper.css'
 export default {
   components: { Footer, Buttons, Articles, Hooper, Slide },
-  data: () => ({
-    things: [
-      {
-        id: 1,
-        class: 'home',
-        pc: 'pt-3',
-        img: 'img/Kids/home.svg',
-        alt: 'Home',
-        text: 'Моя семья и дом'
-      },
-      {
-        id: 2,
-        class: '',
-        pc: 'pt-1',
-        img: 'img/Kids/school.svg',
-        alt: 'School',
-        text: 'Моя школа'
-      },
-      {
-        id: 3,
-        class: '',
-        pc: '',
-        img: 'img/Kids/internet.svg',
-        alt: 'Internet',
-        text: 'Что-то в интернете'
-      },
-      {
-        id: 4,
-        class: '',
-        pc: 'pt-3',
-        img: 'img/Kids/friends.svg',
-        alt: 'Friends',
-        text: 'Мои друзья'
-      },
-      {
-        id: 5,
-        class: '',
-        pc: 'pt-1',
-        img: 'img/Kids/self.svg',
-        alt: 'Self',
-        text: 'Что-то обо мне'
-      }
-    ],
-    hooperSettings: {
-      itemsToShow: 5,
-      infiniteScroll: true,
-      wheelControl: false,
-      breakpoints: {
-        320: {
-          itemsToShow: 1
+  data () {
+    return {
+      things: [
+        {
+          id: 1,
+          class: 'home',
+          pc: 'pt-3',
+          img: 'img/Kids/home.svg',
+          alt: 'Home',
+          text: 'Моя семья и дом'
         },
-        474: {
-          itemsToShow: 2
+        {
+          id: 2,
+          class: '',
+          pc: 'pt-1',
+          img: 'img/Kids/school.svg',
+          alt: 'School',
+          text: 'Моя школа'
         },
-        768: {
-          itemsToShow: 3
+        {
+          id: 3,
+          class: '',
+          pc: '',
+          img: 'img/Kids/internet.svg',
+          alt: 'Internet',
+          text: 'Что-то в интернете'
         },
-        992: {
-          itemsToShow: 5
+        {
+          id: 4,
+          class: '',
+          pc: 'pt-3',
+          img: 'img/Kids/friends.svg',
+          alt: 'Friends',
+          text: 'Мои друзья'
+        },
+        {
+          id: 5,
+          class: '',
+          pc: 'pt-1',
+          img: 'img/Kids/self.svg',
+          alt: 'Self',
+          text: 'Что-то обо мне'
         }
-      }
+      ],
+      hooperSettings: {
+        itemsToShow: 5,
+        infiniteScroll: true,
+        wheelControl: false,
+        breakpoints: {
+          320: {
+            itemsToShow: 1
+          },
+          474: {
+            itemsToShow: 2
+          },
+          768: {
+            itemsToShow: 3
+          },
+          992: {
+            itemsToShow: 5
+          }
+        }
+      },
+      loading: true,
+      articles: {},
+      first: [],
+      reserved: {}
     }
-    // loading: true,
-    // articles: {}
-  }),
-  // async mounted () {
-  // TODO: send only category
-  //   await this.$store.dispatch('fetchArticles')
-  //     .then(res => {
-  //       this.articles = res
-  //       this.loading = false
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //       this.loading = false
-  //     })
-  // },
+  },
+  async mounted () {
+    await this.$store.dispatch('fetchArticleByCategory', 2)
+      .then(res => {
+        this.first.push(res[0])
+        this.first.push(res[1])
+        this.articles = res
+        this.reserved = res
+        this.articles.splice(0, 1)
+        this.articles.splice(0, 1)
+        this.loading = false
+      })
+      .catch(err => {
+        this.loading = false
+        this.$error(err || 'Что то пошло не так')
+      })
+  },
   methods: {
     select (id) {
-      console.log(id)
+      this.first = []
+      this.articles = {}
+      this.articles = Object.values(this.reserved).filter(function (r) {
+        return r.problemId === id
+      })
+      if (Object.keys(this.articles).length !== 0) {
+        this.first.push(this.articles[0])
+        this.first.push(this.articles[1])
+        this.articles.splice(0, 1)
+        this.articles.splice(0, 1)
+      }
     },
-    // TODO: need filter
-    // async select (id) {
-    //   this.loading = true
-    //   console.log(id)
-    //   await this.$store.dispatch('fetchArticleByProblem', id)
-    //     .then(res => {
-    //       this.articles = res
-    //       this.loading = false
-    //     })
-    //     .catch(err => {
-    //       console.log(err)
-    //       this.loading = false
-    //     })
-    // },
     slidePrev () {
       this.$refs.carousel.slidePrev()
     },

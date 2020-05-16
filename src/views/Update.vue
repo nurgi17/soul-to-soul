@@ -45,7 +45,6 @@ export default {
         this.$error('Для отправки все поля должны быть заполнены!')
       } else {
         this.currentBlog.updated = value
-        console.log(this.currentBlog)
         await this.$store.dispatch('updateBlog', this.currentBlog)
           .then(res => {
             this.loading = false
@@ -53,7 +52,6 @@ export default {
           })
           .catch(err => {
             this.loading = false
-            console.log(err)
             this.$error(err || 'Что-то пошло не так')
           })
       }

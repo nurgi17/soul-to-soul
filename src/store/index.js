@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import auth from './auth'
 import articles from './articles'
 import blogs from './blogs'
+import admin from './admin'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
   modules: {
     auth,
     articles,
-    blogs
+    blogs,
+    admin
   }
 })

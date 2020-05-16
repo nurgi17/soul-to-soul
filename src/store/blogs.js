@@ -50,8 +50,7 @@ export default {
         content: upBlog.updated.content,
         title: upBlog.updated.title,
         shortContent: upBlog.updated.shortContent,
-        status: upBlog.updated.status,
-        user: null
+        status: upBlog.updated.status
         // updatedDate: +new Date()
       }
       if (upBlog.updated.image !== null) {
@@ -119,14 +118,8 @@ export default {
     },
     async deleteBlog ({ commit }, ids) {
       if (ids.imgUrl !== null) {
-        try {
-          const image = fb.storage().refFromURL(ids.imgUrl)
-          image.delete()
-        } catch (error) {
-          commit('setError', error.message)
-          console.log(error)
-          throw error
-        }
+        const image = fb.storage().refFromURL(ids.imgUrl)
+        image.delete()
         axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + ids.imgId, method: 'DELETE' })
           .catch(err => {
             commit('setError', err.response.data.message)

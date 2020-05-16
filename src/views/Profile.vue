@@ -1,31 +1,44 @@
 <template>
 <div class="container">
-    <section id="user-profile" class="mt-5">
-        <h3 class="mb-3">Настройка профиля</h3>
-        <div class="profile-img d-flex flex-row mb-4">
-            <img src="img/Users/profile.svg" width="75px" height="75px" alt="Profile img">
-            <a href="" class=" align-self-center ml-3">Поменять аватар</a>
-        </div>
-        <div class="FIO">
-            <span class="mb-2">ФИО</span>
-            <form action="">
-                <input type="text" class="form-control" value="Сапарбаева Мадина">
-            </form>
-        </div>
-        <hr>
-        <div>
-            <div class="mb-3">
-                <span>Ваш E-mail</span>
-                <div class="d-flex flex-row">
-                    <span style="color: #333333;">msaparbayevna@gmail.com</span>
-                    <a href="" class=" align-self-center ml-3">(изменить)</a>
-                </div>
-            </div>
-            <div class="d-flex flex-column">
-                <span>Сброс пароля</span>
-                <a href="" class="">сбросить пароль</a>
-            </div>
-        </div>
-      </section>
+    <Loader :loading="loading" v-if="loading"/>
+    <ProfileForm v-else @emitToSP="settings" :user="user"/>
 </div>
 </template>
+<script>
+import ProfileForm from '@/components/app/ProfileForm.vue'
+export default {
+  data: () => ({
+    loading: true,
+    user: {}
+  }),
+  components: {
+    ProfileForm
+  },
+  async mounted () {
+    this.$store.dispatch('getUser')
+      .then(res => {
+        this.loading = false
+        this.user = res
+      })
+      .catch(err => {
+        this.loading = false
+        this.$error(err || 'Что-то пошло не так')
+      })
+  },
+  methods: {
+    async settings (value) {
+      this.loading = true
+      this.user.updated = value
+      await this.$store.dispatch('updateUser', this.user)
+        .then(res => {
+          this.loading = false
+          this.$router.push('/profile?message=userUpdated')
+        })
+        .catch(err => {
+          this.loading = false
+          this.$error(err || 'Что то пошло не так')
+        })
+    }
+  }
+}
+</script>

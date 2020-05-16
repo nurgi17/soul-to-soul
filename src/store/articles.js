@@ -54,41 +54,5 @@ export default {
           })
       })
     }
-    // async fetchArticles ({ commit }) {
-    //   return new Promise((resolve, reject) => {
-    //     axios({ url: 'http://localhost:8080/api/v1/unauthorized/articles', method: 'GET' })
-    //       .then(res => {
-    //         resolve(res.json())
-    //       })
-    //       .catch(err => {
-    //         commit('setError', err.response.data.message)
-    //         reject(err)
-    //       })
-    //   })
-    // },
-    // async fetchArticleByProblem ({ commit }, id) {
-    //   return new Promise((resolve, reject) => {
-    //     axios({ url: 'http://localhost:8080/api/v1/unauthorized/articlebyproblem', data: id, method: 'POST' })
-    //       .then(res => {
-    //         resolve(res.json())
-    //       })
-    //       .catch(err => {
-    //         commit('setError', err)
-    //         console.log(err)
-    //       })
-    //   })
-    // },
-    // async fetchArticleByMoodAndProblem ({ commit }, ids) {
-    //   return new Promise((resolve, reject) => {
-    //     axios({ url: `http://localhost:8080/api/v1/unauthorized/articles/category/${ids.category}/mood/${ids.mood}/problem/${ids.problem}`, method: 'GET' })
-    //       .then(res => {
-    //         resolve(res.data)
-    //       })
-    //       .catch(err => {
-    //         commit('setError', err.response.data.message)
-    //         reject(err)
-    //       })
-    //   })
-    // }
   }
 }

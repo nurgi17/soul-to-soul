@@ -250,15 +250,6 @@ header {
             }
         }
     }
-
-    #user-profile {
-        @include center;
-        width: 100%;
-
-        .profile-img {
-            justify-content: center;
-        }
-    }
 }
 
 //Who are you section END ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -485,10 +476,7 @@ footer {
     }
 
     #user-profile {
-        input {
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
+        text-align: start;
     }
 }
 
@@ -698,7 +686,7 @@ footer {
                 }
 
                 &:hover {
-                    box-shadow: 
+                    box-shadow:
                         0px 15px 15px -15px $greyList;
                 }
             }
@@ -830,6 +818,15 @@ footer {
     .adults-article-body {
         max-width: 255px;
     }
+
+        img {
+            border: $borderGreyBorder;
+            border-radius: 8px;
+            &:hover {
+                box-shadow:
+                    0px 15px 15px -15px $greyList;
+            }
+    }
 }
 
 @media screen and (max-width: 1201px) {
@@ -854,7 +851,9 @@ footer {
     max-width: 681px;
     margin-left: 16.22%;
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
         font-weight: bold;
         margin-bottom: 20px;
         margin-top: 20px;
@@ -881,21 +880,25 @@ footer {
         font-size: 0.9em;
     }
 
-    ul, ol {
+    ul,
+    ol {
         li {
             margin-left: 5%;
         }
     }
 }
+
 .article-author {
     h3 {
         font-size: 0.9em;
         color: $grey;
         margin-bottom: 0px;
     }
+
     img {
         border-radius: 50%;
     }
+
     p {
         font-size: 0.8em;
         font-weight: bold;
@@ -1494,8 +1497,24 @@ footer {
 }
 
 #user-profile {
-    width: 310px;
+    width: 430px;
     color: $black;
+
+    .align {
+        margin-left: 16px;
+        align-self: center;
+    }
+
+    .profile-img {
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .middle {
+        display: flex;
+        flex-direction: row;
+    }
 
     h3 {
         font-size: 1.2em !important;
@@ -1510,8 +1529,22 @@ footer {
         color: $green;
     }
 
+    hr {
+        width: 70%;
+    }
+
     input {
         width: 281px;
+        height: 44px;
+    }
+
+    button {
+        width: 139px;
+        height: 45px;
+        border-radius: 5px;
+        border: $border;
+        background-color: $green;
+        color: $white;
     }
 
     span {
@@ -1782,22 +1815,23 @@ footer {
 }
 
 .blue {
-    color: $blue!important;
+    color: $blue !important;
 }
 
 .red {
-    color: $reject!important;
+    color: $reject !important;
 }
 
 .green {
-    color: $accept!important;
+    color: $accept !important;
 }
 
 .grey {
-    color: $grey!important;
+    color: $grey !important;
 }
+
 .yellow {
-    color: $check!important;
+    color: $check !important;
 }
 
 // Pagination
@@ -1805,39 +1839,47 @@ footer {
     background-color: $green;
     border-color: $green;
 }
+
 // Pagination ENDS
 
 // Create view editor styles
 .ProseMirror {
     outline: none;
 }
+
 .is-empty:first-child:before,
-.is-empty:nth-child(2):before{
+.is-empty:nth-child(2):before {
     content: attr(data-empty-text);
     float: left;
     color: $grey;
     pointer-events: none;
     height: 0;
 }
+
 .menubar {
     margin-top: 35px;
     display: flex;
     flex-direction: column;
+
     a {
         padding-left: 7px;
         text-decoration: none;
         color: $grey;
+
         &:hover {
-           color: $black; 
+            color: $black;
         }
     }
 }
+
 .editor {
     color: $black;
+
     .col-1 {
         padding: 0;
         max-width: 16%;
     }
+
     .col-11 {
         padding: 0;
         max-width: 84%;
@@ -1850,66 +1892,90 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 9999;
+
     button {
-       width: 47%;
-       height: 45px;
-       border-radius: 5px;
-       color: $white;
+        width: 47%;
+        height: 45px;
+        border-radius: 5px;
+        color: $white;
     }
+
     .save {
         background-color: $green;
         border: $borderMain;
     }
+
     .publish {
         background-color: $bluePublish;
         border: 1px solid $bluePublish;
     }
 }
+
 @media screen and (max-width: 993px) {
-    .help-button{
+    .help-button {
         margin-left: 6%;
     }
 }
-@media screen and (max-width: 507px ) {
+
+@media screen and (max-width: 507px) {
     .help-button {
         position: static;
         margin-left: 30%;
     }
+
     .menubar {
         margin-top: 9px;
         flex-direction: row;
     }
+
     .main-editor {
         .row {
             flex-direction: column;
         }
     }
 }
-@media screen and (max-height: 670px ) {
+
+@media screen and (max-height: 670px) {
     .help-button {
         position: static;
         margin-left: 30%;
     }
+
     .menubar {
         margin-top: 9px;
         flex-direction: row;
     }
+
     .main-editor {
         .row {
             flex-direction: column;
         }
     }
 }
+
 .sorry {
     display: none;
 }
+
 @media screen and (max-width: 425px) {
     .main-editor {
         display: none;
     }
+
     .sorry {
         display: block;
     }
+
+    #user-profile {
+        .middle {
+            flex-direction: column;
+        }
+
+        .align {
+            margin-left: 0px;
+            align-self: start;
+        }
+    }
 }
+
 // Create view editor styles ENDS

@@ -89,7 +89,7 @@ const routes = [
     component: () => import('../views/Adults.vue')
   },
   {
-    path: '/adults-articles-current', // '/adults-articles-current/:id'
+    path: '/adults-articles-current/:id', // '/adults-articles-current/:id'
     name: 'AdultsCurrent',
     meta: { layout: 'user' },
     component: () => import('../views/AdultsCurrent.vue'),
@@ -98,6 +98,7 @@ const routes = [
       ...route.params
     })
   },
+  // moderator
   {
     path: '/moderator',
     name: 'moderator',
@@ -123,6 +124,19 @@ const routes = [
     name: 'moderator-check-current',
     meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
     component: () => import('../views/moderator/BlogCurrent.vue')
+  },
+  // admin
+  {
+    path: '/admin',
+    name: 'admin',
+    meta: { layout: 'admin', auth: true, user: false, admin: true, moderator: false },
+    component: () => import('../views/admin/Main.vue')
+  },
+  {
+    path: '/admin-create-article',
+    name: 'create-article',
+    meta: { layout: 'admin', auth: true, user: false, admin: true, moderator: false },
+    component: () => import('../views/admin/CreateArticle.vue')
   },
   // errors
   {

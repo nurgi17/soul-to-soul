@@ -23,9 +23,7 @@
           <h6>
             {{ news[1].title }}
           </h6>
-          <p>
-            {{ news[1].shortContent }}
-          </p>
+          <p v-html="news[1].shortContent"></p>
           <router-link tag="a" to="/adults-articles-current" class="green-link">Читать дальше</router-link>
         </div>
       </div>
@@ -36,9 +34,7 @@
           <h6>
             {{ news[0].title }}
           </h6>
-          <p>
-            {{ news[0].shortContent }}
-          </p>
+          <p v-html="news[0].shortContent"></p>
           <router-link tag="a" to="/adults-articles-current" class="green-link">Читать дальше</router-link>
         </div>
       </div>

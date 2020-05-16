@@ -10,6 +10,7 @@
 import UserLayout from '@/layouts/UserLayout'
 import ModeratorLayout from '@/layouts/ModeratorLayout'
 import NoneLayout from '@/layouts/NoneLayout'
+import AdminLayout from '@/layouts/AdminLayout'
 export default {
   computed: {
     layout () {
@@ -17,7 +18,7 @@ export default {
     }
   },
   components: {
-    UserLayout, ModeratorLayout, NoneLayout
+    UserLayout, ModeratorLayout, NoneLayout, AdminLayout
   },
   created: function () {
     this.$http.interceptors.response.use(undefined, function (err) {

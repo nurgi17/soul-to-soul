@@ -49,7 +49,7 @@
                 <img src="img/Users/profile.svg" alt="Profile img" /> <!--TODO: do logic of user auth for navbar-->
                 <span>Мой профиль</span>
               </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <div style="z-index: 9999;" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <router-link
                 v-for="m in menu"
                 :key="m.title"

@@ -1,10 +1,15 @@
 <template>
-      <div class="main-editor">
+  <div class="main-editor">
     <hr />
     <div class="row editor">
       <div class="col-1">
         <a @click="show=!show" class="help-button">
-          <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Blog%2Fhelp_button-min.jpg?alt=media&token=c6cb4a35-3a28-4aeb-af5b-9048eac7dd59" alt="Help button" width="30px" height="30px"/>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Blog%2Fhelp_button-min.jpg?alt=media&token=c6cb4a35-3a28-4aeb-af5b-9048eac7dd59"
+            alt="Help button"
+            width="30px"
+            height="30px"
+          />
         </a>
 
         <editor-menu-bar
@@ -96,18 +101,28 @@
       </div>
       <div class="container col-11">
         <img :src="imageSrc" height="100" v-if="imageSrc" />
-
-        <editor-content class="pb-5 mb-5" :editor="editor"/>
-        <p>
+        <!-- <div>
+          <b-form-tags
+          placeholder="Добавить тег"
+          input-id="tags-basic"
+          v-model="value"
+          class="mb-2 w-25"
+          remove-on-delete
+          :disabled="isThree"
+          :input-attrs="{ 'aria-describedby': 'tags-remove-on-delete-help' }"
+          ></b-form-tags>
+        </div> TAG FORM-->
+        <editor-content class="pb-5 mb-5" :editor="editor" />
+        <!-- <p>
           <code>{{ html }}</code>
-        </p>
+        </p> -->
       </div>
     </div>
     <div class="save-publish">
-        <div class="container d-flex flex-wrap justify-content-between">
-          <button class="save mt-3 mb-3" @click.prevent="emitToParent('DRAFT')">Сохранить</button>
-          <button class="publish mt-3 mb-3" @click.prevent="emitToParent('CREATED')">Публиковать</button>
-        </div>
+      <div class="container d-flex flex-wrap justify-content-between">
+        <button class="save mt-3 mb-3" @click.prevent="emitToParent('DRAFT')">Сохранить</button>
+        <button class="publish mt-3 mb-3" @click.prevent="emitToParent('CREATED')">Публиковать</button>
+      </div>
     </div>
   </div>
 </template>
@@ -143,6 +158,7 @@ export default {
       image: null,
       show: true,
       html: `<h1>${this.currentBlog.title}</h1>${this.currentBlog.content}`,
+      value: [],
       editor: new Editor({
         autoFocus: true,
         extensions: [
@@ -201,6 +217,12 @@ export default {
         content: ''
       }
       return blog1
+    },
+    isThree () {
+      if (this.value.length === 3) {
+        return true
+      }
+      return false
     }
   },
   methods: {
@@ -209,6 +231,7 @@ export default {
       this.editor.focus()
       this.imageSrc = ''
       this.image = null
+      this.value = []
     },
     triggerUpload () {
       this.$refs.fileInput.click()
@@ -228,7 +251,6 @@ export default {
         shortContent: this.cutContent.short_content,
         status: status,
         title: this.cutContent.title,
-        user: null,
         image: this.image
       }
       this.$emit('emitToSP', blogObj)

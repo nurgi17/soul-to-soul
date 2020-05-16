@@ -34,8 +34,9 @@
         </div>
         <hr />
       </div>
+
       <div v-if="Object.keys(published).length===0" :class="{close: !yes}">У вас пока что нету опубликованных работ</div>
-      <div v-for="p in published" :key="p.id" class="my-blog" :class="{close: !yes}">
+      <div v-else v-for="p in published" :key="p.id" class="my-blog" :class="{close: !yes}">
         <h4>{{ p.title }}</h4>
         <p>{{ p.shortContent }}</p>
         <div class="dropdown">
@@ -56,8 +57,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <!-- <router-link class="dropdown-item" tag="a" to="/adults-articles-current">Просмотр</router-link> -->
-              <router-link class="dropdown-item" tag="a" :to="{ path: '/update/' + d.id }">Редактировать</router-link>
-              <a class="dropdown-item" href="" @click.prevent="deleteBlog(d.id, d.image.id, d.image.url, 2)">Удалить</a>
+              <router-link class="dropdown-item" tag="a" :to="{ path: '/update/' + p.id }">Редактировать</router-link>
+              <a class="dropdown-item" href="" @click.prevent="deleteBlog(p.id, p.image.id, p.image.url, 2)">Удалить</a>
             </div>
           </div>
         </div>
@@ -76,18 +77,14 @@ export default {
     loading: true
   }),
   async mounted () {
-    if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message])
-    }
     await this.$store.dispatch('fetchUserBlogs')
       .then(res => {
-        // this.draft = Object.values(res).filter(function (r) {
-        //   return r.status === 'DRAFT'
-        // })
-        // this.published = Object.values(res).filter(function (r) {
-        //   return r.status === 'CREATED' || r.status === 'ACCEPTED' || r.status === 'DENIED'
-        // })
-        this.draft = res
+        this.draft = Object.values(res).filter(function (r) {
+          return r.status === 'DRAFT'
+        })
+        this.published = Object.values(res).filter(function (r) {
+          return r.status === 'CREATED' || r.status === 'ACCEPTED' || r.status === 'DENIED'
+        })
         this.loading = false
       })
       .catch(err => {
@@ -111,7 +108,7 @@ export default {
           } else if (part === 2) {
             var rIndex = this.published.map(function (item) { return item.id })
               .indexOf(id)
-            ~rIndex && this.draft.splice(rIndex, 1)
+            ~rIndex && this.published.splice(rIndex, 1)
           }
           this.$message(messages.deletedBlog)
         })
