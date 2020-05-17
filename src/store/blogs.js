@@ -1,9 +1,17 @@
 import axios from 'axios'
 import fb from 'firebase'
 export default {
-  state: {},
-  mutations: {},
-  getters: {},
+  state: {
+    blog: false
+  },
+  mutations: {
+    setBlog (state, smth) {
+      state.blog = smth
+    }
+  },
+  getters: {
+    isBlog: s => s.blog
+  },
   actions: {
     async createBlog ({ commit }, newBlog) {
       let imageSrc = null
@@ -92,9 +100,27 @@ export default {
           })
       })
     },
-    async fetchBlogById ({ commit }, id) {
+    async fetchBlogById ({ commit }, ids) {
+      let url = ''
+      if (ids.update) {
+        url = 'https://localhost:8080/api/v1/user/blog/'
+      } else {
+        url = 'https://localhost:8080/api/v1/unauthorized/blog/'
+      }
       return new Promise((resolve, reject) => {
-        axios({ url: 'https://localhost:8080/api/v1/user/blog/' + id, method: 'GET' })
+        axios({ url: url + ids.id, method: 'GET' })
+          .then(res => {
+            resolve(res.data)
+          })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            reject(err.response.data.message)
+          })
+      })
+    },
+    async fetchBlogByIdUn ({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'https://localhost:8080/api/v1/unauthorized/blog/' + id, method: 'GET' })
           .then(res => {
             resolve(res.data)
           })
@@ -107,6 +133,18 @@ export default {
     async fetchUserBlogs ({ commit }) {
       return new Promise((resolve, reject) => {
         axios({ url: 'https://localhost:8080/api/v1/user/userblogs', method: 'GET' })
+          .then(res => {
+            resolve(res.data)
+          })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            reject(err.response.data.message)
+          })
+      })
+    },
+    async fetchBlogs ({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'https://localhost:8080/api/v1/unauthorized/blogs', method: 'GET' })
           .then(res => {
             resolve(res.data)
           })

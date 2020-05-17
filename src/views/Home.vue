@@ -19,7 +19,7 @@
             <h5 class="card-title">{{ card.title }}</h5>
             <p class="card-text">{{ card.text }}</p>
           </div>
-          <b-img-lazy :src="card.img" :alt="card.alt"> </b-img-lazy>
+          <b-img-lazy :src="card.img" :alt="card.alt"></b-img-lazy>
           <div>
             <router-link class="btn btn-primary" tag="a" :to="card.url">
               Перейти

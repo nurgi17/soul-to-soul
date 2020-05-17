@@ -20,9 +20,12 @@ export default {
     currentBlog: {}
   }),
   async mounted () {
-    const id = this.$route.params.id
+    const ids = {
+      id: this.$route.params.id,
+      update: true
+    }
     await this.$store
-      .dispatch('fetchBlogById', id)
+      .dispatch('fetchBlogById', ids)
       .then(res => {
         this.loading = false
         this.currentBlog = res

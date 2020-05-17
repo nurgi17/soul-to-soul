@@ -4,12 +4,12 @@
     <div class="row editor">
       <div class="col-1">
         <a @click="show=!show" class="help-button">
-          <img
+          <b-img-lazy
             src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Blog%2Fhelp_button-min.jpg?alt=media&token=c6cb4a35-3a28-4aeb-af5b-9048eac7dd59"
             alt="Help button"
             width="30px"
             height="30px"
-          />
+          ></b-img-lazy>
         </a>
 
         <editor-menu-bar
@@ -100,7 +100,7 @@
         </editor-menu-bar>
       </div>
       <div class="container col-11">
-        <img :src="imageSrc" height="100" v-if="imageSrc" />
+        <b-img-lazy :src="imageSrc" height="100" v-if="imageSrc" ></b-img-lazy>
         <!-- <div>
           <b-form-tags
           placeholder="Добавить тег"

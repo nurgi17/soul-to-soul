@@ -36,7 +36,7 @@ export default {
       } else {
         value.categoryId = 2
         value.moodId = 0
-        value.problemId = 2
+        value.problemId = 4
         await this.$store.dispatch('createArticle', value)
           .then(res => {
             this.loading = false

@@ -3,14 +3,14 @@
     <section id="how-are-you-feel-kids" :class="{kids2:choose}">
       <div class="container">
         <div class="main-feelings d-flex flex-column">
-          <img class="mx-auto" v-if="choose" :src="question" alt="Question mark" height="64px" />
-          <img
+          <b-img-lazy class="mx-auto" v-if="choose" :src="question" alt="Question mark" height="64px" ></b-img-lazy>
+          <b-img-lazy
             class="mx-auto"
             :src="curFeeling"
             alt="Anonymous feeling"
             :width="bigWidth"
             height="136px"
-          />
+          ></b-img-lazy>
           <h4>{{ mainText1.text1 }}</h4>
           <h4>
             {{ mainText1.text2 }}
@@ -20,18 +20,18 @@
           </h4>
           <div class="feelings d-flex flex-row justify-content-around">
             <a href class="mt-4 pt-3 mr-4" @click.prevent="slidePrev">
-              <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fprev.svg?alt=media&token=0a97fb72-0994-4fd7-9365-414b614ed563" width="40px" height="40px" alt="Prev arrow" />
+              <b-img-lazy src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fprev.svg?alt=media&token=0a97fb72-0994-4fd7-9365-414b614ed563" width="40px" height="40px" alt="Prev arrow" ></b-img-lazy>
             </a>
             <hooper ref="carousel" :settings="hooperSettings">
               <slide v-for="feeling in feelings" :key="feeling.id" :class="feeling.class">
                 <a @click="select(feeling.img, feeling.alt, feeling.id, feeling.width)">
-                  <img :src="feeling.img" :alt="feeling.alt" :width="feeling.width" :height="feeling.height" />
+                  <b-img-lazy :src="feeling.img" :alt="feeling.alt" :width="feeling.width" :height="feeling.height" ></b-img-lazy>
                 </a>
                 <p :class="feeling.pc">{{ feeling.text }}</p>
               </slide>
             </hooper>
             <a href class="mt-4 pt-3" @click.prevent="slideNext">
-              <img src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fnext.svg?alt=media&token=6a310772-8286-4918-a03e-5d68ab25da26" width="40px" height="40px" alt="Next arrow" />
+              <b-img-lazy src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Kids%2Fnext.svg?alt=media&token=6a310772-8286-4918-a03e-5d68ab25da26" width="40px" height="40px" alt="Next arrow" ></b-img-lazy>
             </a>
           </div>
           <div class="prev-next-btns d-flex flex-wrap">

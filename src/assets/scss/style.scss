@@ -68,6 +68,14 @@ body {
 // }
 .navbar-light {
     .navbar-nav {
+        .notification {
+
+            .dropdown-menu {
+                width: 205px;
+                height: 111px;
+                margin-top: 30px;
+            }
+        }
         .nav-link {
             color: $green !important;
             font-size: 0.8em;
@@ -322,7 +330,7 @@ header {
 
                 p {
                     color: $blackMain;
-                    font-size: 0.8em;
+                    font-size: 0.9em;
                 }
             }
         }
@@ -347,7 +355,7 @@ header {
 
                 p {
                     color: $blackMain;
-                    font-size: 0.8em;
+                    font-size: 0.9em;
                 }
             }
         }
@@ -811,7 +819,7 @@ footer {
     }
 
     p {
-        font-size: 0.8em;
+        font-size: 0.9em;
         margin-bottom: 8px;
     }
 
@@ -1069,12 +1077,18 @@ footer {
         font-size: 0.9em;
     }
 
+    p {
+        font-size: 0.9em;
+    }
     p,
     span,
     i {
-        font-size: 0.7em;
         color: $greyMain;
         margin-bottom: 5px;
+    }
+    span,
+    i {
+        font-size: 0.7em;
     }
 
     .navs {
@@ -1591,7 +1605,7 @@ footer {
             @include center;
         }
 
-        transition: 0.13s;
+        transition: 0.30s;
     }
 
     .col-3 {
@@ -1602,13 +1616,13 @@ footer {
     .col-9 {
         max-width: 80%;
         padding-left: 0px;
-        transition: 0.13s;
+        transition: 0.30s;
     }
 
     .col-10 {
         max-width: 91.5%;
         padding-left: 0px;
-        transition: 0.13s;
+        transition: 0.30s;
     }
 
     .m-sidebar,

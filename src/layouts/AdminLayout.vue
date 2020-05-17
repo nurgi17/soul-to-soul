@@ -11,9 +11,9 @@
           <b-navbar-nav class="ml-auto">
             <b-nav-item href to="/admin-create-article">Create Article</b-nav-item>
             <b-navbar-brand href="#">
-              <img src="https://placekitten.com/g/30/30" alt="Kitten" />
+              <b-img-lazy src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Users%2Fadmin.svg?alt=media&token=2ca54144-13d9-445d-a380-ae54ae52519d" width="30px" height="30px" alt="Kitten" ></b-img-lazy>
             </b-navbar-brand>
-            <b-nav-item href>Logout</b-nav-item>
+            <b-nav-item href @click.prevent="logout">Logout</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -22,7 +22,6 @@
   </div>
 </template>
 <script>
-import messages from '@/utils/messages'
 export default {
   name: 'admin-layout',
   data () {
@@ -30,9 +29,10 @@ export default {
       nav: ['User', 'Article', 'Blog', 'Tag', 'ImageArticle', 'ImageBlog']
     }
   },
-  mounted () {
-    if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message])
+  methods: {
+    async logout () {
+      await this.$store.dispatch('logout')
+      this.$router.push('/login?message=logout')
     }
   }
 }

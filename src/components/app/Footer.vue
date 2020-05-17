@@ -4,12 +4,12 @@
       <div class="d-flex flex-wrap">
         <div class="smth d-flex flex-wrap align-items-center">
           <router-link class="mr-4" to="/" tag="a">
-            <img
+            <b-img-lazy
               src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Flogo.svg?alt=media&token=8c31a302-87fc-4487-8ddb-6fec2fb884ad"
               width="54.28"
               height="47"
               alt="Logo of SoulToSoul"
-            />
+            ></b-img-lazy>
           </router-link>
           <p class="mr-4 mt-3">© SoulToSoul 2020</p>
           <router-link to="/login" class="green-link">Войти</router-link>

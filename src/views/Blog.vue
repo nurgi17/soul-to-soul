@@ -10,7 +10,7 @@
           </p>
           <router-link tag="a" to="/create" class="green-link">Поделиться своей историей</router-link>
         </div>
-        <img src="img/Blog/sad_woman.svg" alt="Sadly woman" />
+        <b-img-lazy src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Blog%2Fsad_woman-min.jpg?alt=media&token=cab11cea-7947-49bd-bc52-0bcad2cf69bf" alt="Sadly woman" width="356px" height="185px"></b-img-lazy>
       </div>
     </section>
 
@@ -18,13 +18,12 @@
       <Buttons @tagFilter="onTagClick"/>
     </section>
 
-    <!-- <Loader v-if="loading" /> -->
-    <section id="adults-articles"> <!--v-else-->
+    <Loader v-if="loading" />
+    <section v-else id="adults-articles">
       <div class="row">
-        <Articles /> <!--:articles="blogs"-->
+        <Articles :articles="blogs"/>
       </div>
     </section>
-    <Loader/>
     <section id="stories-from-people-like-you">
       <div class="flexible-content d-flex flex-row justify-content-between align-items-center">
         <div class="blog-header d-flex flex-column align-self-end">
@@ -32,7 +31,7 @@
           <p>Поделись с другими и спасешь жизнь ближнему.</p>
           <router-link tag="button" to="/create" class="btn btn-secondary">Вперед</router-link>
         </div>
-        <img src="img/Blog/message.svg" alt="Message icon" />
+        <b-img-lazy src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Blog%2Fmessage-min.jpg?alt=media&token=2ca20661-006b-4a84-b052-c7e56e4d458c" alt="Message icon" width="356px" height="117px"></b-img-lazy>
       </div>
     </section>
     <Footer/>
@@ -48,21 +47,21 @@ export default {
   components: {
     Buttons, Footer, Articles
   },
-  // data: () => ({
-  //   loading: true,
-  //   blogs: {}
-  // }),
-  // async mounted () {
-  //   await this.$store.dispatch('fetchBlogs')
-  //     .then(res => {
-  //       this.blogs = res
-  //       this.loading = false
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //       this.loading = false
-  //     })
-  // }
+  data: () => ({
+    loading: true,
+    blogs: {}
+  }),
+  async mounted () {
+    await this.$store.dispatch('fetchBlogs')
+      .then(res => {
+        this.blogs = res
+        this.loading = false
+      })
+      .catch(err => {
+        console.log(err)
+        this.loading = false
+      })
+  },
   methods: {
     async onTagClick (value) {
       console.log(value)

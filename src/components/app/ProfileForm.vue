@@ -2,7 +2,7 @@
   <section id="user-profile" class="mt-5">
     <h3 class="mb-3">Настройка профиля</h3>
     <div class="profile-img middle mb-4">
-      <img :src="imageSrc" width="75px" height="75px" alt="Profile img" />
+      <b-img-lazy :src="imageSrc" width="75px" height="75px" alt="Profile img" ></b-img-lazy>
       <input
         ref="fileInput"
         type="file"
@@ -30,7 +30,6 @@
         <span>Ваш E-mail</span>
         <div class="middle">
           <span style="color: #333333;">{{ user.username }}</span>
-          <!-- <a href class="align-self-center ml-3">(изменить)</a> -->
         </div>
       </div>
       <div class="d-flex flex-column">

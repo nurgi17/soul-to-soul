@@ -2,13 +2,13 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light">
       <router-link to="/" class="navbar-brand">
-        <img
+        <b-img-lazy
           src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Flogo.svg?alt=media&token=8c31a302-87fc-4487-8ddb-6fec2fb884ad"
           width="76"
           height="62"
           class="d-inline-block align-top"
           alt="Logo of SoulToSoul"
-        />
+        ></b-img-lazy>
       </router-link>
       <button
         class="navbar-toggler"
@@ -37,7 +37,8 @@
           <li class="nav-item mr-3">
             <a class="nav-link font-weight-bold" href="tel:87026525298">Позвони нам</a>
           </li>
-          <li v-if="isLoggedIn" class="nav-item profile">
+          <li v-if="isLoggedIn&&isUser" class="nav-item profile">
+            <div class="d-flex flex-column align-items-center">
               <a
                 href=""
                 id="dropdownMenuLink"
@@ -46,18 +47,19 @@
                 aria-expanded="false"
                 class="text-decoration-none"
               >
-                <img src="img/Users/profile.svg" alt="Profile img" /> <!--TODO: do logic of user auth for navbar-->
+                <b-img-lazy src="img/Users/profile.svg" alt="Profile img" ></b-img-lazy> <!--TODO: do logic of user auth for navbar-->
                 <span>Мой профиль</span>
               </a>
-              <div style="z-index: 9999;" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <router-link
                 v-for="m in menu"
                 :key="m.title"
                 tag="a"
                 class="dropdown-item"
                 :to="m.url">{{ m.title }}</router-link>
-                <a class="dropdown-item" @click.prevent="logout">Выйти</a>
+                <a class="dropdown-item" href @click.prevent="logout">Выйти</a>
               </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -84,6 +86,9 @@ export default {
   computed: {
     isLoggedIn () {
       return this.$store.getters.isLoggedIn
+    },
+    isUser () {
+      return localStorage.getItem('role') === '3'
     }
   },
   methods: {

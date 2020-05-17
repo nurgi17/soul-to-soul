@@ -3,13 +3,13 @@
     <section id="some-things-which-can-help-you">
       <div class="choosing d-flex flex-row justify-content-center">
         <div class="choosing-img d-flex flex-column">
-          <img :src="imgThing[this.problem].img" alt="Cloud of think" width="148px" height="94px" />
-          <img
+          <b-img-lazy :src="imgThing[this.problem].img" alt="Cloud of think" width="148px" height="94px" ></b-img-lazy>
+          <b-img-lazy
             :src="imgFeel[this.mood].img"
             alt="Sadly feel"
             :width="imgFeel[this.mood].width"
             height="121px"
-          />
+          ></b-img-lazy>
         </div>
         <div class="choosing-title">
           <p>Вот некоторые вещи, которые могут тебе помочь!</p>

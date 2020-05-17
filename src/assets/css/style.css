@@ -49,6 +49,11 @@ body {
 .disabled_link {
   pointer-events: none; }
 
+.navbar-light .navbar-nav .notification .dropdown-menu {
+  width: 205px;
+  height: 111px;
+  margin-top: 30px; }
+
 .navbar-light .navbar-nav .nav-link {
   color: #7A9C78 !important;
   font-size: 0.8em; }
@@ -218,7 +223,7 @@ header {
     #you-are-not-alone .body .ver-article .ver-body p,
     #you-are-not-alone-1 .body .ver-article .ver-body p {
       color: #333333;
-      font-size: 0.8em; }
+      font-size: 0.9em; }
   #you-are-not-alone .body .hr-articles,
   #you-are-not-alone-1 .body .hr-articles {
     margin-left: 9px !important;
@@ -237,7 +242,7 @@ header {
     #you-are-not-alone .body .hr-articles .hor-body p,
     #you-are-not-alone-1 .body .hr-articles .hor-body p {
       color: #333333;
-      font-size: 0.8em; }
+      font-size: 0.9em; }
 
 .green-link {
   text-decoration: none !important;
@@ -528,7 +533,7 @@ footer {
     font-weight: bold;
     font-size: 0.9em; }
   #adults-articles p {
-    font-size: 0.8em;
+    font-size: 0.9em;
     margin-bottom: 8px; }
   #adults-articles .adults-article-body {
     max-width: 255px; }
@@ -701,12 +706,16 @@ footer {
     font-size: 1.2em; }
   #blog-users h4 {
     font-size: 0.9em; }
+  #blog-users p {
+    font-size: 0.9em; }
   #blog-users p,
   #blog-users span,
   #blog-users i {
-    font-size: 0.7em;
     color: #828282;
     margin-bottom: 5px; }
+  #blog-users span,
+  #blog-users i {
+    font-size: 0.7em; }
   #blog-users .navs {
     margin-top: 23px; }
     #blog-users .navs a {
@@ -1044,9 +1053,9 @@ footer {
 #moderator-main .col-2 {
   max-width: 8.5%;
   padding-right: 0px;
-  -webkit-transition: 0.13s;
-  -o-transition: 0.13s;
-  transition: 0.13s; }
+  -webkit-transition: 0.30s;
+  -o-transition: 0.30s;
+  transition: 0.30s; }
   #moderator-main .col-2 img {
     display: block;
     margin: 0 auto; }
@@ -1058,16 +1067,16 @@ footer {
 #moderator-main .col-9 {
   max-width: 80%;
   padding-left: 0px;
-  -webkit-transition: 0.13s;
-  -o-transition: 0.13s;
-  transition: 0.13s; }
+  -webkit-transition: 0.30s;
+  -o-transition: 0.30s;
+  transition: 0.30s; }
 
 #moderator-main .col-10 {
   max-width: 91.5%;
   padding-left: 0px;
-  -webkit-transition: 0.13s;
-  -o-transition: 0.13s;
-  transition: 0.13s; }
+  -webkit-transition: 0.30s;
+  -o-transition: 0.30s;
+  transition: 0.30s; }
 
 #moderator-main .m-sidebar,
 #moderator-main .m-sidebar-current {

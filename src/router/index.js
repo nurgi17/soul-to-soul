@@ -125,6 +125,12 @@ const routes = [
     meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
     component: () => import('../views/moderator/BlogCurrent.vue')
   },
+  {
+    path: '/moderator-profile',
+    name: 'moderator-profile',
+    meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
+    component: () => import('../views/moderator/Profile.vue')
+  },
   // admin
   {
     path: '/admin',

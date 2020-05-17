@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="statistics col-7">
-      <img src="img/Moderator/kz.svg" class="w-100" alt="Kazakhstan map img" />
+      <b-img-lazy src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Moderator%2Fkz-min.jpg?alt=media&token=77a2024d-0f81-4e7c-8ef1-d8755fcfc2e4" class="w-100" alt="Kazakhstan map img" ></b-img-lazy>
       <div>
         <span>Статистика</span>
 
@@ -126,19 +126,6 @@
               class="progress-bar"
               role="progressbar"
               style="width: 75%"
-              aria-valuenow="100"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            ></div>
-          </div>
-        </div>
-        <div class="d-flex flex-row justify-content-between align-items-center mb-2 pb-3">
-          <p>Жамбылская область</p>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 38%"
               aria-valuenow="100"
               aria-valuemin="0"
               aria-valuemax="100"

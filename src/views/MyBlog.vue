@@ -11,7 +11,7 @@
       <div v-if="Object.keys(draft).length===0" :class="{close: yes}">У вас пока что нету никаких работ</div>
       <div v-else v-for="d in draft" :key="d.id" class="my-blog" :class="{close: yes}">
         <h4>{{ d.title }}</h4>
-        <p>{{ d.shortContent }}</p>
+        <p v-html="d.shortContent"></p>
         <div class="dropdown">
           <div class="d-block mx-auto">
             <span>{{ d.createdDate }} дней назад изменено</span>
@@ -38,7 +38,7 @@
       <div v-if="Object.keys(published).length===0" :class="{close: !yes}">У вас пока что нету опубликованных работ</div>
       <div v-else v-for="p in published" :key="p.id" class="my-blog" :class="{close: !yes}">
         <h4>{{ p.title }}</h4>
-        <p>{{ p.shortContent }}</p>
+        <p v-html="p.shortContent"></p>
         <div class="dropdown">
           <div class="d-block mx-auto">
             <span v-if="p.status==='CREATED'" class="yellow">На проверке</span>
@@ -77,6 +77,9 @@ export default {
     loading: true
   }),
   async mounted () {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message])
+    }
     await this.$store.dispatch('fetchUserBlogs')
       .then(res => {
         this.draft = Object.values(res).filter(function (r) {

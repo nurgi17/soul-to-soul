@@ -61,7 +61,6 @@
       <footer>
         <div class="d-flex flex-wrap">
           <div class="smth1 d-flex flex-wrap align-items-center">
-            <!-- https://drive.google.com/uc?id=12e7L_velqJiJwSDZzEq19PrmIEew1lbB -->
             <p class="mr-4 mt-3">Еще нет аккаунта?</p>
             <router-link to="/register" class="green-link">Зарегистрироваться</router-link>
           </div>
@@ -73,6 +72,7 @@
 
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import messages from '@/utils/messages'
 export default {
   name: 'login',
   data: () => ({
@@ -83,6 +83,11 @@ export default {
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(6) }
+  },
+  mounted () {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message])
+    }
   },
   methods: {
     async submitHandler () {

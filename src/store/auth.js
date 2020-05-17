@@ -69,8 +69,14 @@ export default {
       })
     },
     async getUser ({ commit }) {
+      let url = ''
+      if (localStorage.getItem('role') === '2') {
+        url = 'https://localhost:8080/api/v1/moderator/'
+      } else if (localStorage.getItem('role') === '3') {
+        url = 'https://localhost:8080/api/v1/user/'
+      }
       return new Promise((resolve, reject) => {
-        axios({ url: 'https://localhost:8080/api/v1/user/', method: 'GET' })
+        axios({ url: url, method: 'GET' })
           .then(res => {
             resolve(res.data)
           })
@@ -82,11 +88,17 @@ export default {
     },
     async updateUser ({ commit }, user) {
       delete user.id
-      delete user.username
+      let url = ''
+      if (localStorage.getItem('role') === '2') {
+        url = 'https://localhost:8080/api/v1/moderator/'
+      } else if (localStorage.getItem('role') === '3') {
+        delete user.username
+        url = 'https://localhost:8080/api/v1/user/'
+      }
       if (user.updated.status === 1) {
         const fileData = await fb.storage().ref('Users/' + user.updated.image.name).put(user.updated.image)
         const imageSrc = await fileData.ref.getDownloadURL()
-        if (user.firebaseId !== 'anon_user') {
+        if (user.firebaseId !== 'anon_user' || user.firebaseId !== 'moderator') {
           const image = fb.storage().refFromURL(user.imageUrl)
           image.delete()
         }
@@ -96,11 +108,15 @@ export default {
         user.firstName = user.updated.firstName
         user.lastName = user.updated.lastName
       } else if (user.updated.status === 3) {
-        user.password = 'user123'
+        if (localStorage.getItem('role') === '2') {
+          user.password = 'moderator123'
+        } else if (localStorage.getItem('role') === '3') {
+          user.password = 'user123'
+        }
       }
       delete user.updated
       return new Promise((resolve, reject) => {
-        axios({ url: 'https://localhost:8080/api/v1/user/', data: user, method: 'PUT' })
+        axios({ url: url, data: user, method: 'PUT' })
           .then(res => {
             resolve(res.data)
           })
