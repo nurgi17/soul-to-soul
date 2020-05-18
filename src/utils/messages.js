@@ -39,5 +39,22 @@ export default {
     type: 'success',
     title: 'Достижение успеха',
     message: 'Поздравляю статья была создана'
+  },
+  // chat
+  complaint: {
+    type: 'success',
+    title: 'Достижение успеха',
+    message: 'Ваше жалоба была принята. С помощью ее попытаемся улучшить наш сервис в лучшую сторону!'
+  },
+  feedback: {
+    type: 'success',
+    title: 'Достижение успеха',
+    message: 'Спасибо ваш отзыв был принят'
+  },
+  // moderator
+  blogChecked: {
+    type: 'success',
+    title: 'Достижение успеха',
+    message: 'Блог был проверен успешно'
   }
 }

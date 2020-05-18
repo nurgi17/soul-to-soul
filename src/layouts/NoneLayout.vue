@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-      <UserNavbar />
-      <h1>404 Not found {{ this.$route.path }}</h1>
-      <router-view />
+    <UserNavbar />
+    <h1>404 Not found {{ this.$route.path }}</h1>
+    <router-view />
   </div>
 </template>
 <script>

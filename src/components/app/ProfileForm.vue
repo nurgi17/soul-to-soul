@@ -2,7 +2,7 @@
   <section id="user-profile" class="mt-5">
     <h3 class="mb-3">Настройка профиля</h3>
     <div class="profile-img middle mb-4">
-      <b-img-lazy :src="imageSrc" width="75px" height="75px" alt="Profile img" ></b-img-lazy>
+      <b-img-lazy :src="imageSrc" width="75px" height="75px" alt="Profile img"></b-img-lazy>
       <input
         ref="fileInput"
         type="file"
@@ -11,7 +11,12 @@
         @change="onFileChange"
       />
       <a href class="align" @click.prevent="triggerUpload">Поменять аватар</a>
-      <a href class="align" :class="{ close: !no}" @click.prevent="emitToParent(1)">Сохранить изменение</a>
+      <a
+        href
+        class="align"
+        :class="{ close: !no}"
+        @click.prevent="emitToParent(1)"
+      >Сохранить изменение</a>
     </div>
     <div class="FIO">
       <span class="mb-2">ФИО</span>
@@ -54,8 +59,7 @@ export default {
   computed: {
     cutContent () {
       const fl = this.fio.split(' ')
-      let cC = {
-      }
+      let cC = {}
       if (fl.length >= 2) {
         cC = {
           firstName: fl[0],

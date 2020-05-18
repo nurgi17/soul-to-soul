@@ -40,23 +40,30 @@
           <li v-if="isLoggedIn&&isUser" class="nav-item profile">
             <div class="d-flex flex-column align-items-center">
               <a
-                href=""
+                href
                 id="dropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
                 class="text-decoration-none"
               >
-                <b-img-lazy src="img/Users/profile.svg" alt="Profile img" ></b-img-lazy> <!--TODO: do logic of user auth for navbar-->
+                <b-img-lazy
+                  :src="isImage"
+                  alt="Profile img"
+                  width="40px"
+                  height="40px"
+                  style="border-radius: 50%;"
+                ></b-img-lazy>
                 <span>Мой профиль</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <router-link
-                v-for="m in menu"
-                :key="m.title"
-                tag="a"
-                class="dropdown-item"
-                :to="m.url">{{ m.title }}</router-link>
+                  v-for="m in menu"
+                  :key="m.title"
+                  tag="a"
+                  class="dropdown-item"
+                  :to="m.url"
+                >{{ m.title }}</router-link>
                 <a class="dropdown-item" href @click.prevent="logout">Выйти</a>
               </div>
             </div>
@@ -69,26 +76,32 @@
 
 <script>
 export default {
-  data: () => ({
-    links: [
-      { title: 'Рассказы других', url: '/blog', class: '', exact: true },
-      { title: '', url: '/nothing1', class: 'ml-3 disabled_link' },
-      { title: 'Напиши', url: '/chat', class: 'font-weight-bold' },
-      { title: 'или', url: '/nothing2', class: 'disabled_link' }
-    ],
-    menu: [
-      { title: 'Сообщение', url: '/chat' },
-      { title: 'Написать блог', url: '/create' },
-      { title: 'Мои истории', url: '/my-blog' },
-      { title: 'Настройки', url: '/profile' }
-    ]
-  }),
+  data () {
+    return {
+      links: [
+        { title: 'Рассказы других', url: '/blog', class: '', exact: true },
+        { title: '', url: '/nothing1', class: 'ml-3 disabled_link' },
+        { title: 'Напиши', url: '/chat', class: 'font-weight-bold' },
+        { title: 'или', url: '/nothing2', class: 'disabled_link' }
+      ],
+      menu: [
+        { title: 'Сообщение', url: '/chat' },
+        { title: 'Написать блог', url: '/create' },
+        { title: 'Мои истории', url: '/my-blog' },
+        { title: 'Настройки', url: '/profile' }
+      ],
+      image: localStorage.getItem('image')
+    }
+  },
   computed: {
     isLoggedIn () {
       return this.$store.getters.isLoggedIn
     },
     isUser () {
       return localStorage.getItem('role') === '3'
+    },
+    isImage () {
+      return localStorage.getItem('image')
     }
   },
   methods: {

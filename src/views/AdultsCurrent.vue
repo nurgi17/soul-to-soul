@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loader :loading="loading" v-if="loading"/>
+    <Loader :loading="loading" v-if="loading" />
     <div v-else>
       <div class="container-articles">
         <h1>{{ article.title }}</h1>
@@ -38,13 +38,9 @@
           </p>
           <div class="row">
             <div v-for="t in three" :key="t.id" class="recom-articels d-block mx-auto">
-              <a href @click.prevent> <!-- @click.prevent="goArticles(t.id)" -->
-                <b-img-lazy
-                  :src="t.image.url"
-                  width="345px"
-                  height="200px"
-                  alt="Article 4"
-                ></b-img-lazy>
+              <a href @click.prevent>
+                <!-- @click.prevent="goArticles(t.id)" -->
+                <b-img-lazy :src="t.image.url" width="345px" height="200px" alt="Article 4"></b-img-lazy>
               </a>
               <p>{{ t.title }}</p>
             </div>
@@ -71,7 +67,8 @@ export default {
     }
   },
   async mounted () {
-    await this.$store.dispatch('fetchLastNews')
+    await this.$store
+      .dispatch('fetchLastNews')
       .then(res => {
         this.three = res
       })
@@ -81,9 +78,10 @@ export default {
       })
     const ids = {
       id: this.$route.params.id,
-      update: true
+      check: 1
     }
-    if (this.isBlog) {
+    console.log(this.isBlog)
+    if (this.isBlog === true) {
       await this.$store
         .dispatch('fetchBlogById', ids)
         .then(res => {

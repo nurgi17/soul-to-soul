@@ -1,7 +1,7 @@
 <template>
   <div>
     <section id="login">
-      <Loader :loading="loading" v-if="loading"/>
+      <Loader :loading="loading" v-if="loading" />
       <div class="auth-form container">
         <h3>Мы рады что вы здесь</h3>
         <form class="needs-validation" @submit.prevent="submitHandler">
@@ -100,7 +100,8 @@ export default {
         username: this.email,
         password: this.password
       }
-      await this.$store.dispatch('login', formData)
+      await this.$store
+        .dispatch('login', formData)
         .then(id => {
           console.log(document.cookie)
           this.loading = false

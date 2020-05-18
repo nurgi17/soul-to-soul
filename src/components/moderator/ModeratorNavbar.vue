@@ -81,7 +81,13 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <b-img-lazy src="img/Users/profile.svg" alt="Profile img"></b-img-lazy>
+              <b-img-lazy
+                :src="image"
+                alt="Profile img"
+                width="40px"
+                height="40px"
+                style="border-radius: 50%;"
+              ></b-img-lazy>
             </a>
             <div class="dropdown-menu" aria-labelledby="userLink">
               <a class="dropdown-item grey" href="#">Модератор</a>
@@ -97,7 +103,8 @@
 <script>
 export default {
   data: () => ({
-    search: false
+    search: false,
+    image: localStorage.getItem('image')
   }),
   methods: {
     async logout () {

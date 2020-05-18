@@ -1,8 +1,8 @@
 <template>
-<div class="container">
-    <Loader :loading="loading" v-if="loading"/>
-    <ProfileForm v-else @emitToSP="settings" :user="user"/>
-</div>
+  <div class="container">
+    <Loader :loading="loading" v-if="loading" />
+    <ProfileForm v-else @emitToSP="settings" :user="user" />
+  </div>
 </template>
 <script>
 import ProfileForm from '@/components/app/ProfileForm.vue'
@@ -19,7 +19,8 @@ export default {
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message])
     }
-    this.$store.dispatch('getUser')
+    this.$store
+      .dispatch('getUser')
       .then(res => {
         this.loading = false
         this.user = res
@@ -33,7 +34,8 @@ export default {
     async settings (value) {
       this.loading = true
       this.user.updated = value
-      await this.$store.dispatch('updateUser', this.user)
+      await this.$store
+        .dispatch('updateUser', this.user)
         .then(res => {
           this.loading = false
           this.user = res

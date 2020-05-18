@@ -9,9 +9,18 @@
       </p>
     </div>
     <div class="head-histories row">
-      <div v-for="history in histories" :key="history.id" class="mini-histories d-block mx-auto mb-4">
+      <div
+        v-for="history in histories"
+        :key="history.id"
+        class="mini-histories d-block mx-auto mb-4"
+      >
         <router-link tag="a" :to="{ path: '/kids-articles-current/' + history.id }">
-          <b-img-lazy :src="history.image.url" width="345px" height="240px" alt="Kids mood and problem image"></b-img-lazy>
+          <b-img-lazy
+            :src="history.image.url"
+            width="345px"
+            height="240px"
+            alt="Kids mood and problem image"
+          ></b-img-lazy>
         </router-link>
         <p>{{ history.title }}</p>
       </div>

@@ -40,7 +40,7 @@
       </div>
 
       <Buttons />
-      <Loader v-if="loading"/>
+      <Loader v-if="loading" />
       <LastNews v-else :news="news" />
     </section>
 
@@ -72,28 +72,32 @@ export default {
       {
         title: 'Дети',
         text: '3-10 лет',
-        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fkids-min.jpg?alt=media&token=3803a209-957d-45f0-a51e-e434781d6896',
+        img:
+          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fkids-min.jpg?alt=media&token=3803a209-957d-45f0-a51e-e434781d6896',
         alt: 'Kids',
         url: '/kids-choose'
       },
       {
         title: 'Подростки',
         text: '11-17 лет',
-        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fteenagers-min.jpg?alt=media&token=75ff0fbf-2446-44bb-b286-4561334de578',
+        img:
+          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fteenagers-min.jpg?alt=media&token=75ff0fbf-2446-44bb-b286-4561334de578',
         alt: 'Teenagers',
         url: '/adults-articles'
       },
       {
         title: 'Молодые люди',
         text: '18-29 лет',
-        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fyoung_peoples-min.jpg?alt=media&token=a9da1358-0dd0-4d9c-96cf-19999ca6af91',
+        img:
+          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fyoung_peoples-min.jpg?alt=media&token=a9da1358-0dd0-4d9c-96cf-19999ca6af91',
         alt: 'Young people',
         url: '/adults-articles'
       },
       {
         title: 'Взрослые',
         text: '30+ лет',
-        img: 'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fadults-min.jpg?alt=media&token=120e2da4-d62c-4661-9cb1-7361d0a05dc7',
+        img:
+          'https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Main%2Fadults-min.jpg?alt=media&token=120e2da4-d62c-4661-9cb1-7361d0a05dc7',
         alt: 'Adults',
         url: '/adults-articles'
       }
@@ -107,7 +111,8 @@ export default {
     LastNews
   },
   async mounted () {
-    await this.$store.dispatch('fetchLastNews')
+    await this.$store
+      .dispatch('fetchLastNews')
       .then(res => {
         this.news = res
         this.loading = false

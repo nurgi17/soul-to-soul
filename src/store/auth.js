@@ -32,6 +32,7 @@ export default {
             const role = resp.data.user
             localStorage.setItem('token', token)
             localStorage.setItem('role', role)
+            localStorage.setItem('image', resp.data.image)
             // eslint-disable-next-line dot-notation
             axios.defaults.headers.common['Authorization'] = 'Bearer_' + token
             commit('auth_success', token, role)
@@ -41,6 +42,7 @@ export default {
             commit('setError', err.response.data.message)
             localStorage.removeItem('token')
             localStorage.removeItem('role')
+            localStorage.removeItem('image')
             reject(err.response.data.message)
           })
       })
@@ -63,6 +65,7 @@ export default {
         axios({ url: 'https://localhost:8080/api/v1/auth/logout', method: 'GET' })
         localStorage.removeItem('token')
         localStorage.removeItem('role')
+        localStorage.removeItem('image')
         // eslint-disable-next-line dot-notation
         delete axios.defaults.headers.common['Authorization']
         resolve()
@@ -98,7 +101,7 @@ export default {
       if (user.updated.status === 1) {
         const fileData = await fb.storage().ref('Users/' + user.updated.image.name).put(user.updated.image)
         const imageSrc = await fileData.ref.getDownloadURL()
-        if (user.firebaseId !== 'anon_user' || user.firebaseId !== 'moderator') {
+        if (user.firebaseId !== 'anon_user' && user.firebaseId !== 'moderator') {
           const image = fb.storage().refFromURL(user.imageUrl)
           image.delete()
         }
@@ -119,6 +122,22 @@ export default {
         axios({ url: url, data: user, method: 'PUT' })
           .then(res => {
             resolve(res.data)
+          })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            reject(err.response.data.message)
+          })
+      })
+    },
+    async feedbackAndComplaint ({ commit }, modal) {
+      const feedback = {
+        comment: modal.text,
+        type: modal.id
+      }
+      return new Promise((resolve, reject) => {
+        axios({ url: 'https://localhost:8080/api/v1/unauthorized/feedback', data: feedback, method: 'POST' })
+          .then(resp => {
+            resolve(resp.data)
           })
           .catch(err => {
             commit('setError', err.response.data.message)

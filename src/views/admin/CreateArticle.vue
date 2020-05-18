@@ -37,7 +37,8 @@ export default {
         value.categoryId = 2
         value.moodId = 0
         value.problemId = 4
-        await this.$store.dispatch('createArticle', value)
+        await this.$store
+          .dispatch('createArticle', value)
           .then(res => {
             this.loading = false
             this.$router.push('/admin?message=articleCreated')

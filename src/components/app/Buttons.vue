@@ -1,12 +1,14 @@
 <template>
-    <div class="buttons d-flex flex-wrap">
-          <router-link
-          v-for="b in buttons"
-          :key="b.id"
-          to="/blog"
-          @click.native="tagF(b.text)"
-          tag="button" class="btn btn-secondary">{{ b.text }}</router-link>
-    </div>
+  <div class="buttons d-flex flex-wrap">
+    <router-link
+      v-for="b in buttons"
+      :key="b.id"
+      to="/blog"
+      @click.native="tagF(b.text)"
+      tag="button"
+      class="btn btn-secondary"
+    >{{ b.text }}</router-link>
+  </div>
 </template>
 <script>
 export default {

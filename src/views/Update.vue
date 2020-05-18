@@ -22,7 +22,7 @@ export default {
   async mounted () {
     const ids = {
       id: this.$route.params.id,
-      update: true
+      check: 3
     }
     await this.$store
       .dispatch('fetchBlogById', ids)
@@ -48,7 +48,8 @@ export default {
         this.$error('Для отправки все поля должны быть заполнены!')
       } else {
         this.currentBlog.updated = value
-        await this.$store.dispatch('updateBlog', this.currentBlog)
+        await this.$store
+          .dispatch('updateBlog', this.currentBlog)
           .then(res => {
             this.loading = false
             this.$router.push('/my-blog?message=blogUpdated')

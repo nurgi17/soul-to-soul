@@ -3,7 +3,12 @@
     <section id="some-things-which-can-help-you">
       <div class="choosing d-flex flex-row justify-content-center">
         <div class="choosing-img d-flex flex-column">
-          <b-img-lazy :src="imgThing[this.problem].img" alt="Cloud of think" width="148px" height="94px" ></b-img-lazy>
+          <b-img-lazy
+            :src="imgThing[this.problem].img"
+            alt="Cloud of think"
+            width="148px"
+            height="94px"
+          ></b-img-lazy>
           <b-img-lazy
             :src="imgFeel[this.mood].img"
             alt="Sadly feel"
@@ -19,20 +24,20 @@
       <Loader :loading="loading" v-if="loading" />
       <section v-else>
         <Histories :histories="items" />
-       <Paginate
-             v-model="page"
-             :page-count="pageCount"
-             :click-handler="pageChangeHandler"
-             :prev-text="'Назад'"
-             :next-text="'Вперед'"
-             :container-class="'pagination justify-content-center pagination-lg'"
-             :page-class="'page-item'"
-             :page-link-class="'page-link'"
-             :prev-class="'page-item'"
-             :prev-link-class="'page-link'"
-             :next-class="'page-item'"
-             :next-link-class="'page-link'"
-            />
+        <Paginate
+          v-model="page"
+          :page-count="pageCount"
+          :click-handler="pageChangeHandler"
+          :prev-text="'Назад'"
+          :next-text="'Вперед'"
+          :container-class="'pagination justify-content-center pagination-lg'"
+          :page-class="'page-item'"
+          :page-link-class="'page-link'"
+          :prev-class="'page-item'"
+          :prev-link-class="'page-link'"
+          :next-class="'page-item'"
+          :next-link-class="'page-link'"
+        />
       </section>
     </section>
     <Footer />

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <component :is="layout">
-      <router-view/>
+      <router-view />
     </component>
   </div>
 </template>
@@ -18,7 +18,10 @@ export default {
     }
   },
   components: {
-    UserLayout, ModeratorLayout, NoneLayout, AdminLayout
+    UserLayout,
+    ModeratorLayout,
+    NoneLayout,
+    AdminLayout
   },
   created: function () {
     this.$http.interceptors.response.use(undefined, function (err) {

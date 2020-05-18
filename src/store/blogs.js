@@ -54,43 +54,56 @@ export default {
       })
     },
     async updateBlog ({ commit }, upBlog) {
-      const blog = {
-        content: upBlog.updated.content,
-        title: upBlog.updated.title,
-        shortContent: upBlog.updated.shortContent,
-        status: upBlog.updated.status
-        // updatedDate: +new Date()
-      }
-      if (upBlog.updated.image !== null) {
-        const fileData = await fb.storage().ref('uploads/' + upBlog.updated.image.name).put(upBlog.updated.image)
-        const imageSrc = await fileData.ref.getDownloadURL()
-        const newImageBlog = {
-          url: imageSrc,
-          firebaseId: null,
-          blogId: upBlog.id
+      let blog = {}
+      let url = ''
+      if (localStorage.getItem('role') === '3') {
+        url = 'https://localhost:8080/api/v1/user/blog/'
+        blog = {
+          content: upBlog.updated.content,
+          title: upBlog.updated.title,
+          shortContent: upBlog.updated.shortContent,
+          status: upBlog.updated.status
         }
-        if (upBlog.images[0].url !== '') {
-          const image = fb.storage().refFromURL(upBlog.images[0].url)
-          image.delete()
-          axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + upBlog.images[0].id, data: newImageBlog, method: 'PUT' })
-            .catch(err => {
-              commit('setError', err.response.data.message)
-              return new Promise((resolve, reject) => {
-                reject(err)
+        if (upBlog.updated.image !== null) {
+          const fileData = await fb.storage().ref('uploads/' + upBlog.updated.image.name).put(upBlog.updated.image)
+          const imageSrc = await fileData.ref.getDownloadURL()
+          const newImageBlog = {
+            url: imageSrc,
+            firebaseId: null,
+            blogId: upBlog.id
+          }
+          if (upBlog.images[0].url !== '') {
+            const image = fb.storage().refFromURL(upBlog.images[0].url)
+            image.delete()
+            axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + upBlog.images[0].id, data: newImageBlog, method: 'PUT' })
+              .catch(err => {
+                commit('setError', err.response.data.message)
+                return new Promise((resolve, reject) => {
+                  reject(err)
+                })
               })
-            })
-        } else {
-          axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + upBlog.id, data: newImageBlog, method: 'POST' })
-            .catch(err => {
-              commit('setError', err.response.data.message)
-              return new Promise((resolve, reject) => {
-                reject(err)
+          } else {
+            axios({ url: 'https://localhost:8080/api/v1/user/imageBlog/' + upBlog.id, data: newImageBlog, method: 'POST' })
+              .catch(err => {
+                commit('setError', err.response.data.message)
+                return new Promise((resolve, reject) => {
+                  reject(err)
+                })
               })
-            })
+          }
+        }
+      } else if (localStorage.getItem('role') === '2') {
+        url = 'https://localhost:8080/api/v1/moderator/blog/'
+        blog = {
+          content: upBlog.content,
+          title: upBlog.title,
+          shortContent: upBlog.shortContent,
+          status: upBlog.status,
+          comment: upBlog.comment
         }
       }
       return new Promise((resolve, reject) => {
-        axios({ url: 'https://localhost:8080/api/v1/user/blog/' + upBlog.id, data: blog, method: 'PUT' })
+        axios({ url: url + upBlog.id, data: blog, method: 'PUT' })
           .then(res => {
             resolve(res.data)
           })
@@ -102,9 +115,11 @@ export default {
     },
     async fetchBlogById ({ commit }, ids) {
       let url = ''
-      if (ids.update) {
+      if (ids.check === 2) {
+        url = 'https://localhost:8080/api/v1/moderator/blog/'
+      } else if (ids.check === 3) {
         url = 'https://localhost:8080/api/v1/user/blog/'
-      } else {
+      } else if (ids.check === 1) {
         url = 'https://localhost:8080/api/v1/unauthorized/blog/'
       }
       return new Promise((resolve, reject) => {
@@ -118,33 +133,17 @@ export default {
           })
       })
     },
-    async fetchBlogByIdUn ({ commit }, id) {
+    async fetchBlogs ({ commit }, check) {
+      let url = ''
+      if (check === 2) {
+        url = 'https://localhost:8080/api/v1/moderator/blogs'
+      } else if (check === 3) {
+        url = 'https://localhost:8080/api/v1/user/userblogs'
+      } else if (check === 1) {
+        url = 'https://localhost:8080/api/v1/unauthorized/blogs'
+      }
       return new Promise((resolve, reject) => {
-        axios({ url: 'https://localhost:8080/api/v1/unauthorized/blog/' + id, method: 'GET' })
-          .then(res => {
-            resolve(res.data)
-          })
-          .catch(err => {
-            commit('setError', err.response.data.message)
-            reject(err.response.data.message)
-          })
-      })
-    },
-    async fetchUserBlogs ({ commit }) {
-      return new Promise((resolve, reject) => {
-        axios({ url: 'https://localhost:8080/api/v1/user/userblogs', method: 'GET' })
-          .then(res => {
-            resolve(res.data)
-          })
-          .catch(err => {
-            commit('setError', err.response.data.message)
-            reject(err.response.data.message)
-          })
-      })
-    },
-    async fetchBlogs ({ commit }) {
-      return new Promise((resolve, reject) => {
-        axios({ url: 'https://localhost:8080/api/v1/unauthorized/blogs', method: 'GET' })
+        axios({ url: url, method: 'GET' })
           .then(res => {
             resolve(res.data)
           })

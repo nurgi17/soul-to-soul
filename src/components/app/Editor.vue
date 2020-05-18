@@ -100,7 +100,7 @@
         </editor-menu-bar>
       </div>
       <div class="container col-11">
-        <b-img-lazy :src="imageSrc" height="100" v-if="imageSrc" ></b-img-lazy>
+        <b-img-lazy :src="imageSrc" height="100" v-if="imageSrc"></b-img-lazy>
         <!-- <div>
           <b-form-tags
           placeholder="Добавить тег"
@@ -115,7 +115,7 @@
         <editor-content class="pb-5 mb-5" :editor="editor" />
         <!-- <p>
           <code>{{ html }}</code>
-        </p> -->
+        </p>-->
       </div>
     </div>
     <div class="save-publish">

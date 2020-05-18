@@ -120,7 +120,7 @@ const routes = [
     component: () => import('../views/moderator/Blog.vue')
   },
   {
-    path: '/moderator-check-current',
+    path: '/moderator-check-current/:id',
     name: 'moderator-check-current',
     meta: { layout: 'moderator', auth: true, user: false, admin: false, moderator: true },
     component: () => import('../views/moderator/BlogCurrent.vue')

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section id="auth">
-      <Loader :loading="loading" v-if="loading"/>
+      <Loader :loading="loading" v-if="loading" />
       <div class="auth-form container">
         <h3>Зарегистрироваться</h3>
         <form class="needs-validation" @submit.prevent="submitHandler">
@@ -94,7 +94,8 @@ export default {
         username: this.email,
         password: this.password
       }
-      await this.$store.dispatch('register', formData)
+      await this.$store
+        .dispatch('register', formData)
         .then(res => {
           this.loading = false
           this.$router.push('/login?message=registered')

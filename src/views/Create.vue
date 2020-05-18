@@ -1,8 +1,10 @@
 <template>
-<div>
-  <Loader :loading="loading" v-if="loading" />
-  <div class="container sorry"> Извините но ваше устройство не подходит для создания новых блогов, вы можете повернуть телефон по горизонтали.</div>
-    <Editor :currentBlog="currentBlog" @emitToSP="saveAndPublish"/>
+  <div>
+    <Loader :loading="loading" v-if="loading" />
+    <div
+      class="container sorry"
+    >Извините но ваше устройство не подходит для создания новых блогов, вы можете повернуть телефон по горизонтали.</div>
+    <Editor :currentBlog="currentBlog" @emitToSP="saveAndPublish" />
   </div>
 </template>
 
@@ -33,7 +35,8 @@ export default {
         this.loading = false
         this.$error('Для отправки все поля должны быть заполнены!')
       } else {
-        await this.$store.dispatch('createBlog', value)
+        await this.$store
+          .dispatch('createBlog', value)
           .then(res => {
             this.loading = false
             this.$router.push('/my-blog?message=blogCreated')

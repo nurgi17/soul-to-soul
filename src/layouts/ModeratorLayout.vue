@@ -1,6 +1,6 @@
 <template>
   <div id="moderator-main" class="row">
-    <ModeratorSidebar @close="isClose = !isClose" v-model="isClose"/>
+    <ModeratorSidebar @close="isClose = !isClose" v-model="isClose" />
     <div :class="{'col-9': isClose, 'col-10': !isClose}">
       <ModeratorNavbar />
       <router-view />

@@ -23,7 +23,11 @@
       </div>
     </div>
     <div class="statistics col-7">
-      <b-img-lazy src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Moderator%2Fkz-min.jpg?alt=media&token=77a2024d-0f81-4e7c-8ef1-d8755fcfc2e4" class="w-100" alt="Kazakhstan map img" ></b-img-lazy>
+      <b-img-lazy
+        src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Moderator%2Fkz-min.jpg?alt=media&token=77a2024d-0f81-4e7c-8ef1-d8755fcfc2e4"
+        class="w-100"
+        alt="Kazakhstan map img"
+      ></b-img-lazy>
       <div>
         <span>Статистика</span>
 

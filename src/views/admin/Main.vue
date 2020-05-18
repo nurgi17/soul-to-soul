@@ -1,7 +1,5 @@
 <template>
-    <div class="container-fluid">
-        Welcome to Admin Page
-    </div>
+  <div class="container-fluid">Welcome to Admin Page</div>
 </template>
 <script>
 import messages from '@/utils/messages'
