@@ -6,6 +6,7 @@ import BootstrapVue from 'bootstrap-vue'
 import Loader from '@/components/app/Loader'
 import Paginate from 'vuejs-paginate'
 import messagePlugin from '@/utils/messages.plugin'
+import IdleVue from 'idle-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -15,6 +16,13 @@ import router from './router'
 import store from './store'
 import firebase from 'firebase/app'
 
+const eventsHub = new Vue()
+Vue.use(IdleVue, {
+  eventEmitter: eventsHub,
+  store,
+  idleTime: 3000,
+  startAtIdle: false
+})
 Vue.config.productionTip = false
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)

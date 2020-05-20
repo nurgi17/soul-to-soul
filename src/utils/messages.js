@@ -9,6 +9,11 @@ export default {
     title: 'Предупреждение',
     message: 'Для начала войдите в систему'
   },
+  sessionExpired: {
+    type: 'warning',
+    title: 'Предупреждение',
+    message: 'К сожалению ваша сессия истекла'
+  },
   userUpdated: {
     type: 'success',
     title: 'Достижение успеха',

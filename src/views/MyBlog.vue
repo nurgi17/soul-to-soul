@@ -26,7 +26,7 @@
         <p v-html="d.shortContent"></p>
         <div class="dropdown">
           <div class="d-block mx-auto">
-            <span>{{ d.createdDate }} дней назад изменено</span>
+            <span>{{ d.createdDate }} </span>
             <a
               href="#"
               class="ml-2"

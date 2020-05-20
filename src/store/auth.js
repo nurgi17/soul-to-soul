@@ -105,6 +105,7 @@ export default {
           const image = fb.storage().refFromURL(user.imageUrl)
           image.delete()
         }
+        localStorage.setItem('image', imageSrc)
         user.imageUrl = imageSrc
         user.firebaseId = 'image_uploaded'
       } else if (user.updated.status === 2) {
@@ -136,6 +137,18 @@ export default {
       }
       return new Promise((resolve, reject) => {
         axios({ url: 'https://localhost:8080/api/v1/unauthorized/feedback', data: feedback, method: 'POST' })
+          .then(resp => {
+            resolve(resp.data)
+          })
+          .catch(err => {
+            commit('setError', err.response.data.message)
+            reject(err.response.data.message)
+          })
+      })
+    },
+    async fetchFeedbackAndComplaint ({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({ url: 'https://localhost:8080/api/v1/admin/feedbacks', method: 'GET' })
           .then(resp => {
             resolve(resp.data)
           })

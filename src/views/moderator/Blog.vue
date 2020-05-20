@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+import messages from '@/utils/messages'
 export default {
   data () {
     return {
@@ -25,6 +26,9 @@ export default {
     }
   },
   async mounted () {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message])
+    }
     await this.$store
       .dispatch('fetchBlogs', 2)
       .then(res => {
