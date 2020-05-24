@@ -9,7 +9,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    error: null
+    error: null,
+    messages: []
   },
   mutations: {
     setError (state, error) {
@@ -17,12 +18,16 @@ export default new Vuex.Store({
     },
     clearError (state) {
       state.error = null
+    },
+    newMessage (state, message) {
+      state.messages.push(message)
     }
   },
   actions: {
   },
   getters: {
-    err: s => s.error
+    err: s => s.error,
+    messages: s => s.messages
   },
   modules: {
     auth,

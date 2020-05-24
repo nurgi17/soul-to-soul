@@ -31,72 +31,16 @@
             >Оставить отзыв</a>
           </div>
         </div>
+        <!--Chat Form ----------------------------------------------------------------------------------------------->
         <div class="chat col-12 col-sm-9">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend first-icon">
-              <span class="input-group-text">
-                <a href class>
-                  <b-img-lazy
-                    src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Icons%2Fclip.svg?alt=media&token=9d59090d-0249-4867-bdaf-afeaa75e8325"
-                    alt="Clip icon"
-                  ></b-img-lazy>
-                </a>
-              </span>
-            </div>
-            <div class="input-group-prepend middle-icon">
-              <span class="input-group-text">
-                <a href class>
-                  <b-img-lazy
-                    src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Icons%2Fsmile.svg?alt=media&token=77fae23b-5cb6-485d-9778-b7327a9df836"
-                    alt="Smile icon"
-                  ></b-img-lazy>
-                </a>
-              </span>
-            </div>
-            <input
-              type="text"
-              class="form-control shadow-none"
-              aria-label="Amount (to the nearest dollar)"
-            />
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <a href class="last-icon">
-                  <b-img-lazy
-                    src="https://firebasestorage.googleapis.com/v0/b/soul-to-soul.appspot.com/o/Icons%2Fuser_send.svg?alt=media&token=f6a693be-170b-4785-b750-dc50fb33e2ce"
-                    alt="Send button"
-                  ></b-img-lazy>
-                </a>
-              </span>
-            </div>
+          <div class="c-chat h-100" ref="block">
+            <Message v-for="m in messages" :key="m.id" :text="m.text" :time="m.time" :owner="m.owner"/>
           </div>
-
-          <div class="messages">
-            <ul>
-              <li class="sent">
-                <p>
-                  <span>12:23</span> Какой-то текст
-                </p>
-              </li>
-              <li class="sent">
-                <p>
-                  <span>12:23</span> Какой-то текст
-                </p>
-              </li>
-              <li class="reply">
-                <p>
-                  Какой-то текст
-                  <span>12:23</span>
-                </p>
-              </li>
-              <li class="reply">
-                <p>
-                  Какой-то текст
-                  <span>12:23</span>
-                </p>
-              </li>
-            </ul>
+          <div class="c-form">
+            <ChatForm />
           </div>
         </div>
+        <!--Chat Form ----------------------------------------------------------------------------------------------->
       </div>
 
       <div
@@ -128,6 +72,8 @@
 </template>
 <script>
 import Modal from '@/components/app/Modal.vue'
+import ChatForm from '@/components/chat/ChatForm.vue'
+import Message from '@/components/chat/Message.vue'
 import messages from '@/utils/messages'
 export default {
   data: () => ({
@@ -139,11 +85,23 @@ export default {
     loading: false
   }),
   components: {
-    Modal
+    Modal, ChatForm, Message
   },
   mounted () {
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message])
+    }
+  },
+  computed: {
+    messages () {
+      return this.$store.getters.messages
+    }
+  },
+  watch: {
+    messages () {
+      setTimeout(() => {
+        this.$refs.block.scrollTop = this.$refs.block.scrollHeight
+      })
     }
   },
   methods: {

@@ -76,6 +76,7 @@ body {
                 margin-top: 30px;
             }
         }
+
         .nav-link {
             color: $green !important;
             font-size: 0.8em;
@@ -827,13 +828,14 @@ footer {
         max-width: 255px;
     }
 
-        img {
-            border: $borderGreyBorder;
-            border-radius: 8px;
-            &:hover {
-                box-shadow:
-                    0px 15px 15px -15px $greyList;
-            }
+    img {
+        border: $borderGreyBorder;
+        border-radius: 8px;
+
+        &:hover {
+            box-shadow:
+                0px 15px 15px -15px $greyList;
+        }
     }
 }
 
@@ -1080,12 +1082,14 @@ footer {
     p {
         font-size: 0.9em;
     }
+
     p,
     span,
     i {
         color: $greyMain;
         margin-bottom: 5px;
     }
+
     span,
     i {
         font-size: 0.7em;
@@ -1243,7 +1247,7 @@ footer {
 .sidebar,
 .m-sidebar-chat {
     border-right: $borderHorizontal;
-    height: 715px;
+    height: 747px;
 
     a {
         text-decoration: none;
@@ -1279,104 +1283,105 @@ footer {
 
 
 .chat {
-    .input-group {
+    position: relative;
+    overflow: hidden;
+
+    .c-form {
         position: absolute;
-        bottom: 0;
-        padding-right: 15px;
+        bottom: 2px;
+        left: 15px;
+        right: 0;
 
-        .input-group-prepend,
-        .input-group-append {
-            .input-group-text {
+        .input-group {
+            padding-right: 15px;
+
+            .input-group-prepend,
+            .input-group-append {
+                .input-group-text {
+                    height: 45px;
+                    background-color: $white;
+                }
+            }
+
+            .input-group-prepend {
+                .input-group-text {
+                    border-right: none;
+                }
+            }
+
+            .middle-icon,
+            .input-group-append {
+                .input-group-text {
+                    border-left: none;
+                }
+            }
+
+            .first-icon {
+                .input-group-text {
+                    border-top-left-radius: 70px;
+                    border-bottom-left-radius: 70px;
+                }
+            }
+
+            .input-group-append {
+                .input-group-text {
+                    border-top-right-radius: 70px;
+                    border-bottom-right-radius: 70px;
+                }
+
+            }
+
+            .form-control {
                 height: 45px;
-                background-color: $white;
-            }
-        }
-
-        .input-group-prepend {
-            .input-group-text {
-                border-right: none;
-            }
-        }
-
-        .middle-icon,
-        .input-group-append {
-            .input-group-text {
                 border-left: none;
-            }
-        }
+                border-right: none;
 
-        .first-icon {
-            .input-group-text {
-                border-top-left-radius: 70px;
-                border-bottom-left-radius: 70px;
-            }
-        }
+                &:focus {
+                    border-color: #cccccc;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
 
-        .input-group-append {
-            .input-group-text {
-                border-top-right-radius: 70px;
-                border-bottom-right-radius: 70px;
-            }
-
-        }
-
-        .form-control {
-            height: 45px;
-            border-left: none;
-            border-right: none;
-
-            &:focus {
-
-                border-color: #cccccc;
-                -webkit-box-shadow: none;
-                box-shadow: none;
-
+                }
             }
         }
     }
 
-    .messages {
-        ul {
-            li {
-                display: inline-block;
-                clear: both;
-                float: left;
+    .c-chat {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow-y: auto;
+        padding-bottom: 60px;
+
+        .wrap {
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+
+            .messages {
                 margin: 15px 15px 0px 15px;
                 font-size: 0.8em;
                 color: $black;
+                border-radius: 75px;
+                padding: 11.5px 22px;
+                background: $greyMini;
+                width: 200px;
 
-                &.reply {
-                    border-radius: 75px;
-                    padding: 11.5px 22px;
-                    background: $greyMini;
-
-                    p {
-                        margin-bottom: 0;
-                    }
-
-                    span {
-                        padding-left: 5px;
-                        font-size: 0.7em;
-                        color: $greyMain;
-                    }
+                p {
+                    margin-bottom: 0;
                 }
 
-                &.sent {
-                    border-radius: 75px;
-                    padding: 11.5px 22px;
-                    background: $greenSent;
-                    float: right;
-
-                    p {
-                        margin-bottom: 0;
-                    }
-
-                    span {
-                        padding-right: 5px;
-                        font-size: 0.7em;
-                        color: $greyMain;
-                    }
+                span {
+                    padding-left: 5px;
+                    font-size: 0.7em;
+                    color: $greyMain;
                 }
+            }
+
+            .owner {
+                background: $greenSent;
+                align-self: flex-end;
             }
         }
     }
@@ -1474,6 +1479,10 @@ footer {
     }
 
     .chat {
+        .c-chat {
+            position: relative;
+        }
+
         .input-group {
             position: fixed;
             bottom: 0;
@@ -1988,6 +1997,20 @@ footer {
         .align {
             margin-left: 0px;
             align-self: start;
+        }
+    }
+
+    .chat {
+        .c-chat {
+            .wrap {
+                .messages {
+                    font-size: 0.7em;
+
+                    span {
+                        font-size: 0.6em;
+                    }
+                }
+            }
         }
     }
 }
