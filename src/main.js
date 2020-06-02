@@ -7,6 +7,7 @@ import Loader from '@/components/app/Loader'
 import Paginate from 'vuejs-paginate'
 import messagePlugin from '@/utils/messages.plugin'
 import IdleVue from 'idle-vue'
+import dateFilter from '@/filters/date.filter'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -24,6 +25,7 @@ Vue.use(IdleVue, {
   startAtIdle: false
 })
 Vue.config.productionTip = false
+Vue.filter('date', dateFilter)
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 Vue.use(BootstrapVue)

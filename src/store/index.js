@@ -4,13 +4,13 @@ import auth from './auth'
 import articles from './articles'
 import blogs from './blogs'
 import admin from './admin'
+import chat from './chat'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    error: null,
-    messages: []
+    error: null
   },
   mutations: {
     setError (state, error) {
@@ -18,21 +18,18 @@ export default new Vuex.Store({
     },
     clearError (state) {
       state.error = null
-    },
-    newMessage (state, message) {
-      state.messages.push(message)
     }
   },
   actions: {
   },
   getters: {
-    err: s => s.error,
-    messages: s => s.messages
+    err: s => s.error
   },
   modules: {
     auth,
     articles,
     blogs,
-    admin
+    admin,
+    chat
   }
 })

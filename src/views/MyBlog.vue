@@ -26,7 +26,7 @@
         <p v-html="d.shortContent"></p>
         <div class="dropdown">
           <div class="d-block mx-auto">
-            <span>{{ d.createdDate }} </span>
+            <span>{{ d.createdDate | date('datetime') }} </span>
             <a
               href="#"
               class="ml-2"

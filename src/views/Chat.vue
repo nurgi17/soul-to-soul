@@ -34,37 +34,14 @@
         <!--Chat Form ----------------------------------------------------------------------------------------------->
         <div class="chat col-12 col-sm-9">
           <div class="c-chat h-100" ref="block">
-            <Message v-for="m in messages" :key="m.id" :text="m.text" :time="m.time" :owner="m.owner"/>
+            <div class="text-center mt-5 pt-5" v-if="allMessages.length === 0">Если вам нужна помощь, просто начните веб-чат</div>
+            <Message v-else v-for="m in allMessages" :key="m.id" :text="m.content" :fromUser="m.fromUser" :time="m.sendTime" :owner="fromUser" />
           </div>
           <div class="c-form">
-            <ChatForm />
+            <ChatForm @sendNewMessages="send"/>
           </div>
         </div>
         <!--Chat Form ----------------------------------------------------------------------------------------------->
-      </div>
-
-      <div
-        class="modal fade"
-        id="exampleModalCenter"
-        tabindex="-1"
-        role="dialog"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content modal-exit">
-            <h4>Сохранить чат?</h4>
-            <p>Зарегистрируйтесь и сохраните чат</p>
-            <div class="d-flex flex-row justify-content-between">
-              <router-link
-                tag="a"
-                to="/register"
-                class="save-chat"
-                data-dismiss="modal"
-              >Зарегистрироваться</router-link>
-              <router-link tag="a" to="/" class="leave-chat" data-dismiss="modal">Выйти с чата</router-link>
-            </div>
-          </div>
-        </div>
       </div>
       <Modal @emittidText="sendFC" :modal="modal1" />
     </div>
@@ -82,7 +59,7 @@ export default {
       title: '',
       text: ''
     },
-    loading: false
+    loading: true
   }),
   components: {
     Modal, ChatForm, Message
@@ -91,14 +68,36 @@ export default {
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message])
     }
+    const users = {
+      fromUser: this.fromUser,
+      toUser: this.toUser
+    }
+    this.$store.dispatch('connect', users)
+      .then(res => {
+        this.loading = false
+        console.log(res)
+      })
+      .catch(err => {
+        this.loading = false
+        this.$error(err || 'Что-то пошло не так')
+      })
+  },
+  beforeDestroy () {
+    this.$store.dispatch('disconnect')
   },
   computed: {
-    messages () {
+    allMessages () {
       return this.$store.getters.messages
+    },
+    fromUser () {
+      return this.$store.getters.fromUser
+    },
+    toUser () {
+      return this.$store.getters.toUser
     }
   },
   watch: {
-    messages () {
+    allMessages () {
       setTimeout(() => {
         this.$refs.block.scrollTop = this.$refs.block.scrollHeight
       })
@@ -130,6 +129,23 @@ export default {
           this.loading = false
           this.$error(err || 'Что-то пошло не так')
         })
+    },
+    send (value) {
+      const today = new Date()
+      const jaiMsg = {
+        id: this.allMessages[this.allMessages.length - 1].id + 1,
+        content: value,
+        fromUser: this.fromUser,
+        toUser: this.toUser,
+        sendTime: today.toString()
+      }
+      this.$store.commit('newMessage', jaiMsg)
+      const inMessage = {
+        toUser: this.toUser,
+        fromUser: this.fromUser,
+        content: value
+      }
+      this.$store.dispatch('sendNewMessage', inMessage)
     }
   }
 }

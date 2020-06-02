@@ -5,7 +5,7 @@
 export default {
   data () {
     return {
-      time: 30000
+      time: 1800000
     }
   },
   created () {

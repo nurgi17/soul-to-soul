@@ -52,12 +52,7 @@ export default {
   },
   methods: {
     send () {
-      const message = {
-        id: this.getMessages.length + 1,
-        text: this.text,
-        owner: true
-      }
-      this.$store.commit('newMessage', message)
+      this.$emit('sendNewMessages', this.text)
       this.text = ''
     }
   }

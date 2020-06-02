@@ -1267,7 +1267,6 @@ footer {
 
     span {
         font-size: 0.6em;
-
         &:first-child {
             padding: 13px 0px 0px 20px;
             font-size: 0.7em;
@@ -1277,7 +1276,9 @@ footer {
 
     .m-message {
         padding: 17px 0px 20px 19px;
-        background-color: $greyMini;
+        &:hover {
+            background-color: $greyMini;
+        }
     }
 }
 
@@ -1353,7 +1354,6 @@ footer {
         left: 0;
         overflow-y: auto;
         padding-bottom: 60px;
-
         .wrap {
             overflow-y: auto;
             display: flex;

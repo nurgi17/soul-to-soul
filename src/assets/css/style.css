@@ -844,8 +844,9 @@ footer {
       font-size: 0.7em;
       font-weight: 500; }
   .m-sidebar-chat .m-message {
-    padding: 17px 0px 20px 19px;
-    background-color: #F2F2F2; }
+    padding: 17px 0px 20px 19px; }
+    .m-sidebar-chat .m-message:hover {
+      background-color: #F2F2F2; }
 
 .chat {
   position: relative;

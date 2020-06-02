@@ -33,9 +33,11 @@ export default {
             localStorage.setItem('token', token)
             localStorage.setItem('role', role)
             localStorage.setItem('image', resp.data.image)
+            localStorage.setItem('username', resp.data.username)
             // eslint-disable-next-line dot-notation
             axios.defaults.headers.common['Authorization'] = 'Bearer_' + token
             commit('auth_success', token, role)
+            commit('setFromUser', resp.data.username)
             resolve(role)
           })
           .catch(err => {
@@ -43,6 +45,7 @@ export default {
             localStorage.removeItem('token')
             localStorage.removeItem('role')
             localStorage.removeItem('image')
+            localStorage.removeItem('username')
             reject(err.response.data.message)
           })
       })
@@ -62,10 +65,12 @@ export default {
     async logout ({ commit }) {
       return new Promise((resolve, reject) => {
         commit('logout')
+        commit('clearFromUser')
         axios({ url: 'https://localhost:8080/api/v1/auth/logout', method: 'GET' })
         localStorage.removeItem('token')
         localStorage.removeItem('role')
         localStorage.removeItem('image')
+        localStorage.removeItem('username')
         // eslint-disable-next-line dot-notation
         delete axios.defaults.headers.common['Authorization']
         resolve()

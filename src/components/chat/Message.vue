@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
-    <div class="messages" :class="{owner}">
-      <p>{{ text }}<span>{{ time }}</span></p>
+    <div class="messages" :class="{ owner: fromUser === owner}">
+      <p>{{ text }}<span>{{ time | date('time') }}</span></p>
     </div>
   </div>
 </template>
@@ -9,10 +9,9 @@
 export default {
   props: {
     text: String,
+    fromUser: String,
     time: String,
-    owner: {
-      type: Boolean
-    }
+    owner: String
   }
 }
 </script>
