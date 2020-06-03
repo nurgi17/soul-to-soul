@@ -132,8 +132,12 @@ export default {
     },
     send (value) {
       const today = new Date()
+      let newId = 1
+      if (this.allMessages.length !== 0) {
+        newId = this.allMessages[this.allMessages.length - 1].id + 1
+      }
       const jaiMsg = {
-        id: this.allMessages[this.allMessages.length - 1].id + 1,
+        id: newId,
         content: value,
         fromUser: this.fromUser,
         toUser: this.toUser,
